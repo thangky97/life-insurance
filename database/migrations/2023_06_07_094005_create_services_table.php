@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('services', function (Blueprint $table) {
             $table->id();
             $table->string('service_name');
+            $table->string('thumbnail');
             $table->text('description');
             $table->string('cost')->comment('chi phí dịch vụ')->nullable();
             $table->softDeletes();

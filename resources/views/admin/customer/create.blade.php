@@ -1,6 +1,6 @@
 @extends('layouts.admin.master')
 
-@section('title', 'Thêm khách hàng')
+@section('title', 'Thêm mới khách hàng')
 
 @section('content')
 
@@ -8,107 +8,56 @@
         <div class="page-content">
             <div class="container-fluid">
                 <div class="row">
-                    <div id="msg-box">
-                        <?php //Hiển thị thông báo thành công
-                        ?>
-                        @if (Session::has('success'))
-                            <div class="alert alert-success solid alert-dismissible fade show">
-                                <span><i class="mdi mdi-check"></i></span>
-                                <strong>{{ Session::get('success') }}</strong>
-                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="btn-close">
-                                </button>
-                            </div>
-                        @endif
-                        <?php //Hiển thị thông báo lỗi
-                        ?>
-                        @if (Session::has('error'))
-                            <div class="alert alert-danger solid alert-end-icon alert-dismissible fade show">
-                                <span><i class="mdi mdi-help"></i></span>
-                                <strong>{{ Session::get('errors') }}</strong>
-                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="btn-close">
-                                </button>
-                            </div>
-                        @endif
-                    </div>
                     <div class="col-lg-12">
+                        <div id="msg-box">
+                            <?php //Hiển thị thông báo thành công
+                            ?>
+                            @if (Session::has('success'))
+                                <div class="alert alert-success solid alert-dismissible fade show">
+                                    <span><i class="mdi mdi-check"></i></span>
+                                    <strong>{{ Session::get('success') }}</strong>
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="btn-close">
+                                    </button>
+                                </div>
+                            @endif
+                            <?php //Hiển thị thông báo lỗi
+                            ?>
+                            @if (Session::has('error'))
+                                <div class="alert alert-danger solid alert-end-icon alert-dismissible fade show">
+                                    <span><i class="mdi mdi-help"></i></span>
+                                    <strong>{{ Session::get('errors') }}</strong>
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="btn-close">
+                                    </button>
+                                </div>
+                            @endif
+                        </div>
                         <div class="card">
                             <div class="card-body">
 
-                                <h3 class="mb-4">Thêm quản trị viên</h3>
+                                <h3 class="mb-4">Thêm khách hàng</h3>
 
                                 <form class="custom-validation" action="" method="post" enctype="multipart/form-data">
                                     @csrf
-                                    <div class="mb-3">
-                                        <label class="form-label">Tên <span class="text-danger">*</span></label>
-                                        <input type="text" name="name" class="form-control"
-                                            value="@isset($request['name']){{ $request['name'] }}@endisset">
-                                        @error('name')
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <label class="form-label">Tên khách hàng <span
+                                                    class="text-danger">*</span></label>
+                                            <input type="text" name="full_name" class="form-control"
+                                                value="@isset($request['full_name']){{ $request['full_name'] }}@endisset">
+                                            @error('full_name')
+                                                <div>
+                                                    <p class="text-danger">{{ $message }}</p>
+                                                </div>
+                                            @enderror
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label">Số điện thoại <span
+                                                    class="text-danger">*</span></label>
                                             <div>
-                                                <p class="text-danger">{{ $message }}</p>
-                                            </div>
-                                        @enderror
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <label class="form-label">E-Mail <span class="text-danger">*</span></label>
-                                        <div>
-                                            <input type="email" name="email" class="form-control"
-                                                value="@isset($request['email']){{ $request['email'] }}@endisset">
-                                            @error('email')
-                                                <div>
-                                                    <p class="text-danger">{{ $message }}</p>
-                                                </div>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">Mật khẩu <span class="text-danger">*</span></label>
-                                        <div>
-                                            <input type="password" name="password" id="pass2" class="form-control"
-                                                value="@isset($request['password']){{ $request['password'] }}@endisset">
-                                            @error('password')
-                                                <div>
-                                                    <p class="text-danger">{{ $message }}</p>
-                                                </div>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">Số điện thoại <span class="text-danger">*</span></label>
-                                        <div>
-                                            <input data-parsley-type="number" name="phone_number" type="number"
-                                                class="form-control"
-                                                value="@isset($request['phone_number']){{ $request['phone_number'] }}@endisset">
-                                            @error('phone_number')
-                                                <div>
-                                                    <p class="text-danger">{{ $message }}</p>
-                                                </div>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">Ngày sinh <span class="text-danger">*</span></label>
-                                        <div>
-                                            <input class="form-control" name="date_of_birthday" type="date"
-                                                value="@isset($request['date_of_birthday']){{ $request['date_of_birthday'] }}@endisset">
-                                            @error('date_of_birthday')
-                                                <div>
-                                                    <p class="text-danger">{{ $message }}</p>
-                                                </div>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">Ảnh <span class="text-danger">*</span></label>
-                                        <div>
-                                            <div class="form-file">
-                                                <input type="file" name="images"
-                                                    class="form-file-input form-control">
-                                                @if (isset($user) && $user->avatar)
-                                                    <img src="{{ asset($user->avatar) }}" alt="{{ $user->name }}"
-                                                        width="100">
-                                                @endif
-                                                @error('images')
+                                                <input data-parsley-type="number" name="phone_number" type="number"
+                                                    class="form-control"
+                                                    value="@isset($request['phone_number']){{ $request['phone_number'] }}@endisset">
+                                                @error('phone_number')
                                                     <div>
                                                         <p class="text-danger">{{ $message }}</p>
                                                     </div>
@@ -116,24 +65,139 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">Trạng thái <span class="text-danger">*</span></label>
-                                        <select name="status" class="form-select" id="validationCustom04">
-                                            <option selected value="">Chọn trạng thái</option>
-                                            <option value="1">Hoạt động</option>
-                                            <option value="2">Không hoạt động</option>
-                                            <option value="0">Khóa</option>
+
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <label class="form-label">Ngày gọi <span class="text-danger">*</span></label>
+                                            <div class="input-group" id="datepicker2">
+                                                <input name="calling_date" type="date" id="input-date1"
+                                                    value="@isset($request['calling_date']){{ $request['calling_date'] }}@endisset"
+                                                    class="form-control input-mask" data-inputmask="'alias': 'datetime'"
+                                                    data-inputmask-inputformat="dd/mm/yyyy">
+                                            </div>
+                                            @error('calling_date')
+                                                <div>
+                                                    <p class="text-danger">{{ $message }}</p>
+                                                </div>
+                                            @enderror
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <label class="form-label">Ngày gọi lại <span
+                                                    class="text-danger">*</span></label>
+                                            <div class="input-group" id="datepicker2">
+                                                <input name="call_back" type="date" id="input-date1"
+                                                    value="@isset($request['call_back']){{ $request['call_back'] }}@endisset"
+                                                    class="form-control input-mask" data-inputmask="'alias': 'datetime'"
+                                                    data-inputmask-inputformat="dd/mm/yyyy">
+
+                                                {{-- <span class="input-group-text"><i class="mdi mdi-calendar"></i></span> --}}
+                                            </div>
+                                            @error('call_back')
+                                                <div>
+                                                    <p class="text-danger">{{ $message }}</p>
+                                                </div>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <label class="form-label">Chọn dịch vụ <span
+                                                    class="text-danger">*</span></label>
+                                            <select class="select2 form-control select2-multiple" name="service_id"
+                                                multiple="multiple" multiple data-placeholder="Chọn dịch vụ ...">
+                                                @foreach ($services as $service)
+                                                    <option value="{{ $service->id }}">{{ $service->service_name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <label class="form-label">Địa chỉ <span class="text-danger">*</span></label>
+                                            <input type="text" name="address" class="form-control"
+                                                value="@isset($request['address']){{ $request['address'] }}@endisset">
+                                            @error('address')
+                                                <div>
+                                                    <p class="text-danger">{{ $message }}</p>
+                                                </div>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <label class="form-label">Giới tính <span class="text-danger">*</span></label>
+                                            <select name="gender" class="form-select" id="validationCustom04">
+                                                <option value="">Chọn giới tính</option>
+                                                <option value="1">Nam</option>
+                                                <option value="2">Nữ</option>
+                                                <option value="0">Khác</option>
+                                            </select>
+                                            @error('gender')
+                                                <div>
+                                                    <p class="text-danger">{{ $message }}</p>
+                                                </div>
+                                            @enderror
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label">Nguồn <span class="text-danger">*</span></label>
+                                            <input type="text" name="source" class="form-control"
+                                                value="@isset($request['source']){{ $request['source'] }}@endisset">
+                                            @error('source')
+                                                <div>
+                                                    <p class="text-danger">{{ $message }}</p>
+                                                </div>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <label class="form-label">Trạng thái quan tâm <span
+                                                    class="text-danger">*</span></label>
+                                            <select name="status_customer" class="form-select" id="validationCustom04">
+                                                <option selected value="">Chọn trạng thái quan tâm</option>
+                                                <option value="1">Tiềm năng</option>
+                                                <option value="2">Quan tâm</option>
+                                                <option value="0">Tham khảo</option>
+                                            </select>
+                                            @error('status_customer')
+                                                <div>
+                                                    <p class="text-danger">{{ $message }}</p>
+                                                </div>
+                                            @enderror
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <label class="form-label">Trạng thái <span
+                                                    class="text-danger">*</span></label>
+                                            <select name="status" class="form-select" id="validationCustom04">
+                                                <option selected value="">Chọn trạng thái</option>
+                                                <option value="1">Đang chăm sóc</option>
+                                                <option value="0">Không chăm sóc</option>
+                                            </select>
                                             @error('status')
                                                 <div>
                                                     <p class="text-danger">{{ $message }}</p>
                                                 </div>
                                             @enderror
-                                        </select>
-                                        <div class="invalid-feedback">
-                                            Please select a valid state.
                                         </div>
                                     </div>
-                                    <input type="text" name="created_at" value="{{date("Y-m-d",strtotime("now"))}}" hidden>
+                                    <div class="mb-3">
+                                        <label class="form-label">Nội dung</label>
+                                        <div>
+                                            <textarea name="content" class="form-control" rows="5" placeholder="Nhập nội dung..."></textarea>
+                                            @error('content')
+                                                <div>
+                                                    <p class="text-danger">{{ $message }}</p>
+                                                </div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <input type="text" name="created_at"
+                                        value="{{ date('Y-m-d H:i:s', strtotime('now')) }}" hidden>
                                     <div class="mb-0">
                                         <div>
                                             <button type="submit" class="btn btn-primary waves-effect waves-light me-1">

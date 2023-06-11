@@ -125,7 +125,7 @@
                                                     <img src="{{ asset($users->avatar ? '' . Storage::url($users->avatar) : $users->name) }}"
                                                         alt="{{ $users->name }}" width="100">
                                                 @endif
-                                                @error('avatar')
+                                                @error('images')
                                                     <div>
                                                         <p class="text-danger">{{ $message }}</p>
                                                     </div>
@@ -147,17 +147,14 @@
                                             <option value="0"
                                                 {{ isset($users) && $users->status === 0 ? 'selected' : '' }}>
                                                 Khóa</option>
+                                            </select>
                                             @error('status')
                                                 <div>
                                                     <p class="text-danger">{{ $message }}</p>
                                                 </div>
                                             @enderror
-                                        </select>
-                                        <div class="invalid-feedback">
-                                            Please select a valid state.
-                                        </div>
                                     </div>
-                                    <input type="text" name="updated_at" value="{{date("Y-m-d",strtotime("now"))}}" hidden>
+                                    <input type="text" name="created_at" value="{{date("Y-m-d H:i:s", strtotime("now"))}}" hidden>
                                     <div class="mb-0">
                                         <div>
                                             <button type="submit" class="btn btn-primary waves-effect waves-light me-1">

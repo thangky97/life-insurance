@@ -1,6 +1,6 @@
 @extends('layouts.admin.master')
 
-@section('title', 'Danh sách người dùng')
+@section('title', 'Danh sách khách hàng')
 
 @section('content')
 
@@ -9,19 +9,57 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-xl-12">
+                        <div id="msg-box">
+                            <?php //Hiển thị thông báo thành công
+                            ?>
+                            @if (Session::has('success'))
+                                <div class="alert alert-success solid alert-dismissible fade show">
+                                    <span><i class="mdi mdi-check"></i></span>
+                                    <strong>{{ Session::get('success') }}</strong>
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="btn-close">
+                                    </button>
+                                </div>
+                            @endif
+                            <?php //Hiển thị thông báo lỗi
+                            ?>
+                            @if (Session::has('error'))
+                                <div class="alert alert-danger solid alert-end-icon alert-dismissible fade show">
+                                    <span><i class="mdi mdi-help"></i></span>
+                                    <strong>{{ Session::get('errors') }}</strong>
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="btn-close">
+                                    </button>
+                                </div>
+                            @endif
+                            @if ($errors->any())
+                                <div class="alert alert-danger alert-dismissible" role="alert">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="btn-close">
+                                    </button>
+                                </div>
+                            @endif
+                        </div>
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title mb-4">Danh sách người dùng</h4>
+                                <h4 class="card-title mb-4">Danh sách khách hàng</h4>
                                 <div class="table-responsive">
-                                    <table class="table table-hover table-centered table-nowrap mb-0">
+                                    <table class="table table-hover table-centered table-nowrap table-striped mb-0">
                                         <thead>
                                             <tr>
-                                                <th scope="col">Id</th>
-                                                <th scope="col">Tên</th>
-                                                <th scope="col">Email</th>
+                                                <th scope="col">ID</th>
+                                                <th scope="col">Tên KH</th>
+                                                <th scope="col">Ngày gọi</th>
+                                                <th scope="col">Ngày gọi lại</th>
+                                                <th scope="col">Tình trạng</th>
                                                 <th scope="col">Số điện thoại</th>
-                                                <th scope="col">Ngày sinh</th>
-                                                <th scope="col" colspan="2">Trạng thái</th>
+                                                <th scope="col">Dịch vụ</th>
+                                                {{-- <th scope="col">Địa chỉ</th> --}}
+                                                <th scope="col">Nguồn</th>
+                                                {{-- <th scope="col">Giới tính</th> --}}
+                                                <th scope="col">Trạng thái</th>
                                                 <th scope="col" colspan="2">Hành động</th>
                                             </tr>
                                         </thead>
@@ -29,19 +67,35 @@
                                             @forelse ($customer as $cus)
                                                 <tr>
                                                     {{-- <th scope="row">{{ 'US' . $user->id }}</th> --}}
-                                                    <th scope="row">{{ 'KH' . $cus->id }}</th>
+                                                    <th class="text-primary" scope="row">{{ 'KH000' . $cus->id }}</th>
                                                     <td>
-                                                        <div>
-                                                            <img src="{{ asset('admin/assets/images/users/user-2.jpg') }}"
-                                                                alt="avatar" class="avatar-xs rounded-circle me-2">
-                                                            {{ $cus->name }}
-                                                        </div>
+                                                        @if ($cus->full_name)
+                                                            <span>{{ $cus->full_name }}</span>
+                                                        @else
+                                                            <span>Không</span>
+                                                        @endif
                                                     </td>
                                                     <td>
-                                                        @if ($cus->email)
-                                                            <span>{{ $cus->email }}</span>
+                                                        @if ($cus->calling_date)
+                                                            <span>{{ $cus->calling_date }}</span>
                                                         @else
-                                                            <span>Không có email</span>
+                                                            <span>Không ngày gọi</span>
+                                                        @endif
+                                                    </td>
+                                                    <td>
+                                                        @if ($cus->call_back)
+                                                            <span>{{ $cus->call_back }}</span>
+                                                        @else
+                                                            <span>Không ngày gọi lại</span>
+                                                        @endif
+                                                    </td>
+                                                    <td>
+                                                        @if ($cus && $cus->status_customer === 1)
+                                                            <span class="badge bg-success">Tiềm năng</span>
+                                                        @elseif ($cus && $cus->status_customer === 2)
+                                                            <span class="badge bg-warning">Quan tâm</span>
+                                                        @else
+                                                            <span class="badge bg-danger">Tham khảo</span>
                                                         @endif
                                                     </td>
                                                     <td>
@@ -52,23 +106,52 @@
                                                         @endif
                                                     </td>
                                                     <td>
-                                                        @if ($cus && $cus->status === 1)
-                                                            <span class="badge bg-success">Hoạt động</span>
-                                                        @elseif ($cus && $cus->status === 1)
-                                                            <span class="badge bg-warning">Không hoạt động</span>
+                                                        @if ($cus->service)
+                                                            <span>{{ $cus->service->service_name }}</span>
                                                         @else
-                                                            <span class="badge bg-danger">Khóa</span>
+                                                            <span>Không có dịch vụ</span>
+                                                        @endif
+                                                    </td>
+                                                    {{-- <td>
+                                                        @if ($cus->address)
+                                                            <span>{{ $cus->address }}</span>
+                                                        @else
+                                                            <span>Không có</span>
+                                                        @endif
+                                                    </td> --}}
+                                                    <td>
+                                                        @if ($cus->source)
+                                                            <span>{{ $cus->source }}</span>
+                                                        @else
+                                                            <span>Không</span>
+                                                        @endif
+                                                    </td>
+                                                    {{-- <td>
+                                                        @if ($cus && $cus->gender === 1)
+                                                            <span>Nam</span>
+                                                        @elseif ($cus && $cus->gender === 2)
+                                                            <span>Nữ</span>
+                                                        @else
+                                                            <span>Khác</span>
+                                                        @endif
+                                                    </td> --}}
+                                                    <td>
+                                                        @if ($cus && $cus->status === 1)
+                                                            <span class="badge bg-success">Đang chăm sóc</span>
+                                                        @else
+                                                            <span class="badge bg-danger">Không chăm sóc</span>
                                                         @endif
                                                     </td>
                                                     <td>
                                                         <div>
-                                                            <a href="#" class="btn btn-primary btn-sm">Chỉnh sửa</a>
+                                                            <a href="{{ route('route_BackEnd_Customers_Edit', $cus->id) }}"
+                                                                class="btn btn-primary btn-sm">Chỉnh sửa</a>
                                                         </div>
                                                     </td>
                                                 </tr>
                                             @empty
                                                 <tr class="text-center text-danger">
-                                                    <td colspan="12">Không có bản ghi</td>
+                                                    <td colspan="12" style="color: red !important">Không có bản ghi</td>
                                                 </tr>
                                             @endforelse
                                         </tbody>

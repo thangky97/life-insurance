@@ -59,4 +59,12 @@ Route::prefix('admin')->group(function () {
         Route::get('/remove/{id}', 'Admin\CustomerController@remove')->name('route_BackEnd_Customers_Remove');
     });
 
+    Route::prefix('/services')->group(function () {
+        Route::get('/', 'Admin\ServiceController@index')->name('route_BackEnd_Services_List');
+        Route::match(['get', 'post'], '/create', 'Admin\ServiceController@create')->name('route_BackEnd_Services_Create');
+        Route::get('/edit/{id}', 'Admin\ServiceController@edit')->name('route_BackEnd_Services_Edit');
+        Route::post('/update/{id}', 'Admin\ServiceController@update')->name('route_BackEnd_Services_Update');
+        Route::get('/remove/{id}', 'Admin\ServiceController@remove')->name('route_BackEnd_Services_Remove');
+    });
+
 });

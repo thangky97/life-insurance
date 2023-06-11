@@ -1,6 +1,6 @@
 @extends('layouts.admin.master')
 
-@section('title', 'Thêm quản trị viên')
+@section('title', 'Thêm dịch vụ')
 
 @section('content')
 
@@ -24,15 +24,15 @@
                         <div class="card">
                             <div class="card-body">
 
-                                <h3 class="mb-4">Thêm quản trị viên</h3>
+                                <h3 class="mb-4">Thêm dịch vụ</h3>
 
                                 <form class="custom-validation" action="" method="post" enctype="multipart/form-data">
                                     @csrf
                                     <div class="mb-3">
                                         <label class="form-label">Tên <span class="text-danger">*</span></label>
-                                        <input type="text" name="name" class="form-control"
-                                            value="@isset($request['name']){{ $request['name'] }}@endisset">
-                                        @error('name')
+                                        <input type="text" name="service_name" class="form-control"
+                                            value="@isset($request['service_name']){{ $request['service_name'] }}@endisset">
+                                        @error('service_name')
                                             <div>
                                                 <p class="text-danger">{{ $message }}</p>
                                             </div>
@@ -40,48 +40,12 @@
                                     </div>
 
                                     <div class="mb-3">
-                                        <label class="form-label">E-Mail <span class="text-danger">*</span></label>
+                                        <label class="form-label">Mô tả <span class="text-danger">*</span></label>
                                         <div>
-                                            <input type="email" name="email" class="form-control"
-                                                value="@isset($request['email']){{ $request['email'] }}@endisset">
-                                            @error('email')
-                                                <div>
-                                                    <p class="text-danger">{{ $message }}</p>
-                                                </div>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">Mật khẩu <span class="text-danger">*</span></label>
-                                        <div>
-                                            <input type="password" name="password" id="pass2" class="form-control"
-                                                value="@isset($request['password']){{ $request['password'] }}@endisset">
-                                            @error('password')
-                                                <div>
-                                                    <p class="text-danger">{{ $message }}</p>
-                                                </div>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">Số điện thoại <span class="text-danger">*</span></label>
-                                        <div>
-                                            <input data-parsley-type="number" name="phone_number" type="number"
+                                            <input name="description" type="text"
                                                 class="form-control"
-                                                value="@isset($request['phone_number']){{ $request['phone_number'] }}@endisset">
-                                            @error('phone_number')
-                                                <div>
-                                                    <p class="text-danger">{{ $message }}</p>
-                                                </div>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">Ngày sinh <span class="text-danger">*</span></label>
-                                        <div>
-                                            <input class="form-control" name="date_of_birthday" type="date"
-                                                value="@isset($request['date_of_birthday']){{ $request['date_of_birthday'] }}@endisset">
-                                            @error('date_of_birthday')
+                                                value="@isset($request['description']){{ $request['description'] }}@endisset">
+                                            @error('description')
                                                 <div>
                                                     <p class="text-danger">{{ $message }}</p>
                                                 </div>
@@ -93,8 +57,8 @@
                                         <div>
                                             <div class="form-file">
                                                 <input type="file" name="images" class="form-file-input form-control">
-                                                @if (isset($user) && $user->avatar)
-                                                    <img src="{{ asset($user->avatar) }}" alt="{{ $user->name }}"
+                                                @if (isset($services) && $services->thumbnail)
+                                                    <img src="{{ asset($services->thumbnail) }}" alt="{{ $services->service_name }}"
                                                         width="100">
                                                 @endif
                                                 @error('images')

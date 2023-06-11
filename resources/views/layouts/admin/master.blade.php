@@ -13,6 +13,11 @@
 
     <link href="{{ asset('admin/assets/libs/chartist/chartist.min.css') }}" rel="stylesheet">
 
+    <link href="{{ asset('admin/assets/libs/select2/css/select2.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('admin/assets/libs/bootstrap-datepicker/css/bootstrap-datepicker.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('admin/assets/libs/spectrum-colorpicker2/spectrum.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('admin/assets/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css') }}" rel="stylesheet">
+
     <!-- Bootstrap Css -->
     <link href="{{ asset('admin/assets/css/bootstrap.min.css') }}" id="bootstrap-style" rel="stylesheet"
         type="text/css">
@@ -123,6 +128,29 @@
     <script src="{{ asset('admin/assets/libs/chartist-plugin-tooltips/chartist-plugin-tooltip.min.js') }}"></script>
 
     <script src="{{ asset('admin/assets/js/pages/dashboard.init.js') }}"></script>
+
+    {{-- Date --}}
+    <script src="{{ asset('admin/assets/libs/select2/js/select2.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/libs/spectrum-colorpicker2/spectrum.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/libs/admin-resources/bootstrap-filestyle/bootstrap-filestyle.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/libs/bootstrap-maxlength/bootstrap-maxlength.min.js') }}"></script>
+
+    <script src="{{ asset('admin/assets/js/pages/form-advanced.init.js') }}"></script>
+
+    {{-- end date --}}
+
+    <!-- form mask -->
+    <script src="{{ asset('admin/assets/libs/inputmask/min/jquery.inputmask.bundle.min.js') }}"></script>
+
+    <!-- form mask init -->
+    <script src="{{ asset('admin/assets/js/pages/form-mask.init.js') }}"></script>
+
+    <script src="{{ asset('admin/assets/libs/tinymce/tinymce.min.js') }}"></script>
+
+    <!-- init js -->
+    <script src="{{ asset('admin/assets/js/pages/form-editor.init.js') }}"></script>
 
     <script src="{{ asset('admin/assets/js/app.js') }}"></script>
 

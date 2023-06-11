@@ -47,8 +47,8 @@
                         <span>Dịch vụ</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="ui-alerts.html">Alerts</a></li>
-                        <li><a href="ui-buttons.html">Buttons</a></li>
+                        <li><a href="{{ route('route_BackEnd_Services_List') }}">Danh sách dịch vụ</a></li>
+                        <li><a href="{{ route('route_BackEnd_Services_Create') }}">Tạo mới</a></li>
                     </ul>
                 </li>
 

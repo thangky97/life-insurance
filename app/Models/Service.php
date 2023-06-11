@@ -7,11 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
-class Customer extends Model
+class Service extends Model
 {
     use HasFactory;
 
-    protected $table = 'customers';
+    protected $table = "services";
 
     public function saveNew($params)
     {
@@ -45,7 +45,7 @@ class Customer extends Model
         return $res;
     }
 
-    public function service(){
-        return$this->belongsTo(Service::class, 'service_id');
+    public function customer(){
+        return$this->belongsTo(Customer::class, 'customer_id');
     }
 }

@@ -1,6 +1,6 @@
 @extends('layouts.admin.master')
 
-@section('title', 'Danh sách quản trị')
+@section('title', 'Danh sách dịch vụ')
 
 @section('content')
 
@@ -44,57 +44,33 @@
                         </div>
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title mb-4">Danh sách quản trị viên</h4>
+                                <h3 class="mb-4">Danh sách quản trị viên</h3>
                                 <div class="table-responsive">
                                     <table class="table table-hover table-centered table-nowrap table-striped mb-0">
                                         <thead>
                                             <tr>
                                                 <th scope="col">ID</th>
-                                                <th scope="col">Tên</th>
-                                                <th scope="col">Email</th>
-                                                <th scope="col">Số điện thoại</th>
-                                                <th scope="col">Ngày sinh</th>
+                                                <th scope="col">Ảnh</th>
+                                                <th scope="col">Tên dịch vụ</th>
                                                 <th scope="col">Trạng thái</th>
                                                 <th scope="col">Hành động</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @forelse ($users as $user)
+                                            @forelse ($services as $service)
                                                 <tr>
-                                                    {{-- <th scope="row">{{ 'US' . $user->id }}</th> --}}
-                                                    <th scope="row" class="text-primary">{{ 'AD000' . $user->id }}</th>
+                                                    <th scope="row" class="text-primary">{{ 'DV000' . $service->id }}</th>
                                                     <td>
-                                                        <div>
-                                                            <img src="{{ asset($user->avatar) ? '' . Storage::url($user->avatar) : $user->name }}"
-                                                                alt="avatar" class="avatar-xs rounded-circle me-2">
-                                                            {{ $user->name }}
-                                                        </div>
+                                                        <img src="{{ asset($service->thumbnail) ? '' . Storage::url($service->thumbnail) : $service->name }}"
+                                                                alt="thumbnail" class="avatar-md  me-2">
                                                     </td>
                                                     <td>
-                                                        @if ($user->email)
-                                                            <span>{{ $user->email }}</span>
-                                                        @else
-                                                            <span>Không có email</span>
-                                                        @endif
+                                                            {{ $service->service_name }}
                                                     </td>
                                                     <td>
-                                                        @if ($user->phone_number)
-                                                            <span>{{ $user->phone_number }}</span>
-                                                        @else
-                                                            <span>Không có số điện thoại</span>
-                                                        @endif
-                                                    </td>
-                                                    <td>
-                                                        @if ($user->date_of_birthday)
-                                                            <span>{{ $user->date_of_birthday }}</span>
-                                                        @else
-                                                            <span>Không có ngày sinh</span>
-                                                        @endif
-                                                    </td>
-                                                    <td>
-                                                        @if ($user && $user->status === 1)
+                                                        @if ($service && $service->status === 1)
                                                             <span class="badge bg-success">Hoạt động</span>
-                                                        @elseif ($user && $user->status === 2)
+                                                        @elseif ($service && $service->status === 2)
                                                             <span class="badge bg-warning">Không hoạt động</span>
                                                         @else
                                                             <span class="badge bg-danger">Khóa</span>
@@ -102,7 +78,7 @@
                                                     </td>
                                                     <td>
                                                         <div>
-                                                            <a href="{{ route('route_BackEnd_Users_Edit', $user->id) }}"
+                                                            <a href="{{ route('route_BackEnd_Services_Edit', $service->id) }}"
                                                                 class="btn btn-primary btn-sm">Chỉnh sửa</a>
                                                         </div>
                                                     </td>
