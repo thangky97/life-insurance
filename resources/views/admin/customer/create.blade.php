@@ -1,6 +1,6 @@
 @extends('layouts.admin.master')
 
-@section('title', 'Thêm quản trị viên')
+@section('title', 'Thêm khách hàng')
 
 @section('content')
 
@@ -8,40 +8,29 @@
         <div class="page-content">
             <div class="container-fluid">
                 <div class="row">
+                    <div id="msg-box">
+                        <?php //Hiển thị thông báo thành công
+                        ?>
+                        @if (Session::has('success'))
+                            <div class="alert alert-success solid alert-dismissible fade show">
+                                <span><i class="mdi mdi-check"></i></span>
+                                <strong>{{ Session::get('success') }}</strong>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="btn-close">
+                                </button>
+                            </div>
+                        @endif
+                        <?php //Hiển thị thông báo lỗi
+                        ?>
+                        @if (Session::has('error'))
+                            <div class="alert alert-danger solid alert-end-icon alert-dismissible fade show">
+                                <span><i class="mdi mdi-help"></i></span>
+                                <strong>{{ Session::get('errors') }}</strong>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="btn-close">
+                                </button>
+                            </div>
+                        @endif
+                    </div>
                     <div class="col-lg-12">
-                        <div id="msg-box">
-                            <?php //Hiển thị thông báo thành công
-                            ?>
-                            @if (Session::has('success'))
-                                <div class="alert alert-success solid alert-dismissible fade show">
-                                    <span><i class="mdi mdi-check"></i></span>
-                                    <strong>{{ Session::get('success') }}</strong>
-                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="btn-close">
-                                    </button>
-                                </div>
-                            @endif
-                            <?php //Hiển thị thông báo lỗi
-                            ?>
-                            @if (Session::has('error'))
-                                <div class="alert alert-danger solid alert-end-icon alert-dismissible fade show">
-                                    <span><i class="mdi mdi-help"></i></span>
-                                    <strong>{{ Session::get('errors') }}</strong>
-                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="btn-close">
-                                    </button>
-                                </div>
-                            @endif
-                            @if ($errors->any())
-                                <div class="alert alert-danger alert-dismissible" role="alert">
-                                    <ul>
-                                        @foreach ($errors->all() as $error)
-                                            <li>{{ $error }}</li>
-                                        @endforeach
-                                    </ul>
-                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="btn-close">
-                                    </button>
-                                </div>
-                            @endif
-                        </div>
                         <div class="card">
                             <div class="card-body">
 
@@ -113,7 +102,8 @@
                                         <label class="form-label">Ảnh <span class="text-danger">*</span></label>
                                         <div>
                                             <div class="form-file">
-                                                <input type="file" name="images" class="form-file-input form-control">
+                                                <input type="file" name="images"
+                                                    class="form-file-input form-control">
                                                 @if (isset($user) && $user->avatar)
                                                     <img src="{{ asset($user->avatar) }}" alt="{{ $user->name }}"
                                                         width="100">
@@ -143,8 +133,7 @@
                                             Please select a valid state.
                                         </div>
                                     </div>
-                                    <input type="text" name="created_at" value="{{ date('Y-m-d', strtotime('now')) }}"
-                                        hidden>
+                                    <input type="text" name="created_at" value="{{date("Y-m-d",strtotime("now"))}}" hidden>
                                     <div class="mb-0">
                                         <div>
                                             <button type="submit" class="btn btn-primary waves-effect waves-light me-1">

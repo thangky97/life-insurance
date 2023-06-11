@@ -2,34 +2,20 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
-use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable
+class Customer extends Model
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasFactory;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
-    protected $table = 'users';
+    protected $table = 'customers';
 
     public function saveNew($params)
     {
-        $data = array_merge(
-            $params['cols'],
-            [
-                'password' => Hash::make($params['cols']['password']),
-            ]
-        );
+        $data = array_merge($params['cols']);
 
         $res = DB::table($this->table)->insertGetId($data);
         return $res;

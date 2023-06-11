@@ -45,10 +45,18 @@ Route::prefix('admin')->group(function () {
 
     Route::prefix('/users')->group(function () {
         Route::get('/', 'Admin\UserController@index')->name('route_BackEnd_Users_List');
-        Route::match(['get', 'post'], '/add', 'Admin\UserController@add')->name('route_BackEnd_Users_Add');
+        Route::match(['get', 'post'], '/create', 'Admin\UserController@create')->name('route_BackEnd_Users_Create');
         Route::get('/edit/{id}', 'Admin\UserController@edit')->name('route_BackEnd_Users_Edit');
         Route::post('/update/{id}', 'Admin\UserController@update')->name('route_BackEnd_Users_Update');
         Route::get('/remove/{id}', 'Admin\UserController@remove')->name('route_BackEnd_Users_Remove');
+    });
+
+    Route::prefix('/customer')->group(function () {
+        Route::get('/', 'Admin\CustomerController@index')->name('route_BackEnd_Customers_List');
+        Route::match(['get', 'post'], '/create', 'Admin\CustomerController@create')->name('route_BackEnd_Customers_Create');
+        Route::get('/edit/{id}', 'Admin\CustomerController@edit')->name('route_BackEnd_Customers_Edit');
+        Route::post('/update/{id}', 'Admin\CustomerController@update')->name('route_BackEnd_Customers_Update');
+        Route::get('/remove/{id}', 'Admin\CustomerController@remove')->name('route_BackEnd_Customers_Remove');
     });
 
 });

@@ -14,7 +14,8 @@
     <link href="{{ asset('admin/assets/libs/chartist/chartist.min.css') }}" rel="stylesheet">
 
     <!-- Bootstrap Css -->
-    <link href="{{ asset('admin/assets/css/bootstrap.min.css') }}" id="bootstrap-style" rel="stylesheet" type="text/css">
+    <link href="{{ asset('admin/assets/css/bootstrap.min.css') }}" id="bootstrap-style" rel="stylesheet"
+        type="text/css">
     <!-- Icons Css -->
     <link href="{{ asset('admin/assets/css/icons.min.css') }}" rel="stylesheet" type="text/css">
     <!-- App Css-->
@@ -110,6 +111,9 @@
     <script src="{{ asset('admin/assets/libs/simplebar/simplebar.min.js') }}"></script>
     <script src="{{ asset('admin/assets/libs/node-waves/waves.min.js') }}"></script>
 
+    <script src="{{ asset('admin/assets/libs/parsleyjs/parsley.min.js') }}"></script>
+
+    <script src="{{ asset('admin/assets/js/pages/form-validation.init.js') }}"></script>
 
     <!-- Peity chart-->
     <script src="{{ asset('admin/assets/libs/peity/jquery.peity.min.js') }}"></script>

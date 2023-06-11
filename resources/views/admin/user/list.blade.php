@@ -1,6 +1,6 @@
 @extends('layouts.admin.master')
 
-@section('title', 'Danh sách người dùng')
+@section('title', 'Danh sách quản trị')
 
 @section('content')
 
@@ -9,129 +9,109 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-xl-12">
+                        <div id="msg-box">
+                            <?php //Hiển thị thông báo thành công
+                            ?>
+                            @if (Session::has('success'))
+                                <div class="alert alert-success solid alert-dismissible fade show">
+                                    <span><i class="mdi mdi-check"></i></span>
+                                    <strong>{{ Session::get('success') }}</strong>
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="btn-close">
+                                    </button>
+                                </div>
+                            @endif
+                            <?php //Hiển thị thông báo lỗi
+                            ?>
+                            @if (Session::has('error'))
+                                <div class="alert alert-danger solid alert-end-icon alert-dismissible fade show">
+                                    <span><i class="mdi mdi-help"></i></span>
+                                    <strong>{{ Session::get('errors') }}</strong>
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="btn-close">
+                                    </button>
+                                </div>
+                            @endif
+                            @if ($errors->any())
+                                <div class="alert alert-danger alert-dismissible" role="alert">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="btn-close">
+                                    </button>
+                                </div>
+                            @endif
+                        </div>
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title mb-4">Latest Transaction</h4>
+                                <h4 class="card-title mb-4">Danh sách quản trị viên</h4>
                                 <div class="table-responsive">
                                     <table class="table table-hover table-centered table-nowrap mb-0">
                                         <thead>
                                             <tr>
-                                                <th scope="col">(#) Id</th>
-                                                <th scope="col">Name</th>
-                                                <th scope="col">Date</th>
-                                                <th scope="col">Amount</th>
-                                                <th scope="col" colspan="2">Status</th>
+                                                <th scope="col">ID</th>
+                                                <th scope="col">Tên</th>
+                                                <th scope="col">Email</th>
+                                                <th scope="col">Số điện thoại</th>
+                                                <th scope="col">Ngày sinh</th>
+                                                <th scope="col">Trạng thái</th>
+                                                <th scope="col">Hành động</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <th scope="row">#14256</th>
-                                                <td>
-                                                    <div>
-                                                        <img src="{{ asset('admin/assets/images/users/user-2.jpg') }}"
-                                                            alt="" class="avatar-xs rounded-circle me-2"> Philip
-                                                        Smead
-                                                    </div>
-                                                </td>
-                                                <td>15/1/2018</td>
-                                                <td>$94</td>
-                                                <td><span class="badge bg-success">Delivered</span></td>
-                                                <td>
-                                                    <div>
-                                                        <a href="#" class="btn btn-primary btn-sm">Edit</a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">#14257</th>
-                                                <td>
-                                                    <div>
-                                                        <img src="{{ asset('admin/assets/images/users/user-3.jpg') }}"
-                                                            alt="" class="avatar-xs rounded-circle me-2"> Brent
-                                                        Shipley
-                                                    </div>
-                                                </td>
-                                                <td>16/1/2019</td>
-                                                <td>$112</td>
-                                                <td><span class="badge bg-warning">Pending</span></td>
-                                                <td>
-                                                    <div>
-                                                        <a href="#" class="btn btn-primary btn-sm">Edit</a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">#14258</th>
-                                                <td>
-                                                    <div>
-                                                        <img src="{{ asset('admin/assets/images/users/user-4.jpg') }}"
-                                                            alt="" class="avatar-xs rounded-circle me-2"> Robert
-                                                        Sitton
-                                                    </div>
-                                                </td>
-                                                <td>17/1/2019</td>
-                                                <td>$116</td>
-                                                <td><span class="badge bg-success">Delivered</span></td>
-                                                <td>
-                                                    <div>
-                                                        <a href="#" class="btn btn-primary btn-sm">Edit</a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">#14259</th>
-                                                <td>
-                                                    <div>
-                                                        <img src="{{ asset('admin/assets/images/users/user-5.jpg') }}"
-                                                            alt="" class="avatar-xs rounded-circle me-2"> Alberto
-                                                        Jackson
-                                                    </div>
-                                                </td>
-                                                <td>18/1/2019</td>
-                                                <td>$109</td>
-                                                <td><span class="badge bg-danger">Cancel</span></td>
-                                                <td>
-                                                    <div>
-                                                        <a href="#" class="btn btn-primary btn-sm">Edit</a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">#14260</th>
-                                                <td>
-                                                    <div>
-                                                        <img src="{{ asset('admin/assets/images/users/user-6.jpg') }}"
-                                                            alt="" class="avatar-xs rounded-circle me-2"> David
-                                                        Sanchez
-                                                    </div>
-                                                </td>
-                                                <td>19/1/2019</td>
-                                                <td>$120</td>
-                                                <td><span class="badge bg-success">Delivered</span></td>
-                                                <td>
-                                                    <div>
-                                                        <a href="#" class="btn btn-primary btn-sm">Edit</a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">#14261</th>
-                                                <td>
-                                                    <div>
-                                                        <img src="{{ asset('admin/assets/images/users/user-2.jpg') }}"
-                                                            alt="" class="avatar-xs rounded-circle me-2"> Philip
-                                                        Smead
-                                                    </div>
-                                                </td>
-                                                <td>15/1/2018</td>
-                                                <td>$94</td>
-                                                <td><span class="badge bg-warning">Pending</span></td>
-                                                <td>
-                                                    <div>
-                                                        <a href="#" class="btn btn-primary btn-sm">Edit</a>
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                            @forelse ($users as $user)
+                                                <tr>
+                                                    {{-- <th scope="row">{{ 'US' . $user->id }}</th> --}}
+                                                    <th scope="row" class="text-primary">{{ 'AD000' . $user->id }}</th>
+                                                    <td>
+                                                        <div>
+                                                            <img src="{{ asset($user->avatar) ? '' . Storage::url($user->avatar) : $user->name }}"
+                                                                alt="avatar" class="avatar-xs rounded-circle me-2">
+                                                            {{ $user->name }}
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        @if ($user->email)
+                                                            <span>{{ $user->email }}</span>
+                                                        @else
+                                                            <span>Không có email</span>
+                                                        @endif
+                                                    </td>
+                                                    <td>
+                                                        @if ($user->phone_number)
+                                                            <span>{{ $user->phone_number }}</span>
+                                                        @else
+                                                            <span>Không có số điện thoại</span>
+                                                        @endif
+                                                    </td>
+                                                    <td>
+                                                        @if ($user->date_of_birthday)
+                                                            <span>{{ $user->date_of_birthday }}</span>
+                                                        @else
+                                                            <span>Không có ngày sinh</span>
+                                                        @endif
+                                                    </td>
+                                                    <td>
+                                                        @if ($user && $user->status === 1)
+                                                            <span class="badge bg-success">Hoạt động</span>
+                                                        @elseif ($user && $user->status === 2)
+                                                            <span class="badge bg-warning">Không hoạt động</span>
+                                                        @else
+                                                            <span class="badge bg-danger">Khóa</span>
+                                                        @endif
+                                                    </td>
+                                                    <td>
+                                                        <div>
+                                                            <a href="{{ route('route_BackEnd_Users_Edit', $user->id) }}"
+                                                                class="btn btn-primary btn-sm">Chỉnh sửa</a>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            @empty
+                                                <tr class="text-center text-danger">
+                                                    <td colspan="12">Không có bản ghi</td>
+                                                </tr>
+                                            @endforelse
                                         </tbody>
                                     </table>
                                 </div>

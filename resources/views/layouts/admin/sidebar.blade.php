@@ -24,7 +24,7 @@
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="{{ route('route_BackEnd_Users_List') }}">Danh sách quản trị viên</a></li>
-                        <li><a href="{{ route('route_BackEnd_Users_Add') }}">Tạo mới</a></li>
+                        <li><a href="{{ route('route_BackEnd_Users_Create') }}">Tạo mới</a></li>
                     </ul>
                 </li>
 
@@ -34,10 +34,8 @@
                         <span>Khách hàng</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="tables-basic.html">Basic Tables</a></li>
-                        <li><a href="tables-datatable.html">Data Tables</a></li>
-                        <li><a href="tables-responsive.html">Responsive Tables</a></li>
-                        <li><a href="tables-editable.html">Editable Tables</a></li>
+                        <li><a href="{{ route('route_BackEnd_Customers_List') }}">Danh sách khách hàng</a></li>
+                        <li><a href="{{ route('route_BackEnd_Customers_Create') }}">Tạo mới</a></li>
                     </ul>
                 </li>
 
