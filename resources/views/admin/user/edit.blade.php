@@ -20,32 +20,11 @@
                                     </button>
                                 </div>
                             @endif
-                            <?php //Hiển thị thông báo lỗi
-                            ?>
-                            @if (Session::has('error'))
-                                <div class="alert alert-danger solid alert-end-icon alert-dismissible fade show">
-                                    <span><i class="mdi mdi-help"></i></span>
-                                    <strong>{{ Session::get('errors') }}</strong>
-                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="btn-close">
-                                    </button>
-                                </div>
-                            @endif
-                            @if ($errors->any())
-                                <div class="alert alert-danger alert-dismissible" role="alert">
-                                    <ul>
-                                        @foreach ($errors->all() as $error)
-                                            <li>{{ $error }}</li>
-                                        @endforeach
-                                    </ul>
-                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="btn-close">
-                                    </button>
-                                </div>
-                            @endif
                         </div>
                         <div class="card">
                             <div class="card-body">
 
-                                <h3 class="mb-4">Sửa quản trị viên</h3>
+                                <h4 class="card-title mb-4">Sửa quản trị viên</h4>
 
                                 <form class="custom-validation"
                                     action="{{ route('route_BackEnd_Users_Update', ['id' => request()->route('id')]) }}"
@@ -154,7 +133,7 @@
                                                 </div>
                                             @enderror
                                     </div>
-                                    <input type="text" name="created_at" value="{{date("Y-m-d H:i:s", strtotime("now"))}}" hidden>
+                                    <input type="text" name="updated_at" value="{{date("Y-m-d H:i:s", strtotime("now"))}}" hidden>
                                     <div class="mb-0">
                                         <div>
                                             <button type="submit" class="btn btn-primary waves-effect waves-light me-1">

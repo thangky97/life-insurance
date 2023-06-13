@@ -1,6 +1,6 @@
 @extends('layouts.admin.master')
 
-@section('title', 'Thêm dịch vụ')
+@section('title', 'Sửa bài viết')
 
 @section('content')
 
@@ -24,15 +24,17 @@
                         <div class="card">
                             <div class="card-body">
 
-                                <h4 class="card-title mb-4">Thêm dịch vụ</h4>
+                                <h4 class="card-title mb-4">Sửa bài viết</h4>
 
-                                <form class="custom-validation" action="" method="post" enctype="multipart/form-data">
+                                <form class="custom-validation"
+                                    action="{{ route('route_BackEnd_News_Update', ['id' => request()->route('id')]) }}"
+                                    method="post" enctype="multipart/form-data">
                                     @csrf
                                     <div class="mb-3">
-                                        <label class="form-label">Tên <span class="text-danger">*</span></label>
-                                        <input type="text" name="service_name" class="form-control"
-                                            value="@isset($request['service_name']){{ $request['service_name'] }}@endisset">
-                                        @error('service_name')
+                                        <label class="form-label">Tiêu đề <span class="text-danger">*</span></label>
+                                        <input type="text" name="title" class="form-control"
+                                            value="{{ $news->title }}">
+                                        @error('title')
                                             <div>
                                                 <p class="text-danger">{{ $message }}</p>
                                             </div>
@@ -40,26 +42,33 @@
                                     </div>
 
                                     <div class="mb-3">
-                                        <label class="form-label">Mô tả <span class="text-danger">*</span></label>
-                                        <div>
-                                            <input name="description" type="text"
-                                                class="form-control"
-                                                value="@isset($request['description']){{ $request['description'] }}@endisset">
-                                            @error('description')
-                                                <div>
-                                                    <p class="text-danger">{{ $message }}</p>
-                                                </div>
-                                            @enderror
-                                        </div>
+                                        <label class="form-label">Nội dung ngắn </label>
+                                        <input type="text" name="sort_content" class="form-control"
+                                            value="{{ $news->sort_content }}">
+                                        @error('sort_content')
+                                            <div>
+                                                <p class="text-danger">{{ $message }}</p>
+                                            </div>
+                                        @enderror
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Nội dung <span class="text-danger">*</span></label>
+                                        <input type="text" name="content" class="form-control"
+                                            value="{{ $news->content }}">
+                                        @error('content')
+                                            <div>
+                                                <p class="text-danger">{{ $message }}</p>
+                                            </div>
+                                        @enderror
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">Ảnh <span class="text-danger">*</span></label>
                                         <div>
                                             <div class="form-file">
                                                 <input type="file" name="images" class="form-file-input form-control">
-                                                @if (isset($services) && $services->thumbnail)
-                                                    <img src="{{ asset($services->thumbnail) }}" alt="{{ $services->service_name }}"
-                                                        width="100">
+                                                @if (isset($news) && $news->images_news)
+                                                    <img src="{{ asset($news->images_news ? '' . Storage::url($news->images_news) : $news->title) }}"
+                                                        alt="{{ $news->title }}" width="100">
                                                 @endif
                                                 @error('images')
                                                     <div>
@@ -73,9 +82,15 @@
                                         <label class="form-label">Trạng thái <span class="text-danger">*</span></label>
                                         <select name="status" class="form-select" id="validationCustom04">
                                             <option selected value="">Chọn trạng thái</option>
-                                            <option value="1">Hoạt động</option>
-                                            <option value="2">Không hoạt động</option>
-                                            <option value="0">Khóa</option>
+                                            <option value="1"
+                                                {{ isset($news) && $news->status === 1 ? 'selected' : '' }}>
+                                                Hoạt động</option>
+                                            <option value="2"
+                                                {{ isset($news) && $news->status === 2 ? 'selected' : '' }}>
+                                                Không hoạt động</option>
+                                            <option value="0"
+                                                {{ isset($news) && $news->status === 0 ? 'selected' : '' }}>
+                                                Khóa</option>
                                         </select>
                                         @error('status')
                                             <div>
@@ -83,11 +98,12 @@
                                             </div>
                                         @enderror
                                     </div>
-                                    <input type="text" name="created_at" value="{{date("Y-m-d H:i:s", strtotime("now"))}}" hidden>
+                                    <input type="text" name="updated_at"
+                                        value="{{ date('Y-m-d H:i:s', strtotime('now')) }}" hidden>
                                     <div class="mb-0">
                                         <div>
                                             <button type="submit" class="btn btn-primary waves-effect waves-light me-1">
-                                                Thêm mới
+                                                Cập nhật
                                             </button>
                                             <button type="reset" class="btn btn-secondary waves-effect">
                                                 Hủy

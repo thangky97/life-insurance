@@ -1,6 +1,6 @@
 @extends('layouts.admin.master')
 
-@section('title', 'Danh sách dịch vụ')
+@section('title', 'Danh sách bài viết')
 
 @section('content')
 
@@ -44,33 +44,48 @@
                         </div>
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title mb-4">Danh sách quản trị viên</h4>
+                                <h4 class="card-title mb-4">Danh sách bài viết</h4>
                                 <div class="table-responsive">
                                     <table class="table table-hover table-centered table-nowrap table-striped mb-0">
                                         <thead>
                                             <tr>
                                                 <th scope="col">ID</th>
                                                 <th scope="col">Ảnh</th>
-                                                <th scope="col">Tên dịch vụ</th>
+                                                <th scope="col">Tiêu đề</th>
+                                                <th scope="col">Nội dung ngắn</th>
                                                 <th scope="col">Trạng thái</th>
                                                 <th scope="col">Hành động</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @forelse ($services as $service)
+                                            @forelse ($news as $new)
                                                 <tr>
-                                                    <th scope="row" class="text-primary">{{ 'DV000' . $service->id }}</th>
+                                                    <th scope="row" class="text-primary">{{ 'NE000' . $new->id }}</th>
                                                     <td>
-                                                        <img src="{{ asset($service->thumbnail) ? '' . Storage::url($service->thumbnail) : $service->name }}"
-                                                                alt="thumbnail" class="avatar-md  me-2">
+                                                        <div>
+                                                            <img src="{{ asset($new->images_news) ? '' . Storage::url($new->images_news) : $new->title }}"
+                                                                alt="news" class="avatar-xs rounded-circle me-2">
+                                                            {{ $new->name }}
+                                                        </div>
                                                     </td>
                                                     <td>
-                                                            {{ $service->service_name }}
+                                                        @if ($new->title)
+                                                            <span>{{ $new->title }}</span>
+                                                        @else
+                                                            <span>Không có tiêu đề</span>
+                                                        @endif
                                                     </td>
                                                     <td>
-                                                        @if ($service && $service->status === 1)
+                                                        @if ($new->sort_content)
+                                                            <span>{{ $new->sort_content }}</span>
+                                                        @else
+                                                            <span>Không có nội dung ngắn</span>
+                                                        @endif
+                                                    </td>
+                                                    <td>
+                                                        @if ($new && $new->status === 1)
                                                             <span class="badge bg-success">Hoạt động</span>
-                                                        @elseif ($service && $service->status === 2)
+                                                        @elseif ($new && $new->status === 2)
                                                             <span class="badge bg-warning">Không hoạt động</span>
                                                         @else
                                                             <span class="badge bg-danger">Khóa</span>
@@ -78,7 +93,7 @@
                                                     </td>
                                                     <td>
                                                         <div>
-                                                            <a href="{{ route('route_BackEnd_Services_Edit', $service->id) }}"
+                                                            <a href="{{ route('route_BackEnd_News_Edit', $new->id) }}"
                                                                 class="btn btn-primary btn-sm">Chỉnh sửa</a>
                                                         </div>
                                                     </td>

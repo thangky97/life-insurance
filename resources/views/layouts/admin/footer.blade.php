@@ -5,8 +5,8 @@
                 ©
                 <script>
                     document.write(new Date().getFullYear())
-                </script> Veltrix<span class="d-none d-sm-inline-block"> - Crafted with <i
-                        class="mdi mdi-heart text-danger"></i> by Themesbrand.</span>
+                </script> Dai i-chi <span class="d-none d-sm-inline-block"> - Bảo hiểm nhân thọ <i
+                        class="mdi mdi-heart text-danger"></i> by Thangtv.</span>
             </div>
         </div>
     </div>

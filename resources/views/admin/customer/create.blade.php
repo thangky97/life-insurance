@@ -20,21 +20,11 @@
                                     </button>
                                 </div>
                             @endif
-                            <?php //Hiển thị thông báo lỗi
-                            ?>
-                            @if (Session::has('error'))
-                                <div class="alert alert-danger solid alert-end-icon alert-dismissible fade show">
-                                    <span><i class="mdi mdi-help"></i></span>
-                                    <strong>{{ Session::get('errors') }}</strong>
-                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="btn-close">
-                                    </button>
-                                </div>
-                            @endif
                         </div>
                         <div class="card">
                             <div class="card-body">
 
-                                <h3 class="mb-4">Thêm khách hàng</h3>
+                                <h4 class="card-title mb-4">Thêm khách hàng</h4>
 
                                 <form class="custom-validation" action="" method="post" enctype="multipart/form-data">
                                     @csrf

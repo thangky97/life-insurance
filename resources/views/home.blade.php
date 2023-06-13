@@ -5,8 +5,8 @@
 @section('content')
 
     <!-- ABOUT US
-                                                                ================================================== -->
-    <div style="margin-top: -5rem">
+                                                                                            ================================================== -->
+    <div id="about" style="margin-top: -5rem">
         <div class="container">
             <div class="row align-items-center about-style3">
                 <div class="col-lg-7 col-xl-6 mb-1-9 mb-sm-6 mb-lg-0 wow fadeIn" data-wow-delay="200ms">
@@ -60,75 +60,44 @@
     </div>
 
     <!-- SERVICE
-                                                                ================================================== -->
-    <section class="bg-light">
+                                                                                            ================================================== -->
+    <section id="service" class="bg-light" style="margin-top: 65px; padding: 70px 0">
         <div class="container">
             <div class="text-center mb-2-1 wow fadeIn" data-wow-delay="100ms">
                 <h2 class="display-22 display-sm-18 display-md-16 display-lg-14 w-lg-50 mx-auto mb-0">Các gói bảo hiểm
                 </h2>
             </div>
             <div class="row mt-n1-9">
-                <div class="col-md-6 col-xl-3 mt-1-9 wow fadeIn" data-wow-delay="200ms">
-                    <div class="card card-style5">
-                        <div class="card-body">
-                            <div class="position-relative">
-                                <img src="{{ asset('client/img/blog/blog-01.jpg') }}" alt="...">
-                                {{-- <div class="icon-circle"></div> --}}
+                @forelse ($listService as $item)
+                    <div class="col-md-6 col-xl-3 mt-1-9 wow fadeIn" data-wow-delay="200ms">
+                        <div class="card card-style5">
+                            <div class="card-body">
+                                <div class="position-relative">
+                                    <img src="{{ asset($item->thumbnail) ? '' . Storage::url($item->thumbnail) : $item->service_name }}"
+                                        alt="service" style="height: 150px">
+                                </div>
+                                <h3 class="h4 mb-3 mt-4"><a
+                                        href="{{ route('route_FrontEnd_Service_Detail', ['id' => $item->id]) }}">{{ $item->service_name }}</a>
+                                </h3>
+                                <p class="mb-4">{{ $item->description }}</p>
+                                <a href="{{ route('route_FrontEnd_Service_Detail', ['id' => $item->id]) }}"
+                                    class="border-bottom display-30 font-weight-600">Xem thêm <i
+                                        class="ti-arrow-right align-middle display-31"></i></a>
                             </div>
-                            <h3 class="h4 mb-3 mt-4"><a href="life-insurance.html">Life Insurance</a></h3>
-                            <p class="mb-4">We help you discover any protection inclusions that are ideal for you.</p>
-                            <a href="life-insurance.html" class="border-bottom display-30 font-weight-600">Read More <i
-                                    class="ti-arrow-right align-middle display-31"></i></a>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-6 col-xl-3 mt-1-9 wow fadeIn" data-wow-delay="400ms">
-                    <div class="card card-style5">
-                        <div class="card-body">
-                            <div class="position-relative">
-                                <img src="{{ asset('client/img/blog/blog-03.jpg') }}" alt="...">
-                            </div>
-                            <h3 class="h4 mb-3 mt-4"><a href="car-insurance.html">Car Insurance</a></h3>
-                            <p class="mb-4">We help you discover any protection inclusions that are ideal for you.</p>
-                            <a href="car-insurance.html" class="border-bottom display-30 font-weight-600">Read More <i
-                                    class="ti-arrow-right align-middle display-31"></i></a>
-                        </div>
+                @empty
+                    <div class="text-center text-danger" style="padding-top: 30px">
+                        <p colspan="12" style="color: red !important">Không có dịch vụ</p>
                     </div>
-                </div>
-                <div class="col-md-6 col-xl-3 mt-1-9 wow fadeIn" data-wow-delay="600ms">
-                    <div class="card card-style5">
-                        <div class="card-body">
-                            <div class="position-relative">
-                                <img src="{{ asset('client/img/blog/blog-06.jpg') }}" alt="...">
-                            </div>
-                            <h3 class="h4 mb-3 mt-4"><a href="health-insurance.html">Health Insurance</a></h3>
-                            <p class="mb-4">We help you discover any protection inclusions that are ideal for you.</p>
-                            <a href="health-insurance.html" class="border-bottom display-30 font-weight-600">Read More <i
-                                    class="ti-arrow-right align-middle display-31"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-xl-3 mt-1-9 wow fadeIn" data-wow-delay="800ms">
-                    <div class="card card-style5">
-                        <div class="card-body">
-                            <div class="position-relative">
-                                <img src="{{ asset('client/img/blog/blog-04.jpg') }}" alt="...">
-                                <div class="icon-circle"></div>
-                            </div>
-                            <h3 class="h4 mb-3 mt-4"><a href="home-insurance.html">Home Insurance Home Insurance</a></h3>
-                            <p class="mb-4">We help you discover any protection inclusions that are ideal for you.</p>
-                            <a href="home-insurance.html" class="border-bottom display-30 font-weight-600">Read More <i
-                                    class="ti-arrow-right align-middle display-31"></i></a>
-                        </div>
-                    </div>
-                </div>
+                @endforelse
             </div>
         </div>
         <div class="round-shape-one top-n10 left-90 d-none d-md-block"></div>
     </section>
 
     <!-- WHY CHOOSE US
-                                                                ================================================== -->
+                                                                                            ================================================== -->
     <section class="bg-white why-us-02 bg-img" data-background="img/content/why-us-02.jpg">
         <div class="container">
             <div class="row align-items-center">
@@ -247,14 +216,15 @@
     </section>
 
     <!-- CALL TO ACTION
-                                                                ================================================== -->
-    <section class="bg-img cover-background primary-overlay" data-overlay-dark="8" data-background="img/bg/bg5.jpg">
+                                                                                            ================================================== -->
+    <section class="bg-img cover-background primary-overlay" data-overlay-dark="8"
+        data-background="{{ asset('client/img/bg/bg5.jpg') }}">
         <div class="container">
             <div class="row justify-content-center wow fadeIn" data-wow-delay="200ms">
                 <div class="col-lg-7 text-center">
-                    <img src="{{ asset('client/img/icons/icon-14.png') }}" class="extra-icon-circle mb-4" alt="...">
-                    <h2 class="text-white display-18 display-sm-15 display-md-10 display-lg-6 mb-0">Trusted & professional
-                        advisors for your insurance</h2>
+                    {{-- <img src="{{ asset('client/img/icons/icon-14.png') }}" class="extra-icon-circle mb-4" alt="..."> --}}
+                    <h2 class="text-white display-18 display-sm-15 display-md-10 display-lg-6 mb-0">Cố vấn chuyên nghiệp và
+                        đáng tin cậy cho bảo hiểm của bạn</h2>
                 </div>
             </div>
         </div>
@@ -274,7 +244,8 @@
                         <h3 class="mb-3 h3-column display-27">BẢO VỆ TOÀN DIỆN</h3>
                         <p class="display-30 content-column">- Chương trình bảo vệ sức khỏe toàn diện cho gia đình bạn, bảo
                             vệ tài chính và cung cấp dịch vụ y tế tốt nhất cho gia đình thân yêu </br>
-                            - Phạm vi bảo vệ không giới hạn giúp bạn luôn có được sự chăm sóc y tế tốt nhất từ những Y- Bác Sỹ
+                            - Phạm vi bảo vệ không giới hạn giúp bạn luôn có được sự chăm sóc y tế tốt nhất từ những Y- Bác
+                            Sỹ
                             đến từ những Bệnh VIện tốt nhất Việt Nam</p>
                     </div>
                 </div>
@@ -303,7 +274,8 @@
                 <div class="col-md-4 col-column">
                     <div class="border-column">
                         <h3 class="mb-3 h3-column display-27">CHỦ ĐỘNG BẢO VỆ</h3>
-                        <p class="display-30 content-column">- Phí đóng linh hoạt, thời gian chủ động, Dai-Ichi Life vẫn luôn
+                        <p class="display-30 content-column">- Phí đóng linh hoạt, thời gian chủ động, Dai-Ichi Life vẫn
+                            luôn
                             đồng hành bảo vệ bạn đem lại sự vững tâm kể cả khi bạn gặp khó khăn về tài chính </br>
                             - Tự do điều chỉnh số lượng thành viên tham gia hợp đồng, tự do thay đổi mức phí bảo hiểm hàng
                             năm.</p>
@@ -331,57 +303,67 @@
         </div>
     </section>
 
-    <!-- PRICING
-                                                                ================================================== -->
-    <section>
+    <!-- Biểu phí
+                                                                                            ================================================== -->
+    <section id="Cacgoi" style="margin-top: -5rem">
         <div class="container">
             <div class="text-center mb-2-1 wow fadeIn" data-wow-delay="100ms">
-                <span class="text-muted text-uppercase small letter-spacing-4 d-block mb-3 font-weight-600">Our
-                    pricing</span>
-                <h2 class="display-22 display-sm-18 display-md-16 display-lg-14 w-lg-50 mx-auto mb-0">Professional <span
-                        class="title-sm">pricing</span></h2>
+                <span class="text-muted text-uppercase small letter-spacing-4 d-block mb-3 font-weight-600">Các gói cơ
+                    bản</span>
+                <h2 class="display-22 display-sm-18 display-md-16 display-lg-14 w-lg-50 mx-auto mb-0">Mức phí tiêu biểu<h2>
             </div>
             <div class="row mt-n1-9 gx-xl-5 align-items-center">
                 <div class="col-md-6 col-lg-4 mt-1-9 wow fadeIn" data-wow-delay="200ms">
                     <div class="card card-style6 text-center">
                         <div class="card-body py-2-9 px-2-3">
-                            <h3 class="price-title">basic</h3>
-                            <h4 class="price-label">$59.99</h4>
+                            <h3 class="price-title">Phổ thông</h3>
+                            <h4 class="price-label price-label-home2">45.000đ</h4>
                             <ul class="list-style4">
-                                <li><a href="#!">Standard Feature</a></li>
-                                <li><a href="#!">Another Great Feature</a></li>
-                                <li><a href="#!">Obsolete Feature</a></li>
+                                <li><a href="#!">Quyền lợi tử vong: 500 tr - 1 tỉ</a></li>
+                                <li><a href="#!">Bảo hiểm tai nạn: 200 tr - 400 tr</a></li>
+                                <li><a href="#!">Bảo hiểm Bệnh Hiểm Nghèo: 200 - 400 tr</a></li>
+                                <li><a href="#!">3 tr/1 ngày tiền giường bệnh</a></li>
+                                <li><a href="#!">Bảo lãnh 100% viện phí</a></li>
+                                <li><a href="#!">1 tấm thẻ Dai-ichi Life ( thanh toán 100% viện phí)</a></li>
+                                <li><a href="#!">Đóng phí 15 năm bảo vệ trọn đời</a></li>
                             </ul>
-                            <a href="contact.html" class="butn-style2 mt-1-9">Purchase Now</a>
+                            <a href="contact.html" class="butn-style2 butn-style2-home2 mt-1-9">Đăng ký</a>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-4 mt-1-9 wow fadeIn" data-wow-delay="400ms">
                     <div class="card card-style6 text-center bg-secondary">
                         <div class="card-body py-2-9 px-2-3">
-                            <h3 class="price-title">Professional</h3>
-                            <h4 class="price-label">$199.99</h4>
+                            <h3 class="price-title-home">Cao cấp</h3>
+                            <h4 class="price-label-home">100.000đ</h4>
                             <ul class="list-style4">
-                                <li><a href="#!">Standard Feature</a></li>
-                                <li><a href="#!">Another Great Feature</a></li>
-                                <li><a href="#!">Obsolete Feature</a></li>
-                                <li><a href="#!">Exciting Feature</a></li>
+                                <li><a href="#!">Quyền lợi tử vong: 2 tỉ - 3 tỉ</a></li>
+                                <li><a href="#!">Bảo hiểm tai nạn: 800 tr - 1,6 tỉ</a></li>
+                                <li><a href="#!">Bảo hiểm Bệnh Hiểm Nghèo: 500 tr - 1 tỉ</a></li>
+                                <li><a href="#!">3 tr/1 ngày tiền giường bệnh</a></li>
+                                <li><a href="#!">Bảo lãnh 100% viện phí</a></li>
+                                <li><a href="#!">4 tấm thẻ Dai-ichi Life ( thanh toán 100% viện phí)</a></li>
+                                <li><a href="#!">Đóng phí 15 năm bảo vệ trọn đời</a></li>
                             </ul>
-                            <a href="contact.html" class="butn-style2 white mt-1-9">Purchase Now</a>
+                            <a href="contact.html" class="butn-style2 butn-style2-home white mt-1-9">Đăng ký</a>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-4 mt-1-9 wow fadeIn" data-wow-delay="600ms">
                     <div class="card card-style6 text-center">
                         <div class="card-body py-2-9 px-2-3">
-                            <h3 class="price-title">Business</h3>
-                            <h4 class="price-label">$99.99</h4>
+                            <h3 class="price-title">Đặc biệt</h3>
+                            <h4 class="price-label price-label-home2">70.000đ</h4>
                             <ul class="list-style4">
-                                <li><a href="#!">Standard Feature</a></li>
-                                <li><a href="#!">Another Great Feature</a></li>
-                                <li><a href="#!">Obsolete Feature</a></li>
+                                <li><a href="#!">Quyền lợi tử vong: 1 tỉ - 1,8 tỉ</a></li>
+                                <li><a href="#!">Bảo hiểm tai nạn: 500 tr - 1 tỉ</a></li>
+                                <li><a href="#!">Bảo hiểm Bệnh Hiểm Nghèo: 300 - 600 tr</a></li>
+                                <li><a href="#!">3 tr/1 ngày tiền giường bệnh</a></li>
+                                <li><a href="#!">Bảo lãnh 100% viện phí</a></li>
+                                <li><a href="#!">2 tấm thẻ Dai-ichi Life ( thanh toán 100% viện phí)</a></li>
+                                <li><a href="#!">Đóng phí 15 năm bảo vệ trọn đời</a></li>
                             </ul>
-                            <a href="contact.html" class="butn-style2 mt-1-9">Purchase Now</a>
+                            <a href="contact.html" class="butn-style2 butn-style2-home2 mt-1-9">Đăng ký</a>
                         </div>
                     </div>
                 </div>
@@ -390,8 +372,9 @@
     </section>
 
     <!-- TESTIMONIALS
-                                                                ================================================== -->
-    <section class="bg-img cover-background left-overlay-dark" data-overlay-dark="90" data-background="img/bg/bg-06.jpg">
+                                                                                            ================================================== -->
+    {{-- <section class="bg-img cover-background left-overlay-dark" data-overlay-dark="90"
+        data-background="{{ asset('client/img/bg/bg-06.jpg') }}">
         <div class="container">
             <div class="row align-items-center wow fadeIn" data-wow-delay="200ms">
                 <div class="col-lg-7">
@@ -428,64 +411,115 @@
                 </div>
             </div>
         </div>
+    </section> --}}
+
+    <section style="margin-top: -5rem">
+        <div class="container">
+            <div class="text-center mb-2-9 wow fadeIn title-style1 white" data-wow-delay="100ms">
+                <h2 class="display-22 display-sm-18 display-md-16 mb-0">Khách hàng tin tưởng sử dụng</h2>
+            </div>
+        </div>
+        <div class="container-fluid px-0">
+            <div class="owl-theme owl-carousel portfolio-carousel-02">
+                <div class="portfolio-style03">
+                    <img src="{{ asset('client/img/portfolio/portfolio-01.jpg') }}" class="rounded" alt="...">
+                    <div class="overlay-box">
+                        <div class="content">
+                            <h3 class="mb-2 h4"><a href="portfolio-details.html">Health Insurance</a></h3>
+                            <span class="font-weight-600">Health</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-style03">
+                    <img src="{{ asset('client/img/portfolio/portfolio-02.jpg') }}" class="rounded" alt="...">
+                    <div class="overlay-box">
+                        <div class="content">
+                            <h3 class="mb-2 h4"><a href="portfolio-details.html">Life Insurance</a></h3>
+                            <span class="font-weight-600">Life</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-style03">
+                    <img src="{{ asset('client/img/portfolio/portfolio-03.jpg') }}" class="rounded" alt="...">
+                    <div class="overlay-box">
+                        <div class="content">
+                            <h3 class="mb-2 h4"><a href="portfolio-details.html">Insurance Policies</a></h3>
+                            <span class="font-weight-600">Insurance</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-style03">
+                    <img src="{{ asset('client/img/portfolio/portfolio-04.jpg') }}" class="rounded" alt="...">
+                    <div class="overlay-box">
+                        <div class="content">
+                            <h3 class="mb-2 h4"><a href="portfolio-details.html">Car Insurance</a></h3>
+                            <span class="font-weight-600">Car</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-style03">
+                    <img src="{{ asset('client/img/portfolio/portfolio-05.jpg') }}" class="rounded" alt="...">
+                    <div class="overlay-box">
+                        <div class="content">
+                            <h3 class="mb-2 h4"><a href="portfolio-details.html">Complex Healthcare</a></h3>
+                            <span class="font-weight-600">Health</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-style03">
+                    <img src="{{ asset('client/img/portfolio/portfolio-06.jpg') }}" class="rounded" alt="...">
+                    <div class="overlay-box">
+                        <div class="content">
+                            <h3 class="mb-2 h4"><a href="portfolio-details.html">Home Insurance</a></h3>
+                            <span class="font-weight-600">Home</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- BLOG
-                                                                ================================================== -->
-    <section class="bg-light">
+                                                                                            ================================================== -->
+    <section id="new" class="bg-light">
         <div class="container position-relative z-index-2">
             <div class="text-center mb-2-1 wow fadeIn" data-wow-delay="100ms">
                 <h2 class="display-22 display-sm-18 display-md-16 display-lg-14 w-lg-50 mx-auto mb-0">Tin tức
                 </h2>
             </div>
             <div class="row gx-xl-5 mt-n1-9 wow fadeIn" data-wow-delay="900ms">
-                <div class="col-md-6 col-lg-4 mt-1-9 wow fadeIn" data-wow-delay="200ms">
-                    <article class="card card-style7 border-radius-5 border-0 h-100">
-                        <div class="card-image position-relative">
-                            <img src="{{ asset('client/img/blog/blog-01.jpg') }}" class="card-img-top" alt="...">
-                        </div>
-                        <div class="card-body p-1-9 position-relative">
-                            <h3 class="h4 mb-4"><a href="blog-details.html">How to get people to like travel
-                                    insurance.</a></h3>
-                            <a href="blog-details.html" class="text-secondary text-primary-hover font-weight-600">Read
-                                more <i class="ti-arrow-right ms-2 align-middle display-30"></i></a>
-                        </div>
-                    </article>
-                </div>
-                <div class="col-md-6 col-lg-4 mt-1-9 wow fadeIn" data-wow-delay="400ms">
-                    <article class="card card-style7 border-radius-5 border-0 h-100">
-                        <div class="card-image position-relative">
-                            <img src="{{ asset('client/img/blog/blog-02.jpg') }}" class="card-img-top" alt="...">
-                        </div>
-                        <div class="card-body p-1-9 position-relative">
-                            <h3 class="h4 mb-4"><a href="blog-details.html">Simple guidance for you in home insurance.</a>
-                            </h3>
-                            <a href="blog-details.html" class="text-secondary text-primary-hover font-weight-600">Read
-                                more <i class="ti-arrow-right ms-2 align-middle display-30"></i></a>
-                        </div>
-                    </article>
-                </div>
-                <div class="col-md-6 col-lg-4 mt-1-9 wow fadeIn" data-wow-delay="600ms">
-                    <article class="card card-style7 border-radius-5 border-0 h-100">
-                        <div class="card-image position-relative">
-                            <img src="{{ asset('client/img/blog/blog-03.jpg') }}" class="card-img-top" alt="...">
-                        </div>
-                        <div class="card-body p-1-9 position-relative">
-                            <h3 class="h4 mb-4"><a href="blog-details.html">The shocking revelation of insurance.</a></h3>
-                            <a href="blog-details.html" class="text-secondary text-primary-hover font-weight-600">Read
-                                more <i class="ti-arrow-right ms-2 align-middle display-30"></i></a>
-                        </div>
-                    </article>
-                </div>
+                @forelse ($news as $new)
+                    <div class="col-md-6 col-lg-4 mt-1-9 wow fadeIn" data-wow-delay="200ms">
+                        <article class="card card-style7 border-radius-5 border-0 h-100">
+                            <div class="card-image position-relative">
+                                <img src="{{ asset($new->images_news) ? '' . Storage::url($new->images_news) : $new->title }}"
+                                    class="card-img-top" alt="...">
+                            </div>
+                            <div class="card-body p-1-9 position-relative">
+                                <h3 class="h4 mb-4"><a
+                                        href="{{ route('route_FrontEnd_News_Detail', ['id' => $new->id]) }}">{{ $new->title }}</a>
+                                </h3>
+                                <p>{{ $new->sort_content }}</p>
+                                <a href="{{ route('route_FrontEnd_News_Detail', ['id' => $new->id]) }}"
+                                    class="text-secondary text-primary-hover font-weight-600">Đọc
+                                    thêm <i class="ti-arrow-right ms-2 align-middle display-30"></i></a>
+                            </div>
+                        </article>
+                    </div>
+                @empty
+                    <div class="text-center text-danger" style="padding-top: 30px">
+                        <p colspan="12" style="color: red !important">Không có dịch vụ</p>
+                    </div>
+                @endforelse
             </div>
         </div>
         <img src="{{ asset('client/img/content/shape4.png') }}"
             class="position-absolute top-5 right-5 ani-top-bottom d-none d-md-block" alt="...">
     </section>
 
-    <!-- CLIENTS
-                                                            ================================================== -->
-    <section class="bg-light" style="padding-top: 0px">
+    <!-- PARTNER
+                                                                                        ================================================== -->
+    <section id="partner" class="bg-light" style="padding-top: 0px">
         <div class="container">
             <div class="text-center mb-2-1 wow fadeIn" data-wow-delay="100ms">
                 <h2 class="display-22 display-sm-18 display-md-16 display-lg-14 w-lg-50 mx-auto mb-0">Đối tác

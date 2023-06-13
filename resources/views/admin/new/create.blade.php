@@ -1,6 +1,6 @@
 @extends('layouts.admin.master')
 
-@section('title', 'Thêm dịch vụ')
+@section('title', 'Thêm quản bài viết')
 
 @section('content')
 
@@ -24,15 +24,15 @@
                         <div class="card">
                             <div class="card-body">
 
-                                <h4 class="card-title mb-4">Thêm dịch vụ</h4>
+                                <h4 class="card-title mb-4">Thêm quản bài viết</h4>
 
                                 <form class="custom-validation" action="" method="post" enctype="multipart/form-data">
                                     @csrf
                                     <div class="mb-3">
-                                        <label class="form-label">Tên <span class="text-danger">*</span></label>
-                                        <input type="text" name="service_name" class="form-control"
-                                            value="@isset($request['service_name']){{ $request['service_name'] }}@endisset">
-                                        @error('service_name')
+                                        <label class="form-label">Tiêu đề <span class="text-danger">*</span></label>
+                                        <input type="text" name="title" class="form-control"
+                                            value="@isset($request['title']){{ $request['title'] }}@endisset">
+                                        @error('title')
                                             <div>
                                                 <p class="text-danger">{{ $message }}</p>
                                             </div>
@@ -40,25 +40,32 @@
                                     </div>
 
                                     <div class="mb-3">
-                                        <label class="form-label">Mô tả <span class="text-danger">*</span></label>
-                                        <div>
-                                            <input name="description" type="text"
-                                                class="form-control"
-                                                value="@isset($request['description']){{ $request['description'] }}@endisset">
-                                            @error('description')
-                                                <div>
-                                                    <p class="text-danger">{{ $message }}</p>
-                                                </div>
-                                            @enderror
-                                        </div>
+                                        <label class="form-label">Nội dung ngắn </label>
+                                        <input type="text" name="sort_content" class="form-control"
+                                            value="@isset($request['sort_content']){{ $request['sort_content'] }}@endisset">
+                                        @error('sort_content')
+                                            <div>
+                                                <p class="text-danger">{{ $message }}</p>
+                                            </div>
+                                        @enderror
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Nội dung <span class="text-danger">*</span></label>
+                                        <input type="text" name="content" class="form-control"
+                                            value="@isset($request['content']){{ $request['content'] }}@endisset">
+                                        @error('content')
+                                            <div>
+                                                <p class="text-danger">{{ $message }}</p>
+                                            </div>
+                                        @enderror
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">Ảnh <span class="text-danger">*</span></label>
                                         <div>
                                             <div class="form-file">
                                                 <input type="file" name="images" class="form-file-input form-control">
-                                                @if (isset($services) && $services->thumbnail)
-                                                    <img src="{{ asset($services->thumbnail) }}" alt="{{ $services->service_name }}"
+                                                @if (isset($new) && $new->images_news)
+                                                    <img src="{{ asset($new->images_news) }}" alt="{{ $new->title }}"
                                                         width="100">
                                                 @endif
                                                 @error('images')

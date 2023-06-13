@@ -24,7 +24,7 @@
                         <div class="card">
                             <div class="card-body">
 
-                                <h3 class="mb-4">Sửa dịch vụ</h3>
+                                <h4 class="card-title mb-4">Sửa dịch vụ</h4>
 
                                 <form class="custom-validation"
                                     action="{{ route('route_BackEnd_Services_Update', ['id' => request()->route('id')]) }}"
@@ -90,7 +90,7 @@
                                             </div>
                                         @enderror
                                     </div>
-                                    <input type="text" name="created_at"
+                                    <input type="text" name="updated_at"
                                         value="{{ date('Y-m-d H:i:s', strtotime('now')) }}" hidden>
                                     <div class="mb-0">
                                         <div>

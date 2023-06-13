@@ -11,7 +11,7 @@
     <meta name="description" content="Lifest - Insurance Agency HTML Template" />
 
     <!-- title  -->
-    <title>Lifest - Insurance Agency HTML Template</title>
+    <title>@yield('title')</title>
 
     <!-- favicon -->
     <link rel="shortcut icon" href="{{ asset('client/img/logos/favicon.png') }}">
@@ -21,6 +21,9 @@
 
     <!-- plugins -->
     <link rel="stylesheet" href="{{ asset('client/css/plugins.css') }}">
+
+    {{-- Config css --}}
+    <link rel="stylesheet" href="{{ asset('client/config/style.css') }}">
 
     <!-- search css -->
     <link rel="stylesheet" href="{{ asset('client/search/search.css') }}">
@@ -92,6 +95,14 @@
     <script src="{{ asset('client/quform/js/scripts.js') }}"></script>
 
     <!-- all js include end -->
+    
+
+    <script>
+        function navigateToURL(element) {
+            var url = element.getAttribute('href');
+            window.location.href = url;
+        }
+    </script>
 
 </body>
 

@@ -13,21 +13,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', 'Client\HomeController@index')->name('route_FrontEnd_Home');
 
-Route::get('/products', function () {
-    return view('product');
-});
+Route::get('/services', 'Client\ServiceController@index')->name('route_FrontEnd_Service');
+Route::get('/services/detail/{id}', 'Client\ServiceController@detail')->name('route_FrontEnd_Service_Detail');
 
-Route::get('/news', function () {
-    return view('product');
-});
+Route::get('/news', 'Client\NewController@index')->name('route_FrontEnd_News');
+Route::get('/news/detail/{id}', 'Client\NewController@detail')->name('route_FrontEnd_News_Detail');
 
-Route::get('/introduce', function () {
-    return view('introduce');
-});
+Route::get('/contact', 'Client\ContactController@index')->name('route_FrontEnd_Contact');
+
+Route::get('/introduce', 'Client\IntroduceController@index')->name('route_FrontEnd_Introduce');
 
 Route::get('/recruitment', function () {
     return view('recruitment');
@@ -65,6 +61,22 @@ Route::prefix('admin')->group(function () {
         Route::get('/edit/{id}', 'Admin\ServiceController@edit')->name('route_BackEnd_Services_Edit');
         Route::post('/update/{id}', 'Admin\ServiceController@update')->name('route_BackEnd_Services_Update');
         Route::get('/remove/{id}', 'Admin\ServiceController@remove')->name('route_BackEnd_Services_Remove');
+    });
+
+    Route::prefix('/banner')->group(function () {
+        Route::get('/', 'Admin\BannerController@index')->name('route_BackEnd_Banner_List');
+        Route::match(['get', 'post'], '/create', 'Admin\BannerController@create')->name('route_BackEnd_Banner_Create');
+        Route::get('/edit/{id}', 'Admin\BannerController@edit')->name('route_BackEnd_Banner_Edit');
+        Route::post('/update/{id}', 'Admin\BannerController@update')->name('route_BackEnd_Banner_Update');
+        Route::get('/remove/{id}', 'Admin\BannerController@remove')->name('route_BackEnd_Banner_Remove');
+    });
+
+    Route::prefix('/news')->group(function () {
+        Route::get('/', 'Admin\NewController@index')->name('route_BackEnd_News_List');
+        Route::match(['get', 'post'], '/create', 'Admin\NewController@create')->name('route_BackEnd_News_Create');
+        Route::get('/edit/{id}', 'Admin\NewController@edit')->name('route_BackEnd_News_Edit');
+        Route::post('/update/{id}', 'Admin\NewController@update')->name('route_BackEnd_News_Update');
+        Route::get('/remove/{id}', 'Admin\NewController@remove')->name('route_BackEnd_News_Remove');
     });
 
 });

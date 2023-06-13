@@ -86,6 +86,10 @@ a:active {
     background: #002a5c !important;
 }
 .primary-overlay[data-overlay-dark]:before {
+    background: #841115;
+}
+
+.primary-overlay-news-detail[data-overlay-dark]:before {
     background: #ec1f28;
 }
 .overlay-blue-dark[data-overlay-dark]:before {
@@ -93,7 +97,7 @@ a:active {
 }
 .left-overlay-dark[data-overlay-dark]:before {
     background: rgba(0, 42, 92, 0.76);
-    background: linear-gradient(-90deg, transparent, #ec1f28 65%);
+    background: linear-gradient(-90deg, transparent, #b9050d 65%);
 }
 .left-overlay-white[data-overlay-dark]:before {
     background: rgba(225, 225, 225, 0.76);
@@ -104,6 +108,9 @@ a:active {
 }
 .text-primary {
     color: #fff !important;
+}
+.text-primary-contact {
+    color: #ec1f28 !important;
 }
 .text-secondary {
     color: #ec1f28 !important;
@@ -337,7 +344,15 @@ a:active {
     background-color: #ec1f28;
 }
 .butn-style2-footer {
-    background-color: #25cdc7;
+    background-color: #fff;
+    color: #252525;
+}
+.butn-style2-footer.white:before {
+    background-color: #ec1f28;
+}
+.butn-style2-footer.white:hover {
+    color: #fff;
+    background-color: #ec1f28;
 }
 .butn-style2:before {
     transition-duration: 800ms;
@@ -2163,6 +2178,131 @@ pre[class*="language-"] {
     font-size: 18px;
     margin-bottom: 30px;
 }
+/* Home */
+.card-style6 .price-title-home {
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+.card-style6 .price-label-home {
+    position: relative;
+    color: black;
+    font-size: 31px;
+    height: 55px;
+    line-height: 55px;
+    width: 150px;
+    margin: 0 auto 40px auto;
+    z-index: 1;
+}
+.card-style6 .price-label-home:before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    right: 0;
+    z-index: -1;
+    border-radius: 8px;
+    background: #ebe5e5;
+}
+.card-style6 .price-label-home:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    border-radius: 8px;
+    transform: rotate(-6deg);
+    background: #fff;
+}
+/* Button  */
+.butn-style2-home {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: middle;
+    font-size: 14px !important;
+    color: black;
+    border-radius: 5px;
+    font-weight: 700;
+    text-align: center;
+    padding: 15px 32px !important;
+    text-transform: uppercase;
+    z-index: 1;
+    transition: all 500ms ease;
+    background-color: #fff;
+}
+.butn-style2-home:before {
+    transition-duration: 800ms;
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    content: "";
+    top: 110%;
+    left: 50%;
+    background-color: #ec1f28;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    border-radius: 50%;
+    z-index: -1;
+}
+.butn-style2-home:hover {
+    color: #fff;
+    background-color: #ec1f28;
+}
+
+.card-style6 .price-label-home2:before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    right: 0;
+    z-index: -1;
+    border-radius: 8px;
+    background: #fa696f !important;
+}
+.butn-style2-home2 {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: middle;
+    font-size: 14px !important;
+    color: #fff;
+    border-radius: 5px;
+    font-weight: 700;
+    text-align: center;
+    padding: 15px 32px !important;
+    text-transform: uppercase;
+    z-index: 1;
+    transition: all 500ms ease;
+    background-color: #ec1f28;
+}
+.butn-style2-home2:before {
+    transition-duration: 800ms;
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    content: "";
+    top: 110%;
+    left: 50%;
+    background-color: #ebe5e5;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    border-radius: 50%;
+    z-index: -1;
+}
+.butn-style2-home2:hover {
+    color: black;
+    background-color: #ec1f28;
+}
+/* Config home */
 .card-style6 .price-label {
     position: relative;
     color: #fff;
@@ -2197,6 +2337,7 @@ pre[class*="language-"] {
     transform: rotate(-6deg);
     background: #ec1f28;
 }
+
 .card-style6.bg-secondary .list-style4 a {
     color: #fff;
 }
@@ -2380,6 +2521,12 @@ pre[class*="language-"] {
     color: #fff;
 }
 .list-style3 li.active a {
+    background-color: #ec1f28;
+    color: #fff;
+    border: 1px solid #f8f9fa;
+}
+
+.service-detai li.active a {
     background-color: #ec1f28;
     color: #fff;
     border: 1px solid #f8f9fa;

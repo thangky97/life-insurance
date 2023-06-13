@@ -24,7 +24,7 @@
                         <div class="card">
                             <div class="card-body">
 
-                                <h3 class="mb-4">Thêm quản trị viên</h3>
+                                <h4 class="card-title mb-4">Thêm quản trị viên</h4>
 
                                 <form class="custom-validation" action="" method="post" enctype="multipart/form-data">
                                     @csrf

@@ -10,7 +10,7 @@
                                 Thiên, Phường Thổ Quan, Quận Đống Đa, TP Hà Nội</a></li>
                         <li><a href="#!"><i class="fas fa-phone me-2"></i>Điện Thoại: 0349.176.402</a></li>
                         <li><a href="#!"><i class="fas fa-envelope me-2"></i>Email:
-                                hotrodaiichivietnam@gmail.com</a>
+                                hungmv.mgmydinh@gmail.com</a>
                         </li>
                     </ul>
                 </div>
@@ -18,48 +18,36 @@
             <div class="col-sm-6 col-lg-2 mt-1-9 wow fadeIn" data-wow-delay="350ms">
                 <h3 class="h4 mb-1-9">Dịch vụ</h3>
                 <ul class="footer-list ps-0">
-                    <li>
-                        <a href="life-insurance.html">Life insurance</a>
-                    </li>
-                    <li>
-                        <a href="business-insurance.html">Business insurance</a>
-                    </li>
-                    <li>
-                        <a href="travel-insurance.html">Travel insurance</a>
-                    </li>
-                    <li>
-                        <a href="car-insurance.html">Car insurance</a>
-                    </li>
-                    <li>
-                        <a href="health-insurance.html">Health insurance</a>
-                    </li>
+                    @foreach ($listMenuService as $menu)
+                        <li><a
+                                href="{{ route('route_FrontEnd_Service_Detail', ['id' => $menu->id]) }}">{{ $menu->service_name }}</a>
+                        </li>
+                    @endforeach
                 </ul>
             </div>
             <div class="col-sm-6 col-lg-3 mt-1-9 wow fadeIn" data-wow-delay="500ms">
                 <h3 class="h4 mb-1-9">Bài viết gần đây</h3>
-                <div class="d-flex mb-1-9">
-                    <div class="flex-shrink-0 image-hover">
-                        <img src="{{ asset('client/img/content/footer-thumb1.jpg') }}" class="rounded" alt="...">
+                @forelse ($newsFooter as $new)
+                    <div class="d-flex mb-1-9">
+                        <div class="flex-shrink-0 image-hover">
+                            <img src="{{ asset($new->images_news) ? '' . Storage::url($new->images_news) : $new->title }}"
+                                class="rounded" alt="Bài viết" style="height: 70px">
+                        </div>
+                        <div class="flex-grow-1 ms-3">
+                            <h4 class="text-white mb-2 h6 h6-footer"><a
+                                    href="{{ route('route_FrontEnd_News_Detail', ['id' => $new->id]) }}">{{ $new->title }}</a>
+                            </h4>
+                            {{-- <small class="text-white opacity7">8 Jan, 2022</small> --}}
+                        </div>
                     </div>
-                    <div class="flex-grow-1 ms-3">
-                        <h4 class="text-white mb-2 h6"><a href="blog-details.html"
-                                class="text-white text-primary">People saying about insurance.</a></h4>
-                        <small class="text-white opacity7">8 Jan, 2022</small>
+                @empty
+                    <div class="text-center text-danger" style="padding-top: 30px">
+                        <p colspan="12" style="color: red !important">Không có dịch vụ</p>
                     </div>
-                </div>
-                <div class="d-flex">
-                    <div class="flex-shrink-0 image-hover">
-                        <img src="{{ asset('client/img/content/footer-thumb2.jpg') }}" class="rounded" alt="...">
-                    </div>
-                    <div class="flex-grow-1 ms-3">
-                        <h4 class="text-white mb-2 h6"><a href="blog-details.html"
-                                class="text-white text-primary">Providing all types of insurance</a></h4>
-                        <small class="text-white opacity7">3 Jan, 2022</small>
-                    </div>
-                </div>
+                @endforelse
             </div>
             <div class="col-sm-6 col-lg-3 mt-1-9 wow fadeIn" data-wow-delay="650ms">
-                <h3 class="h4 mb-1-9">Nhận tư vấn</h3>
+                <h3 class="h4 mb-1-9">Tư vấn</h3>
                 <form class="quform newsletter-form"
                     action="https://lifesthtml.websitelayout.net/quform/newsletter-two.php" method="post"
                     enctype="multipart/form-data" onclick="">
@@ -72,19 +60,8 @@
                             <div class="col-md-12">
                                 <div class="quform-element">
                                     <div class="quform-input">
-                                        <input class="form-control form-control-footer" id="email_address" type="text"
-                                            name="email_address" placeholder="Họ tên" />
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Text input element -->
-                            
-                            <!-- Begin Text input element -->
-                            <div class="col-md-12">
-                                <div class="quform-element">
-                                    <div class="quform-input">
-                                        <input class="form-control form-control-footer" id="email_address" type="text"
-                                            name="email_address" placeholder="Số điện thoại" />
+                                        <input class="form-control form-control-footer" id="email_address"
+                                            type="text" name="email_address" placeholder="Họ tên" />
                                     </div>
                                 </div>
                             </div>
@@ -94,8 +71,19 @@
                             <div class="col-md-12">
                                 <div class="quform-element">
                                     <div class="quform-input">
-                                        <input class="form-control form-control-footer" id="email_address" type="text"
-                                            name="email_address" placeholder="Nội dung tư vấn" />
+                                        <input class="form-control form-control-footer" id="email_address"
+                                            type="text" name="email_address" placeholder="Số điện thoại" />
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Text input element -->
+
+                            <!-- Begin Text input element -->
+                            <div class="col-md-12">
+                                <div class="quform-element">
+                                    <div class="quform-input">
+                                        <input class="form-control form-control-footer" id="email_address"
+                                            type="text" name="email_address" placeholder="Nội dung tư vấn" />
                                     </div>
                                 </div>
                             </div>
@@ -128,10 +116,13 @@
             <div class="col-md-8">
                 <div class="text-center text-md-end">
                     <ul class="footer-nav m-0 p-0">
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="faq.html">Faq</a></li>
-                        <li><a href="blog-grid.html">Blog</a></li>
-                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="/">Trang chủ</a></li>
+                        <li><a href="/#service">Dịch vụ</a></li>
+                        <li><a href="/#about">Giới thiệu</a></li>
+                        {{-- <li><a href="#Cacgoi">Các gói</a></li> --}}
+                        <li><a href="/#partner">Đối tác</a></li>
+                        <li><a href="/#new">Bài viết</a></li>
+                        <li><a href="{{ route('route_FrontEnd_Contact') }}">Liên hệ</a></li>
                     </ul>
                 </div>
             </div>
@@ -141,8 +132,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <p class="text-white mb-0">&copy; <span class="current-year"></span> Lifest is Powered by <a
-                            href="#!" class="text-primary text-white-hover">Website Design Templates</a></p>
+                    <p class="text-white mb-0">&copy; <span class="current-year"></span> DAI-ICHi LIFE <a
+                            href="#!" class="text-primary text-white-hover"> - Gắn bó lâu dài</a></p>
                 </div>
             </div>
         </div>

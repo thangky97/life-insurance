@@ -24,7 +24,7 @@
                         <div class="card">
                             <div class="card-body">
 
-                                <h3 class="mb-4">Sửa quản trị viên</h3>
+                                <h4 class="card-title mb-4">Sửa quản trị viên</h4>
 
                                 <form class="custom-validation"
                                     action="{{ route('route_BackEnd_Customers_Update', ['id' => request()->route('id')]) }}"

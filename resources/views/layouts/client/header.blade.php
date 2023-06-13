@@ -6,7 +6,7 @@
                     <div class="top-bar-info">
                         <ul class="ps-0">
                             <li><i class="ti-mobile"></i>0353 693 509</li>
-                            <li class="d-none d-sm-inline-block"><i class="ti-email"></i>addyour@emailhere</li>
+                            <li class="d-none d-sm-inline-block"><i class="ti-email"></i>hungmv.mgmydinh@gmail.com</li>
                         </ul>
                     </div>
                 </div>
@@ -59,28 +59,26 @@
 
                             <!-- start menu area -->
                             <ul class="navbar-nav ms-auto" id="nav" style="display: none;">
-                                <li><a href="/">Home</a></li>
+                                <li><a href="/">Trang chủ</a></li>
                                 <li>
-                                    <a href="#!">Dịch vụ</a>
+                                    <a href="{{ route('route_FrontEnd_Service') }}">Dịch vụ</a>
                                     <ul>
-                                        <li><a href="about.html">About Us</a></li>
-                                        <li><a href="services.html">Services</a></li>
-                                        <li><a href="team.html">Our Team</a></li>
-                                        <li><a href="testimonial.html">Testimonial</a></li>
-                                        <li><a href="pricing.html">Pricing</a></li>
+                                        @foreach ($listMenuService as $menu)
+                                            <li><a href="{{ route('route_FrontEnd_Service_Detail', ['id' => $menu->id]) }}">{{ $menu->service_name }}</a></li>
+                                        @endforeach
                                     </ul>
                                 </li>
-                                <li><a href="#!">Tin tức</a></li>
-                                <li><a href="#!">Giới thiệu</a></li>
-                                <li><a href="contact.html">Liên hệ</a></li>
+                                <li><a href="{{ route('route_FrontEnd_News') }}">Tin tức</a></li>
+                                <li><a href="{{ route('route_FrontEnd_Introduce') }}">Giới thiệu</a></li>
+                                <li><a href="{{ route('route_FrontEnd_Contact') }}">Liên hệ</a></li>
                             </ul>
                             <!-- end menu area -->
 
                             <!-- start attribute navigation -->
                             <div class="attr-nav align-items-lg-center ms-lg-auto">
                                 <ul>
-                                    <li class="search"><a href="#!"><i class="fas fa-search"></i></a></li>
-                                    <li class="d-none d-xl-inline-block"><a href="contact.html"
+                                    <li class="search"><a href="#"><i class="fas fa-search"></i></a></li>
+                                    <li class="d-none d-xl-inline-block"><a href="{{ route('route_FrontEnd_Contact') }}"
                                             class="butn-style2 md text-white">Liên hệ</a></li>
                                 </ul>
                             </div>

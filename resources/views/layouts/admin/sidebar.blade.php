@@ -15,6 +15,19 @@
                     </a>
                 </li>
 
+                <li class="menu-title">Quản lí hệ thống</li>
+
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="far fa-image"></i>
+                        <span>Banner</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="{{ route('route_BackEnd_Banner_List') }}">Danh sách banner</a></li>
+                        <li><a href="{{ route('route_BackEnd_Banner_Create') }}">Tạo mới</a></li>
+                    </ul>
+                </li>
+
                 <li class="menu-title">Người dùng</li>
 
                 <li>
@@ -63,9 +76,6 @@
                             <ul class="sub-menu" aria-expanded="true">
                                 <li><a href="layouts-light-sidebar.html">Light Sidebar</a></li>
                                 <li><a href="layouts-compact-sidebar.html">Compact Sidebar</a></li>
-                                <li><a href="layouts-icon-sidebar.html">Icon Sidebar</a></li>
-                                <li><a href="layouts-boxed.html">Boxed Layout</a></li>
-                                <li><a href="layouts-colored-sidebar.html">Colored Sidebar</a></li>
                             </ul>
                         </li>
                         <li>
@@ -73,9 +83,21 @@
                             <ul class="sub-menu" aria-expanded="true">
                                 <li><a href="layouts-horizontal.html">Horizontal</a></li>
                                 <li><a href="layouts-hori-topbar-light.html">Light Topbar</a></li>
-                                <li><a href="layouts-hori-boxed.html">Boxed Layout</a></li>
                             </ul>
                         </li>
+                    </ul>
+                </li>
+
+                <li class="menu-title">Tin tức</li>
+
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="ti-archive"></i>
+                        <span>Bài viết</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="{{ route('route_BackEnd_News_List') }}">Danh sách bài viết</a></li>
+                        <li><a href="{{ route('route_BackEnd_News_Create') }}">Tạo mới</a></li>
                     </ul>
                 </li>
 

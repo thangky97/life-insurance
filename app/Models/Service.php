@@ -48,4 +48,15 @@ class Service extends Model
     public function customer(){
         return$this->belongsTo(Customer::class, 'customer_id');
     }
+
+    //Home
+    public function loadListWithPager($param = [])
+    {
+        $query = DB::table($this->table)->select($this->fillable);
+
+        $service = $query->get();
+
+        return $service;
+    }
+
 }
