@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\NewRequest;
 use App\Models\News;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
 class NewController extends Controller
@@ -27,8 +28,9 @@ class NewController extends Controller
             $news = News::where('phone','like','%'.$phone.'%')
         ->paginate(10);
         } else{
-            $news = News::select('id', 'title', 'content', 'sort_content', 'images_news', 'status')->orderBy('id','desc')
-        ->paginate(10);
+        //     $news = News::select('id', 'title', 'content', 'sort_content', 'images_news', 'post_date', 'user_id', 'status')->orderBy('id','desc')
+        // ->paginate(10);
+            $news = News::with('user')->orderBy('id', 'desc')->paginate(10); 
         }   
 
         return view('admin.new.list', compact('news'));
@@ -36,11 +38,14 @@ class NewController extends Controller
 
     public function create(Request $request) {
         $method_route = "route_BackEnd_News_Create";
+        $users = DB::table('users')->get();
 
         if ($request->isMethod('post')) {
             $request->validate([
                 'title' => 'required|min:3|max:40',
                 'content' => 'required',
+                'user_id' => 'required',
+                'post_date' => 'required',
                 'status' => 'required',
                 'images' =>
                 [
@@ -54,6 +59,8 @@ class NewController extends Controller
                 'title.min' => 'Tiêu đề tối thiểu 3 ký tự!',
                 'title.max' => 'Tiêu đề tối đa là 40 ký tự!',
                 'content.required' => 'Nội dung bắt buộc nhập!',
+                'user_id.required' => 'Bạn chưa chọn người đăng!',
+                'post_date.required' => 'Bạn chưa chọn ngày đăng!',
                 'images.image' => 'Bắt buộc phải là ảnh!',
                 'images.max' => 'Ảnh không được lớn hơn 2MB!',
                 'status.required' => 'Bạn chưa chọn trạng thái',
@@ -80,12 +87,13 @@ class NewController extends Controller
                 return redirect()->route($method_route);
             }
         }
-        return view('admin.new.create');
+        return view('admin.new.create', compact('users'));
     }
 
     public function edit($id, Request $request) {
         $modelNew = new News();
         $news = $modelNew->loadOne($id);
+        $this->v['user_id'] = DB::table('users')->get();
         $this->v['news'] = $news;
         return view('admin.new.edit', $this->v);
     }

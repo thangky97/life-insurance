@@ -41,6 +41,39 @@
                                         @enderror
                                     </div>
 
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <label class="form-label">Người đăng <span class="text-danger">*</span></label>
+                                            <select name="user_id" id="" class="form-control">
+                                                @foreach ($user_id as $a)
+                                                    <option value="{{ $a->id }}"
+                                                        {{ isset($news) && $news->user_id === $a->id ? 'selected' : '' }}>
+                                                        {{ $a->name }}</option>
+                                                @endforeach
+                                                @error('user_id')
+                                                    <div>
+                                                        <p class="text-danger">{{ $message }}</p>
+                                                    </div>
+                                                @enderror
+                                            </select>
+                                        </div>
+    
+                                        <div class="col-md-6">
+                                            <label class="form-label">Ngày đăng <span class="text-danger">*</span></label>
+                                            <div class="input-group" id="datepicker2">
+                                                <input name="post_date" type="date" id="input-date1"
+                                                    value="{{ $news->post_date }}"
+                                                    class="form-control input-mask" data-inputmask="'alias': 'datetime'"
+                                                    data-inputmask-inputformat="dd/mm/yyyy">
+                                            </div>
+                                            @error('post_date')
+                                                <div>
+                                                    <p class="text-danger">{{ $message }}</p>
+                                                </div>
+                                            @enderror
+                                        </div>
+                                    </div>
+
                                     <div class="mb-3">
                                         <label class="form-label">Nội dung ngắn </label>
                                         <input type="text" name="sort_content" class="form-control"

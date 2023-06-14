@@ -57,7 +57,7 @@
                 </div>
             </div>
         </div>
-        <img src="img/content/shape7.png" class="position-absolute bottom-35 right-5 ani-move d-none d-sm-block"
+        <img src="{{ asset('client/img/content/shape7.png') }}" class="position-absolute bottom-35 right-5 ani-move d-none d-sm-block"
             alt="...">
     </section>
 

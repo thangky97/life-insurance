@@ -31,7 +31,7 @@
                                     <div class="mb-3">
                                         <label class="form-label">Tiêu đề</label>
                                         <input type="text" name="title" class="form-control"
-                                            value="@isset($request['title']){{ $request['title'] }}@endisset">
+                                            value="{{ old('title', isset($request['title']) ? $request['title'] : '') }}">
                                     </div>
 
                                     <div class="mb-3">

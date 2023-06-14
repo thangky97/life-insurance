@@ -77,14 +77,14 @@
                                                     </td>
                                                     <td>
                                                         @if ($cus->calling_date)
-                                                            <span>{{ $cus->calling_date }}</span>
+                                                            <span>{{ $format = date("d-m-Y",strtotime($cus->calling_date)) }}</span>
                                                         @else
                                                             <span>Không ngày gọi</span>
                                                         @endif
                                                     </td>
                                                     <td>
                                                         @if ($cus->call_back)
-                                                            <span>{{ $cus->call_back }}</span>
+                                                            <span>{{ $format = date("d-m-Y",strtotime( $cus->call_back)) }}</span>
                                                         @else
                                                             <span>Không ngày gọi lại</span>
                                                         @endif

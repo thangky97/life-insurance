@@ -7,11 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
-class Service extends Model
+class Insurance_services extends Model
 {
     use HasFactory;
 
-    protected $table = "services";
+    protected $table = 'insurance_services';
 
     public function saveNew($params)
     {
@@ -45,30 +45,14 @@ class Service extends Model
         return $res;
     }
 
-    public function customer(){
-        return $this->belongsTo(Customer::class, 'customer_id');
-    }
-
     public function loadAll($param = [])
     {
-        $query = DB::table($this->table)
-            ->select($this->fillable);
+        $query = DB::table($this->table);
         $list = $query->get();
         return $list;
     }
 
-    public function insurance_services() {
-        return $this->belongsTo(Insurance_services::class, 'insurance_services_id');
+    public function service() {
+        return $this->belongsTo(Service::class, 'service_id');
     }
-
-    //Home
-    public function loadListWithPager($param = [])
-    {
-        $query = DB::table($this->table)->select($this->fillable);
-
-        $service = $query->get();
-
-        return $service;
-    }
-
 }

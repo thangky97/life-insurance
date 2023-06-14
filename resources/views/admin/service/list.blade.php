@@ -50,8 +50,13 @@
                                         <thead>
                                             <tr>
                                                 <th scope="col">ID</th>
-                                                <th scope="col">Ảnh</th>
                                                 <th scope="col">Tên dịch vụ</th>
+                                                <th scope="col">Mức phí</th>
+                                                <th scope="col">Thời hạn</th>
+                                                <th scope="col">Giá BV tính mạng</th>
+                                                <th scope="col">BH tai nạn toàn diện</th>
+                                                <th scope="col">BH bệnh hiểm nghèo</th>
+                                                <th scope="col">BH chăm sóc sức khỏe</th>
                                                 <th scope="col">Trạng thái</th>
                                                 <th scope="col">Hành động</th>
                                             </tr>
@@ -59,13 +64,54 @@
                                         <tbody>
                                             @forelse ($services as $service)
                                                 <tr>
-                                                    <th scope="row" class="text-primary">{{ 'DV000' . $service->id }}</th>
+                                                    <th scope="row" class="text-primary">{{ 'DV000' . $service->id }}
+                                                    </th>
                                                     <td>
-                                                        <img src="{{ asset($service->thumbnail) ? '' . Storage::url($service->thumbnail) : $service->name }}"
-                                                                alt="thumbnail" class="avatar-md  me-2">
+                                                        <img src="{{ asset($service->thumbnail) ? '' . Storage::url($service->thumbnail) : $service->service_name }}"
+                                                            alt="Dịch vụ" class="avatar-xs rounded-circle me-2">
+                                                        {{ $service->service_name }}
                                                     </td>
                                                     <td>
-                                                            {{ $service->service_name }}
+                                                        @if ($service->charges)
+                                                            <span>{{ $service->charges }}</span>
+                                                        @else
+                                                            <span>Không có phí</span>
+                                                        @endif
+                                                    </td>
+                                                    <td>
+                                                        @if ($service->duration)
+                                                            <span>{{ $service->duration }}</span>
+                                                        @else
+                                                            <span>Không có thời hạn</span>
+                                                        @endif
+                                                    </td>
+                                                    <td>
+                                                        @if ($service->face_protect_life)
+                                                            <span>{{ $service->face_protect_life }}</span>
+                                                        @else
+                                                            <span>No</span>
+                                                        @endif
+                                                    </td>
+                                                    <td>
+                                                        @if ($service->comprehensive_accident_insurance)
+                                                            <span>{{ $service->comprehensive_accident_insurance }}</span>
+                                                        @else
+                                                            <span>No tai nạn</span>
+                                                        @endif
+                                                    </td>
+                                                    <td>
+                                                        @if ($service->critical_illness_insurance)
+                                                            <span>{{ $service->critical_illness_insurance }}</span>
+                                                        @else
+                                                            <span>No hiểm nghèo</span>
+                                                        @endif
+                                                    </td>
+                                                    <td>
+                                                        @if ($service->health_care_insurance)
+                                                            <span>{{ $service->health_care_insurance }}</span>
+                                                        @else
+                                                            <span>No sức khỏe</span>
+                                                        @endif
                                                     </td>
                                                     <td>
                                                         @if ($service && $service->status === 1)

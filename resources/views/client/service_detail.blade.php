@@ -25,7 +25,7 @@
                         </div>
                         <div class="widget mb-1-9 rounded">
                             <div class="widget-title">
-                                <h3 class="mb-0 h6">contact info</h3>
+                                <h3 class="mb-0 h6">Liên hệ</h3>
                             </div>
                             <div class="p-1-9">
                                 <div class="d-flex mb-1-9">
@@ -33,8 +33,8 @@
                                         <i class="ti-mobile text-primary display-23"></i>
                                     </div>
                                     <div class="flex-grow-1 ms-3">
-                                        <h4 class="mb-1 h6">Phone</h4>
-                                        <span> (+44) 123 456 789</span>
+                                        <h4 class="mb-1 h6">Số điện thoại</h4>
+                                        <span> 0353 693 509</span>
                                     </div>
                                 </div>
                                 <div class="d-flex mb-1-9">
@@ -51,21 +51,21 @@
                                         <i class="ti-location-pin text-primary display-23"></i>
                                     </div>
                                     <div class="flex-grow-1 ms-3">
-                                        <h4 class="mb-1 h6">Location</h4>
-                                        <span>Regina ST, London, SK 8GH.</span>
+                                        <h4 class="mb-1 h6">Địa chỉ</h4>
+                                        <span>Hà Nội</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="widget rounded bg-img cover-background primary-overlay" data-overlay-dark="9"
-                            data-background="img/bg/bg-04.jpg">
+                        <div class="widget rounded bg-img cover-background primary-overlay primary-overlay-news-detail wow fadeIn"
+                            data-overlay-dark="9" data-background="{{ asset('client/img/bg/bg-04.jpg') }}"
+                            data-wow-delay="700ms">
                             <div class="z-index-1 position-relative p-1-9">
-                                <img src="img/content/sidebar.jpg" alt="...">
-                                <h3 class="text-white mt-4 h4">How Can We Help?</h3>
-                                <p class="text-white">We help you discover any protection inclusions that are ideal for you.
-                                </p>
-                                <a href="services.html" class="text-white">View All Services<i
-                                        class="ti-arrow-right align-middle ms-2"></i></a>
+                                <img src="{{ asset('client/img/content/sidebar.jpg') }}" alt="...">
+                                <h3 class="text-white mt-4 h4">Chúng tôi có thể giúp gì?</h3>
+                                <p class="text-white">Chúng tôi rất sẵn lòng phục vụ bạn.</p>
+                                {{-- <a href="{{ route('route_FrontEnd_Service') }}" class="text-white">Xem tất cả dịch vụ<i
+                                        class="ti-arrow-right align-middle ms-2"></i></a> --}}
                             </div>
                         </div>
                     </div>
@@ -74,10 +74,10 @@
                     <div class="row">
                         <div class="col-12 mb-2-9 image-hover">
                             <img src="{{ asset($service->thumbnail) ? '' . Storage::url($service->thumbnail) : $service->service_name }}"
-                                alt="..." class="rounded">
+                                alt="Dịch vụ" class="rounded" height="650px">
                         </div>
                         <div class="col-12 mb-1-9">
-                            <h2 class="mb-3">Travel Insurance</h2>
+                            <h2 class="mb-3">{{ $service->service_name }}</h2>
                             <p class="mb-0">It is a long established fact that a reader will be distracted by the readable
                                 content of a page when looking at its layout. The point of using Lorem Ipsum is that it has
                                 a more-or-less normal distribution of letters, as opposed to using 'Content here, content

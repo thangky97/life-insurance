@@ -62,6 +62,35 @@
         ================================================== -->
         @include('layouts.client.footer')
 
+        <div class="social-button">
+            <div class="social-button-content">
+               <a href="tel:0981481368" class="call-icon" rel="nofollow">
+                <i class="fas fa-phone-alt" aria-hidden="true"></i>
+                  <div class="animated alo-circle"></div>
+                  <div class="animated alo-circle-fill  "></div>
+                   <span>Hotline: 0353 693 509</span>
+                </a>
+                {{-- <a href="sms:0981481368" class="sms">
+                  <i class="fa fa-weixin" aria-hidden="true"></i>
+                  <span>SMS: 0353 693 509</span>
+                </a> --}}
+                <a href="https://www.facebook.com/Ngocthang.net/" class="mes">
+                  <i class="fab fa-facebook-messenger" aria-hidden="true"></i>
+                  <span>Nhắn tin Facebook</span>
+                </a>
+                <a href="http://zalo.me/0353693509" class="zalo">
+                  <i class="fas fa-phone-square-alt" aria-hidden="true"></i>
+                  <span>Zalo: 0353 693 509</span>
+                </a>
+            </div>
+               
+            <a class="user-support">
+              <i class="fas fa-user-ninja" aria-hidden="true"></i>
+              <div class="animated alo-circle"></div>
+              <div class="animated alo-circle-fill"></div>
+            </a>
+          </div>
+
     </div>
 
     <!-- SCROLL TO TOP
@@ -96,6 +125,13 @@
 
     <!-- all js include end -->
     
+    <script>
+        $(document).ready(function(){
+          $('.user-support').click(function(event) {
+            $('.social-button-content').slideToggle();
+          });
+          });
+      </script>
 
     <script>
         function navigateToURL(element) {

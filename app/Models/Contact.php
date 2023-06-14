@@ -13,6 +13,8 @@ class Contact extends Model
 
     protected $table = 'contact';
 
+    protected $fillable = ['id', 'contact_name','phone_number', 'message', 'status'];
+
     public function saveNew($params)
     {
         $data = array_merge($params['cols']);

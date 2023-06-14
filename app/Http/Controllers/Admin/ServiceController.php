@@ -31,7 +31,7 @@ class ServiceController extends Controller
             $services = Service::where('email','like','%'.$email.'%')
         ->paginate(10);
         } else{
-            $services = Service::select('id', 'service_name', 'thumbnail', 'description', 'status')->orderBy('id','desc')
+            $services = Service::select('id', 'service_name', 'thumbnail', 'description', 'charges', 'duration', 'face_protect_life', 'comprehensive_accident_insurance', 'critical_illness_insurance', 'health_care_insurance', 'status')->orderBy('id','desc')
         ->paginate(10);
         }   
 
@@ -53,6 +53,12 @@ class ServiceController extends Controller
                     'mimetypes:image/jpeg,image/png',
                     'max:2048',
                 ],
+                'charges' => 'required',
+                'duration' => 'required',
+                'face_protect_life' => 'required',
+                'comprehensive_accident_insurance' => 'required',
+                'critical_illness_insurance' => 'required',
+                'health_care_insurance' => 'required',
             ], [
                 'service_name.required' => 'Tên dịch vụ bắt buộc nhập!',
                 'service_name.max' => 'Tên tối đa là 40 ký tự!',
@@ -60,6 +66,12 @@ class ServiceController extends Controller
                 'images.image' => 'Bắt buộc phải là ảnh!',
                 'images.max' => 'Ảnh không được lớn hơn 2MB!',
                 'status.required' => 'Bạn chưa chọn trạng thái',
+                'charges' => 'Bạn chưa nhập mức phí!',
+                'duration' => 'Bạn chưa nhập thời hạn!',
+                'face_protect_life' => 'Bạn chưa nhập BV tính mạng!',
+                'comprehensive_accident_insurance' => 'Bạn chưa nhập BH tai nạn!',
+                'critical_illness_insurance' => 'Bạn chưa nhập BH bệnh hiểm nghèo!',
+                'health_care_insurance' => 'Bạn chưa nhập BH chăm sóc sức khỏe!',
             ], []);
 
             $params = [];

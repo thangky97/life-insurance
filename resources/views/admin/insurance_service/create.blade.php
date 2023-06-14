@@ -1,6 +1,6 @@
 @extends('layouts.admin.master')
 
-@section('title', 'Sửa dịch vụ')
+@section('title', 'Thêm dịch vụ bảo hiểm')
 
 @section('content')
 
@@ -24,131 +24,135 @@
                         <div class="card">
                             <div class="card-body">
 
-                                <h4 class="card-title mb-4">Sửa dịch vụ</h4>
+                                <h4 class="card-title mb-4">Thêm dịch vụ bảo hiểm</h4>
 
-                                <form class="custom-validation"
-                                    action="{{ route('route_BackEnd_Services_Update', ['id' => request()->route('id')]) }}"
-                                    method="post" enctype="multipart/form-data">
+                                <form class="custom-validation" action="" method="post" enctype="multipart/form-data">
                                     @csrf
-                                    <div class="row mb-3">
-                                        <div class="col-md-6">
-                                            <label class="form-label">Tên <span class="text-danger">*</span></label>
-                                            <input type="text" name="service_name" class="form-control"
-                                                value="{{ $services->service_name }}">
-                                            @error('service_name')
-                                                <div>
-                                                    <p class="text-danger">{{ $message }}</p>
-                                                </div>
-                                            @enderror
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label class="form-label">Mức giá <span class="text-danger">*</span></label>
-                                            <div>
-                                                <input name="charges" type="text" class="form-control"
-                                                    value="{{ $services->charges }}">
-                                                @error('charges')
-                                                    <div>
-                                                        <p class="text-danger">{{ $message }}</p>
-                                                    </div>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row mb-3">
-                                        <div class="col-md-6">
-                                            <label class="form-label">Thời hạn <span class="text-danger">*</span></label>
-                                            <div>
-                                                <input name="duration" type="text" class="form-control"
-                                                    value="{{ $services->duration }}">
-                                                @error('duration')
-                                                    <div>
-                                                        <p class="text-danger">{{ $message }}</p>
-                                                    </div>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label class="form-label">Giá bảo vệ tính mạng <span
-                                                    class="text-danger">*</span></label>
-                                            <div>
-                                                <input name="face_protect_life" type="text" class="form-control"
-                                                    value="{{ $services->face_protect_life }}">
-                                                @error('face_protect_life')
-                                                    <div>
-                                                        <p class="text-danger">{{ $message }}</p>
-                                                    </div>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row mb-3">
-                                        <div class="col-md-4">
-                                            <label class="form-label">BH tai nạn toàn diện <span
-                                                    class="text-danger">*</span></label>
-                                            <div>
-                                                <input name="comprehensive_accident_insurance" type="text"
-                                                    class="form-control"
-                                                    value="{{ $services->comprehensive_accident_insurance }}">
-                                                @error('comprehensive_accident_insurance')
-                                                    <div>
-                                                        <p class="text-danger">{{ $message }}</p>
-                                                    </div>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label class="form-label">BH bệnh hiểm nghèo <span
-                                                    class="text-danger">*</span></label>
-                                            <div>
-                                                <input name="critical_illness_insurance" type="text" class="form-control"
-                                                    value="{{ $services->critical_illness_insurance }}">
-                                                @error('critical_illness_insurance')
-                                                    <div>
-                                                        <p class="text-danger">{{ $message }}</p>
-                                                    </div>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label class="form-label">BH chăm sóc sức khỏe <span
-                                                    class="text-danger">*</span></label>
-                                            <div>
-                                                <input name="health_care_insurance" type="text" class="form-control"
-                                                    value="{{ $services->health_care_insurance }}">
-                                                @error('health_care_insurance')
-                                                    <div>
-                                                        <p class="text-danger">{{ $message }}</p>
-                                                    </div>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                    </div>
-
                                     <div class="mb-3">
-                                        <label class="form-label">Mô tả <span class="text-danger">*</span></label>
-                                        <div>
-                                            <input name="description" type="text" class="form-control"
-                                                value="{{ $services->description }}">
-                                            @error('description')
-                                                <div>
-                                                    <p class="text-danger">{{ $message }}</p>
-                                                </div>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">Ảnh <span class="text-danger">*</span></label>
-                                        <div>
-                                            <div class="form-file">
-                                                <input type="file" name="images"
-                                                    class="form-file-input form-control mb-2">
-                                                @if (isset($services) && $services->thumbnail)
-                                                    <img src="{{ asset($services->thumbnail ? '' . Storage::url($services->thumbnail) : $services->service_name) }}"
-                                                        alt="{{ $services->service_name }}" width="100">
+                                        <label class="form-label">Dịch vụ <span class="text-danger">*</span></label>
+                                        <select name="service_id" class="form-select" id="validationCustom04">
+                                            {{-- <option selected value="">Chọn dịch vụ</option>
+                                            @foreach ($listService as $service)
+                                                <option value="{{ $service->id }}">{{ $service->service_name }}
+                                                </option>
+                                            @endforeach --}}
+
+                                            <option selected="selected" disabled>Chọn phòng</option>
+                                            @foreach ($listService as $service)
+                                                @if (!in_array($service->id, $list))
+                                                    <option value="{{ $service->id }}">{{ $service->service_name }}</option>
                                                 @endif
+                                            @endforeach
+                                        </select>
+                                        @error('service_id')
+                                            <div>
+                                                <p class="text-danger">{{ $message }}</p>
                                             </div>
-                                            @error('images')
+                                        @enderror
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <label class="form-label">Tử vong/mất khả năng lao động<span
+                                                    class="text-danger">*</span></label>
+                                            <input type="text" name="dead" class="form-control"
+                                                value="{{ old('dead', isset($request['dead']) ? $request['dead'] : '') }}">
+                                            @error('dead')
+                                                <div>
+                                                    <p class="text-danger">{{ $message }}</p>
+                                                </div>
+                                            @enderror
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label">Tử vong do tai nạn <span
+                                                    class="text-danger">*</span></label>
+                                            <div>
+                                                <input name="accidental_death" type="text" class="form-control"
+                                                    value="{{ old('accidental_death', isset($request['accidental_death']) ? $request['accidental_death'] : '') }}">
+                                                @error('accidental_death')
+                                                    <div>
+                                                        <p class="text-danger">{{ $message }}</p>
+                                                    </div>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <label class="form-label">Tử vong do tai nạn đặc biệt <span
+                                                    class="text-danger">*</span></label>
+                                            <div>
+                                                <input name="death_due_special_accident" type="text" class="form-control"
+                                                    value="{{ old('death_due_special_accident', isset($request['death_due_special_accident']) ? $request['death_due_special_accident'] : '') }}">
+                                                @error('death_due_special_accident')
+                                                    <div>
+                                                        <p class="text-danger">{{ $message }}</p>
+                                                    </div>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label">Tử vong do ung thư <span
+                                                    class="text-danger">*</span></label>
+                                            <div>
+                                                <input name="death_from_cancer" type="text" class="form-control"
+                                                    value="{{ old('death_from_cancer', isset($request['death_from_cancer']) ? $request['death_from_cancer'] : '') }}">
+                                                @error('death_from_cancer')
+                                                    <div>
+                                                        <p class="text-danger">{{ $message }}</p>
+                                                    </div>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-md-4">
+                                            <label class="form-label">Quyền lợi thương tật tạm thời <span
+                                                    class="text-danger">*</span></label>
+                                            <div>
+                                                <input name="temporary_disability_benefits" type="text"
+                                                    class="form-control"
+                                                    value="{{ old('temporary_disability_benefits', isset($request['temporary_disability_benefits']) ? $request['temporary_disability_benefits'] : '') }}">
+                                                @error('temporary_disability_benefits')
+                                                    <div>
+                                                        <p class="text-danger">{{ $message }}</p>
+                                                    </div>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label class="form-label">Bệnh hiểm nghèo thể nhẹ<span
+                                                    class="text-danger">*</span></label>
+                                            <div>
+                                                <input name="serious_illness_mild" type="text" class="form-control"
+                                                    value="{{ old('serious_illness_mild', isset($request['serious_illness_mild']) ? $request['serious_illness_mild'] : '') }}">
+                                                @error('serious_illness_mild')
+                                                    <div>
+                                                        <p class="text-danger">{{ $message }}</p>
+                                                    </div>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label class="form-label">Bệnh hiểm nghèo thể nặng <span
+                                                    class="text-danger">*</span></label>
+                                            <div>
+                                                <input name="serious_illness" type="text" class="form-control"
+                                                    value="{{ old('serious_illness', isset($request['serious_illness']) ? $request['serious_illness'] : '') }}">
+                                                @error('serious_illness')
+                                                    <div>
+                                                        <p class="text-danger">{{ $message }}</p>
+                                                    </div>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Quyền lợi thanh toán chi phí y tế <span
+                                                class="text-danger">*</span></label>
+                                        <div>
+                                            <input name="benefits_pay_medical_expenses" type="text" class="form-control"
+                                                value="{{ old('benefits_pay_medical_expenses', isset($request['benefits_pay_medical_expenses']) ? $request['benefits_pay_medical_expenses'] : '') }}">
+                                            @error('benefits_pay_medical_expenses')
                                                 <div>
                                                     <p class="text-danger">{{ $message }}</p>
                                                 </div>
@@ -158,16 +162,10 @@
                                     <div class="mb-3">
                                         <label class="form-label">Trạng thái <span class="text-danger">*</span></label>
                                         <select name="status" class="form-select" id="validationCustom04">
-                                            <option value="">Chọn trạng thái</option>
-                                            <option value="1"
-                                                {{ isset($services) && $services->status === 1 ? 'selected' : '' }}>
-                                                Hoạt động</option>
-                                            <option value="2"
-                                                {{ isset($services) && $services->status === 2 ? 'selected' : '' }}>
-                                                Không hoạt động</option>
-                                            <option value="0"
-                                                {{ isset($services) && $services->status === 0 ? 'selected' : '' }}>
-                                                Khóa</option>
+                                            <option selected value="">Chọn trạng thái</option>
+                                            <option value="1">Hoạt động</option>
+                                            <option value="2">Không hoạt động</option>
+                                            <option value="0">Khóa</option>
                                         </select>
                                         @error('status')
                                             <div>
@@ -175,12 +173,12 @@
                                             </div>
                                         @enderror
                                     </div>
-                                    <input type="text" name="updated_at"
+                                    <input type="text" name="created_at"
                                         value="{{ date('Y-m-d H:i:s', strtotime('now')) }}" hidden>
                                     <div class="mb-0">
                                         <div>
                                             <button type="submit" class="btn btn-primary waves-effect waves-light me-1">
-                                                Cập nhật
+                                                Thêm mới
                                             </button>
                                             <button type="reset" class="btn btn-secondary waves-effect">
                                                 Hủy

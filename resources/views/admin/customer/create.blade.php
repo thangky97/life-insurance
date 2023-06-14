@@ -33,7 +33,7 @@
                                             <label class="form-label">Tên khách hàng <span
                                                     class="text-danger">*</span></label>
                                             <input type="text" name="full_name" class="form-control"
-                                                value="@isset($request['full_name']){{ $request['full_name'] }}@endisset">
+                                                value="{{ old('full_name', isset($request['full_name']) ? $request['full_name'] : '') }}">
                                             @error('full_name')
                                                 <div>
                                                     <p class="text-danger">{{ $message }}</p>
@@ -46,7 +46,7 @@
                                             <div>
                                                 <input data-parsley-type="number" name="phone_number" type="number"
                                                     class="form-control"
-                                                    value="@isset($request['phone_number']){{ $request['phone_number'] }}@endisset">
+                                                    value="{{ old('phone_number', isset($request['phone_number']) ? $request['phone_number'] : '') }}">
                                                 @error('phone_number')
                                                     <div>
                                                         <p class="text-danger">{{ $message }}</p>
@@ -61,7 +61,7 @@
                                             <label class="form-label">Ngày gọi <span class="text-danger">*</span></label>
                                             <div class="input-group" id="datepicker2">
                                                 <input name="calling_date" type="date" id="input-date1"
-                                                    value="@isset($request['calling_date']){{ $request['calling_date'] }}@endisset"
+                                                    value="{{ old('calling_date', isset($request['calling_date']) ? $request['calling_date'] : '') }}"
                                                     class="form-control input-mask" data-inputmask="'alias': 'datetime'"
                                                     data-inputmask-inputformat="dd/mm/yyyy">
                                             </div>
@@ -77,7 +77,7 @@
                                                     class="text-danger">*</span></label>
                                             <div class="input-group" id="datepicker2">
                                                 <input name="call_back" type="date" id="input-date1"
-                                                    value="@isset($request['call_back']){{ $request['call_back'] }}@endisset"
+                                                    value="{{ old('call_back', isset($request['call_back']) ? $request['call_back'] : '') }}"
                                                     class="form-control input-mask" data-inputmask="'alias': 'datetime'"
                                                     data-inputmask-inputformat="dd/mm/yyyy">
 
@@ -97,17 +97,29 @@
                                                     class="text-danger">*</span></label>
                                             <select class="select2 form-control select2-multiple" name="service_id"
                                                 multiple="multiple" multiple data-placeholder="Chọn dịch vụ ...">
-                                                @foreach ($services as $service)
+                                                {{-- @foreach ($services as $service)
                                                     <option value="{{ $service->id }}">{{ $service->service_name }}
+                                                    </option>
+                                                @endforeach --}}
+
+                                                @foreach ($services as $index => $service)
+                                                    <option name="service_id[]" id="{{ $service->id }}"
+                                                        value="{{ $service->id }}">{{ $service->service_name }}
                                                     </option>
                                                 @endforeach
                                             </select>
+
+                                            @error('service_id')
+                                                <div>
+                                                    <p class="text-danger">{{ $message }}</p>
+                                                </div>
+                                            @enderror
                                         </div>
 
                                         <div class="col-md-6">
                                             <label class="form-label">Địa chỉ <span class="text-danger">*</span></label>
                                             <input type="text" name="address" class="form-control"
-                                                value="@isset($request['address']){{ $request['address'] }}@endisset">
+                                                value="{{ old('address', isset($request['address']) ? $request['address'] : '') }}">
                                             @error('address')
                                                 <div>
                                                     <p class="text-danger">{{ $message }}</p>
@@ -134,7 +146,7 @@
                                         <div class="col-md-6">
                                             <label class="form-label">Nguồn <span class="text-danger">*</span></label>
                                             <input type="text" name="source" class="form-control"
-                                                value="@isset($request['source']){{ $request['source'] }}@endisset">
+                                                value="{{ old('source', isset($request['source']) ? $request['source'] : '') }}">
                                             @error('source')
                                                 <div>
                                                     <p class="text-danger">{{ $message }}</p>

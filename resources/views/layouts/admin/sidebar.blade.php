@@ -67,6 +67,17 @@
 
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="fab fa-shopify"></i>
+                        <span>Dịch vụ bảo hiểm</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="{{ route('route_BackEnd_Insurance_Services_List') }}">Danh sách dịch vụ bảo hiểm</a></li>
+                        <li><a href="{{ route('route_BackEnd_Insurance_Services_Create') }}">Tạo mới</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="ti-layout"></i>
                         <span>Layouts</span>
                     </a>
@@ -106,3 +117,4 @@
         <!-- Sidebar -->
     </div>
 </div>
+

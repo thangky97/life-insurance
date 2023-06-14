@@ -63,6 +63,14 @@ Route::prefix('admin')->group(function () {
         Route::get('/remove/{id}', 'Admin\ServiceController@remove')->name('route_BackEnd_Services_Remove');
     });
 
+    Route::prefix('/insurance_services')->group(function () {
+        Route::get('/', 'Admin\InsuranceServicesController@index')->name('route_BackEnd_Insurance_Services_List');
+        Route::match(['get', 'post'], '/create', 'Admin\InsuranceServicesController@create')->name('route_BackEnd_Insurance_Services_Create');
+        Route::get('/edit/{id}', 'Admin\InsuranceServicesController@edit')->name('route_BackEnd_Insurance_Services_Edit');
+        Route::post('/update/{id}', 'Admin\InsuranceServicesController@update')->name('route_BackEnd_Insurance_Services_Update');
+        Route::get('/remove/{id}', 'Admin\InsuranceServicesController@remove')->name('route_BackEnd_Insurance_Services_Remove');
+    });
+
     Route::prefix('/banner')->group(function () {
         Route::get('/', 'Admin\BannerController@index')->name('route_BackEnd_Banner_List');
         Route::match(['get', 'post'], '/create', 'Admin\BannerController@create')->name('route_BackEnd_Banner_Create');

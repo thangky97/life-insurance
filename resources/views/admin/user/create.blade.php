@@ -26,12 +26,13 @@
 
                                 <h4 class="card-title mb-4">Thêm quản trị viên</h4>
 
-                                <form class="custom-validation" action="" method="post" enctype="multipart/form-data">
+                                <form id="frm1" class="custom-validation" action="" method="post"
+                                    enctype="multipart/form-data">
                                     @csrf
                                     <div class="mb-3">
                                         <label class="form-label">Tên <span class="text-danger">*</span></label>
                                         <input type="text" name="name" class="form-control"
-                                            value="@isset($request['name']){{ $request['name'] }}@endisset">
+                                            value="{{ old('name', isset($request['name']) ? $request['name'] : '') }}">
                                         @error('name')
                                             <div>
                                                 <p class="text-danger">{{ $message }}</p>
@@ -43,7 +44,7 @@
                                         <label class="form-label">E-Mail <span class="text-danger">*</span></label>
                                         <div>
                                             <input type="email" name="email" class="form-control"
-                                                value="@isset($request['email']){{ $request['email'] }}@endisset">
+                                                value="{{ old('email', isset($request['email']) ? $request['email'] : '') }}">
                                             @error('email')
                                                 <div>
                                                     <p class="text-danger">{{ $message }}</p>
@@ -54,8 +55,8 @@
                                     <div class="mb-3">
                                         <label class="form-label">Mật khẩu <span class="text-danger">*</span></label>
                                         <div>
-                                            <input type="password" name="password" id="pass2" class="form-control"
-                                                value="@isset($request['password']){{ $request['password'] }}@endisset">
+                                            <input type="password" name="password" id="password" class="form-control"
+                                                value="{{ old('password', isset($request['password']) ? $request['password'] : '') }}">
                                             @error('password')
                                                 <div>
                                                     <p class="text-danger">{{ $message }}</p>
@@ -68,7 +69,7 @@
                                         <div>
                                             <input data-parsley-type="number" name="phone_number" type="number"
                                                 class="form-control"
-                                                value="@isset($request['phone_number']){{ $request['phone_number'] }}@endisset">
+                                                value="{{ old('phone_number', isset($request['phone_number']) ? $request['phone_number'] : '') }}">
                                             @error('phone_number')
                                                 <div>
                                                     <p class="text-danger">{{ $message }}</p>
@@ -80,7 +81,7 @@
                                         <label class="form-label">Ngày sinh <span class="text-danger">*</span></label>
                                         <div>
                                             <input class="form-control" name="date_of_birthday" type="date"
-                                                value="@isset($request['date_of_birthday']){{ $request['date_of_birthday'] }}@endisset">
+                                                value="{{ old('date_of_birthday', isset($request['date_of_birthday']) ? $request['date_of_birthday'] : '') }}">
                                             @error('date_of_birthday')
                                                 <div>
                                                     <p class="text-danger">{{ $message }}</p>
@@ -119,7 +120,8 @@
                                             </div>
                                         @enderror
                                     </div>
-                                    <input type="text" name="created_at" value="{{date("Y-m-d H:i:s", strtotime("now"))}}" hidden>
+                                    <input type="text" name="created_at"
+                                        value="{{ date('Y-m-d H:i:s', strtotime('now')) }}" hidden>
                                     <div class="mb-0">
                                         <div>
                                             <button type="submit" class="btn btn-primary waves-effect waves-light me-1">

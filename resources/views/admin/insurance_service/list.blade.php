@@ -1,6 +1,6 @@
 @extends('layouts.admin.master')
 
-@section('title', 'Danh sách quản trị')
+@section('title', 'Danh sách dịch vụ bảo hiểm')
 
 @section('content')
 
@@ -44,57 +44,95 @@
                         </div>
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title mb-4">Danh sách quản trị viên</h4>
+                                <h4 class="card-title mb-4">Danh sách dịch vụ bảo hiểm</h4>
                                 <div class="table-responsive">
                                     <table class="table table-hover table-centered table-nowrap table-striped mb-0">
                                         <thead>
                                             <tr>
-                                                <th scope="col">ID</th>
-                                                <th scope="col">Tên</th>
-                                                <th scope="col">Email</th>
-                                                <th scope="col">Số điện thoại</th>
-                                                <th scope="col">Ngày sinh</th>
+                                                <th scope="col">Dịch vụ</th>
+                                                <th scope="col">Dead/mất khả năng lao động</th>
+                                                <th scope="col">Dead do tai nạn</th>
+                                                <th scope="col">Dead do tai nạn đặc biệt</th>
+                                                <th scope="col">Dead do ung thư</th>
+                                                <th scope="col">Thương tật tạm thời</th>
+                                                <th scope="col">BH nghèo thể nhẹ</th>
+                                                <th scope="col">BH nghèo thể nặng</th>
+                                                <th scope="col">Thanh toán chi phí y tế</th>
                                                 <th scope="col">Trạng thái</th>
                                                 <th scope="col">Hành động</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @forelse ($users as $user)
+                                            @forelse ($insurance_services as $is)
                                                 <tr>
-                                                    {{-- <th scope="row">{{ 'US' . $user->id }}</th> --}}
-                                                    <th scope="row" class="text-primary">{{ 'AD000' . $user->id }}</th>
                                                     <td>
-                                                        <div>
-                                                            <img src="{{ asset($user->avatar) ? '' . Storage::url($user->avatar) : $user->name }}"
-                                                                alt="avatar" class="avatar-xs rounded-circle me-2">
-                                                            {{ $user->name }}
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        @if ($user->email)
-                                                            <span>{{ $user->email }}</span>
+                                                        @if ($is->service)
+                                                            <span><a href="{{ route('route_BackEnd_Services_List') }}">{{ $is->service->service_name }}</a></span>
                                                         @else
-                                                            <span>Không có email</span>
+                                                            <span>Không có người đăng</span>
+                                                        @endif
+                                                    </td>
+                                                    </th>
+                                                    <td>
+                                                        @if ($is->dead)
+                                                            <span>{{ $is->dead }}</span>
+                                                        @else
+                                                            <span>No tử vong/mất khả năng lao động</span>
                                                         @endif
                                                     </td>
                                                     <td>
-                                                        @if ($user->phone_number)
-                                                            <span>{{ $user->phone_number }}</span>
+                                                        @if ($is->accidental_death)
+                                                            <span>{{ $is->accidental_death }}</span>
                                                         @else
-                                                            <span>Không có số điện thoại</span>
+                                                            <span>No tử vong do tai nạn</span>
                                                         @endif
                                                     </td>
                                                     <td>
-                                                        @if ($user->date_of_birthday)
-                                                            <span>{{ $format = date("d-m-Y",strtotime($user->date_of_birthday)) }}</span>
+                                                        @if ($is->death_due_special_accident)
+                                                            <span>{{ $is->death_due_special_accident }}</span>
                                                         @else
-                                                            <span>Không có ngày sinh</span>
+                                                            <span>No tử vong do tai nạn special</span>
                                                         @endif
                                                     </td>
                                                     <td>
-                                                        @if ($user && $user->status === 1)
+                                                        @if ($is->death_from_cancer)
+                                                            <span>{{ $is->death_from_cancer }}</span>
+                                                        @else
+                                                            <span>No tử vong do ung thư</span>
+                                                        @endif
+                                                    </td>
+                                                    <td>
+                                                        @if ($is->temporary_disability_benefits)
+                                                            <span>{{ $is->temporary_disability_benefits }}</span>
+                                                        @else
+                                                            <span>No quyền lợi thương tật tạm thời</span>
+                                                        @endif
+                                                    </td>
+                                                    <td>
+                                                        @if ($is->serious_illness_mild)
+                                                            <span>{{ $is->serious_illness_mild }}</span>
+                                                        @else
+                                                            <span>No bệnh hiểm nghèo thể nhẹ</span>
+                                                        @endif
+                                                    </td>
+                                                    <td>
+                                                        @if ($is->serious_illness)
+                                                            <span>{{ $is->serious_illness }}</span>
+                                                        @else
+                                                            <span>No bệnh hiểm nghèo thể nặng</span>
+                                                        @endif
+                                                    </td>
+                                                    <td>
+                                                        @if ($is->benefits_pay_medical_expenses)
+                                                            <span>{{ $is->benefits_pay_medical_expenses }}</span>
+                                                        @else
+                                                            <span>No quyền lợi TT chi phí y tế</span>
+                                                        @endif
+                                                    </td>
+                                                    <td>
+                                                        @if ($is && $is->status === 1)
                                                             <span class="badge bg-success">Hoạt động</span>
-                                                        @elseif ($user && $user->status === 2)
+                                                        @elseif ($is && $is->status === 2)
                                                             <span class="badge bg-warning">Không hoạt động</span>
                                                         @else
                                                             <span class="badge bg-danger">Khóa</span>
@@ -102,7 +140,7 @@
                                                     </td>
                                                     <td>
                                                         <div>
-                                                            <a href="{{ route('route_BackEnd_Users_Edit', $user->id) }}"
+                                                            <a href="{{ route('route_BackEnd_Insurance_Services_Edit', $is->id) }}"
                                                                 class="btn btn-primary btn-sm">Chỉnh sửa</a>
                                                         </div>
                                                     </td>

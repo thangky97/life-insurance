@@ -28,23 +28,104 @@
 
                                 <form class="custom-validation" action="" method="post" enctype="multipart/form-data">
                                     @csrf
-                                    <div class="mb-3">
-                                        <label class="form-label">Tên <span class="text-danger">*</span></label>
-                                        <input type="text" name="service_name" class="form-control"
-                                            value="@isset($request['service_name']){{ $request['service_name'] }}@endisset">
-                                        @error('service_name')
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <label class="form-label">Tên dịch vụ <span class="text-danger">*</span></label>
+                                            <input type="text" name="service_name" class="form-control"
+                                                value="{{ old('service_name', isset($request['service_name']) ? $request['service_name'] : '') }}">
+                                            @error('service_name')
+                                                <div>
+                                                    <p class="text-danger">{{ $message }}</p>
+                                                </div>
+                                            @enderror
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label">Mức giá <span class="text-danger">*</span></label>
                                             <div>
-                                                <p class="text-danger">{{ $message }}</p>
+                                                <input name="charges" type="text" class="form-control"
+                                                    value="{{ old('charges', isset($request['charges']) ? $request['charges'] : '') }}">
+                                                @error('charges')
+                                                    <div>
+                                                        <p class="text-danger">{{ $message }}</p>
+                                                    </div>
+                                                @enderror
                                             </div>
-                                        @enderror
+                                        </div>
                                     </div>
-
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <label class="form-label">Thời hạn <span class="text-danger">*</span></label>
+                                            <div>
+                                                <input name="duration" type="text" class="form-control"
+                                                    value="{{ old('duration', isset($request['duration']) ? $request['duration'] : '') }}">
+                                                @error('duration')
+                                                    <div>
+                                                        <p class="text-danger">{{ $message }}</p>
+                                                    </div>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label">Giá bảo vệ tính mạng <span
+                                                    class="text-danger">*</span></label>
+                                            <div>
+                                                <input name="face_protect_life" type="text" class="form-control"
+                                                    value="{{ old('face_protect_life', isset($request['face_protect_life']) ? $request['face_protect_life'] : '') }}">
+                                                @error('face_protect_life')
+                                                    <div>
+                                                        <p class="text-danger">{{ $message }}</p>
+                                                    </div>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-md-4">
+                                            <label class="form-label">BH tai nạn toàn diện <span
+                                                    class="text-danger">*</span></label>
+                                            <div>
+                                                <input name="comprehensive_accident_insurance" type="text"
+                                                    class="form-control"
+                                                    value="{{ old('comprehensive_accident_insurance', isset($request['comprehensive_accident_insurance']) ? $request['comprehensive_accident_insurance'] : '') }}">
+                                                @error('comprehensive_accident_insurance')
+                                                    <div>
+                                                        <p class="text-danger">{{ $message }}</p>
+                                                    </div>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label class="form-label">BH bệnh hiểm nghèo <span
+                                                    class="text-danger">*</span></label>
+                                            <div>
+                                                <input name="critical_illness_insurance" type="text" class="form-control"
+                                                    value="{{ old('critical_illness_insurance', isset($request['critical_illness_insurance']) ? $request['critical_illness_insurance'] : '') }}">
+                                                @error('critical_illness_insurance')
+                                                    <div>
+                                                        <p class="text-danger">{{ $message }}</p>
+                                                    </div>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label class="form-label">BH chăm sóc sức khỏe <span
+                                                    class="text-danger">*</span></label>
+                                            <div>
+                                                <input name="health_care_insurance" type="text" class="form-control"
+                                                    value="{{ old('health_care_insurance', isset($request['health_care_insurance']) ? $request['health_care_insurance'] : '') }}">
+                                                @error('health_care_insurance')
+                                                    <div>
+                                                        <p class="text-danger">{{ $message }}</p>
+                                                    </div>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="mb-3">
                                         <label class="form-label">Mô tả <span class="text-danger">*</span></label>
                                         <div>
-                                            <input name="description" type="text"
-                                                class="form-control"
-                                                value="@isset($request['description']){{ $request['description'] }}@endisset">
+                                            <input name="description" type="text" class="form-control"
+                                                value="{{ old('description', isset($request['description']) ? $request['description'] : '') }}">
                                             @error('description')
                                                 <div>
                                                     <p class="text-danger">{{ $message }}</p>
@@ -58,8 +139,8 @@
                                             <div class="form-file">
                                                 <input type="file" name="images" class="form-file-input form-control">
                                                 @if (isset($services) && $services->thumbnail)
-                                                    <img src="{{ asset($services->thumbnail) }}" alt="{{ $services->service_name }}"
-                                                        width="100">
+                                                    <img src="{{ asset($services->thumbnail) }}"
+                                                        alt="{{ $services->service_name }}" width="100">
                                                 @endif
                                                 @error('images')
                                                     <div>
@@ -83,7 +164,8 @@
                                             </div>
                                         @enderror
                                     </div>
-                                    <input type="text" name="created_at" value="{{date("Y-m-d H:i:s", strtotime("now"))}}" hidden>
+                                    <input type="text" name="created_at"
+                                        value="{{ date('Y-m-d H:i:s', strtotime('now')) }}" hidden>
                                     <div class="mb-0">
                                         <div>
                                             <button type="submit" class="btn btn-primary waves-effect waves-light me-1">

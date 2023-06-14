@@ -52,7 +52,9 @@
                                                 <th scope="col">ID</th>
                                                 <th scope="col">Ảnh</th>
                                                 <th scope="col">Tiêu đề</th>
+                                                <th scope="col">Người đăng</th>
                                                 <th scope="col">Nội dung ngắn</th>
+                                                <th scope="col">Ngày đăng</th>
                                                 <th scope="col">Trạng thái</th>
                                                 <th scope="col">Hành động</th>
                                             </tr>
@@ -73,6 +75,20 @@
                                                             <span>{{ $new->title }}</span>
                                                         @else
                                                             <span>Không có tiêu đề</span>
+                                                        @endif
+                                                    </td>
+                                                    <td>
+                                                        @if ($new->post_date)
+                                                            <span>{{ $format = date("d-m-Y",strtotime( $new->post_date)) }}</span>
+                                                        @else
+                                                            <span>Không có ngày đăng</span>
+                                                        @endif
+                                                    </td>
+                                                    <td>
+                                                        @if ($new->user)
+                                                            <span>{{ $new->user->name }}</span>
+                                                        @else
+                                                            <span>Không có người đăng</span>
                                                         @endif
                                                     </td>
                                                     <td>

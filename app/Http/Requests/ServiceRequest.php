@@ -32,6 +32,12 @@ class ServiceRequest extends FormRequest
                     'mimetypes:image/jpeg,image/png',
                     'max:2048',
                 ],
+            'charges' => 'required',
+            'duration' => 'required',
+            'face_protect_life' => 'required',
+            'comprehensive_accident_insurance' => 'required',
+            'critical_illness_insurance' => 'required',
+            'health_care_insurance' => 'required',
         ];
     }
 
@@ -43,6 +49,12 @@ class ServiceRequest extends FormRequest
             'status.required' => 'Bạn chưa chọn trạng thái',
             'images.image' => 'Bắt buộc phải là ảnh!',
             'images.max' => 'Ảnh không được lớn hơn 2MB!',
+            'charges' => 'Bạn chưa nhập mức phí!',
+            'duration' => 'Bạn chưa nhập thời hạn!',
+            'face_protect_life' => 'Bạn chưa nhập BV tính mạng!',
+            'comprehensive_accident_insurance' => 'Bạn chưa nhập BH tai nạn!',
+            'critical_illness_insurance' => 'Bạn chưa nhập BH bệnh hiểm nghèo!',
+            'health_care_insurance' => 'Bạn chưa nhập BH chăm sóc sức khỏe!',
         ];
     }
 }

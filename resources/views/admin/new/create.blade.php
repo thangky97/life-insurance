@@ -31,7 +31,7 @@
                                     <div class="mb-3">
                                         <label class="form-label">Tiêu đề <span class="text-danger">*</span></label>
                                         <input type="text" name="title" class="form-control"
-                                            value="@isset($request['title']){{ $request['title'] }}@endisset">
+                                            value="{{ old('title', isset($request['title']) ? $request['title'] : '') }}">
                                         @error('title')
                                             <div>
                                                 <p class="text-danger">{{ $message }}</p>
@@ -39,10 +39,44 @@
                                         @enderror
                                     </div>
 
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <label class="form-label">Người đăng <span class="text-danger">*</span></label>
+                                            <select name="user_id" class="form-select" id="validationCustom04">
+                                                <option selected value="">Chọn người đăng</option>
+                                                @foreach ($users as $user_post)
+                                                    <option value="{{ $user_post->id }}">{{ $user_post->name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                            @error('user_id')
+                                            <div>
+                                                <p class="text-danger">{{ $message }}</p>
+                                            </div>
+                                        @enderror
+                                        </div>
+    
+                                        <div class="col-md-6">
+                                            <label class="form-label">Ngày đăng <span class="text-danger">*</span></label>
+                                            <div class="input-group" id="datepicker2">
+                                                <input name="post_date" type="date" id="input-date1"
+                                                    value="{{ old('post_date', isset($request['post_date']) ? $request['post_date'] : '') }}"
+                                                    class="form-control input-mask" data-inputmask="'alias': 'datetime'"
+                                                    data-inputmask-inputformat="dd/mm/yyyy">
+                                            </div>
+                                            @error('post_date')
+                                                <div>
+                                                    <p class="text-danger">{{ $message }}</p>
+                                                </div>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+
                                     <div class="mb-3">
                                         <label class="form-label">Nội dung ngắn </label>
                                         <input type="text" name="sort_content" class="form-control"
-                                            value="@isset($request['sort_content']){{ $request['sort_content'] }}@endisset">
+                                            value="{{ old('sort_content', isset($request['sort_content']) ? $request['sort_content'] : '') }}">
                                         @error('sort_content')
                                             <div>
                                                 <p class="text-danger">{{ $message }}</p>
@@ -52,7 +86,7 @@
                                     <div class="mb-3">
                                         <label class="form-label">Nội dung <span class="text-danger">*</span></label>
                                         <input type="text" name="content" class="form-control"
-                                            value="@isset($request['content']){{ $request['content'] }}@endisset">
+                                            value="{{ old('content', isset($request['content']) ? $request['content'] : '') }}">
                                         @error('content')
                                             <div>
                                                 <p class="text-danger">{{ $message }}</p>
@@ -90,7 +124,8 @@
                                             </div>
                                         @enderror
                                     </div>
-                                    <input type="text" name="created_at" value="{{date("Y-m-d H:i:s", strtotime("now"))}}" hidden>
+                                    <input type="text" name="created_at"
+                                        value="{{ date('Y-m-d H:i:s', strtotime('now')) }}" hidden>
                                     <div class="mb-0">
                                         <div>
                                             <button type="submit" class="btn btn-primary waves-effect waves-light me-1">

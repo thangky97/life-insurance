@@ -44,4 +44,8 @@ class News extends Model
             ->update($dataUpdate);
         return $res;
     }
+
+    public function user(){
+        return$this->belongsTo(User::class, 'user_id');
+    }
 }

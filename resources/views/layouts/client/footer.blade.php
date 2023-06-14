@@ -8,7 +8,7 @@
                         <li><a href="#!"><i class="fas fa-map-marker-alt me-2"></i>Địa Chỉ: Trụ sở Dai-ichi miền Bắc:
                                 Số 195 Khâm
                                 Thiên, Phường Thổ Quan, Quận Đống Đa, TP Hà Nội</a></li>
-                        <li><a href="#!"><i class="fas fa-phone me-2"></i>Điện Thoại: 0349.176.402</a></li>
+                        <li><a href="tel:0353693509"><i class="fas fa-phone-alt me-2"></i>Điện Thoại: 0353 693 509</a></li>
                         <li><a href="#!"><i class="fas fa-envelope me-2"></i>Email:
                                 hungmv.mgmydinh@gmail.com</a>
                         </li>

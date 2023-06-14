@@ -30,7 +30,7 @@
                 </div>
                 <div class="col-lg-5 col-xl-6 wow fadeIn" data-wow-delay="400ms">
                     <div class="ps-xl-7">
-                        <h2 class="display-22 display-sm-18 display-md-16 display-lg-14 display-xl-10 mb-lg-1-6">Dai ichi
+                        <h2 class="display-22 display-sm-18 display-md-16 display-lg-14 display-xl-10 mb-lg-1-6">Dai-ichi
                             Life</h2>
                         <p class="mb-1-9 font-weight-600">Chúc tôi sẽ cung cấp giải pháp và tạo ra giá trị bền vững!</p>
                         <div class="horizontaltab tab-style1 clearfix">

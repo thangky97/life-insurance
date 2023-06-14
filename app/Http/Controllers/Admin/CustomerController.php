@@ -57,6 +57,7 @@ class CustomerController extends Controller
                 'source' => 'required',
                 'calling_date' => 'required',
                 'call_back' => 'required',
+                'service_id' => 'required',
             ], [
                 'full_name.required' => 'Tên khách hàng bắt buộc nhập!',
                 'full_name.max' => 'Tên tối đa là 40 ký tự!',
@@ -70,6 +71,7 @@ class CustomerController extends Controller
                 'address.required' => 'Bạn chưa nhập địa chỉ',
                 'calling_date.required' => 'Bạn chưa chọn ngày gọi',
                 'call_back.required' => 'Bạn chưa chọn ngày gọi lại',
+                'service_id.required' => 'Bạn chưa chọn dịch vụ',
             ], []);
 
             $params = [];

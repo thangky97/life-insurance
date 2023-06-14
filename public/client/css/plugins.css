@@ -20342,6 +20342,15 @@ a:focus {
     -webkit-transition-duration: 0.2s;
     -o-transition-duration: 0.2s;
 }
+
+.phone-header a {
+    color: #fff !important;
+}
+
+a .phone-header:hover {
+    color: none;
+    text-decoration: none;
+}
 a:hover,
 a:active {
     color: #002a5c;
@@ -35579,7 +35588,7 @@ header {
         top: 15px;
     }
     .navbar-toggler {
-        background: #282b2d;
+        background: #ec1f28;
         width: 50px;
         height: 45px;
         padding: 0;

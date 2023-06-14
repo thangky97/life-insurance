@@ -60,12 +60,13 @@
                 <div class="col-lg-7 col-xl-8">
                     <div class="ps-xl-3">
                         <h2 class="h3 mb-4">Liên hệ</h2>
-                        <form class="quform" action="https://lifesthtml.websitelayout.net/quform/contact.php" method="post"
+                        <form class="quform" action="{{ route('route_FrontEnd_Contact') }}" method="post"
                             enctype="multipart/form-data" onclick="">
+                            @csrf
                             <div class="quform-elements">
                                 <div class="row">
                                     <!-- Begin Name -->
-                                    <div class="col-md-12">
+                                    <div class="col-md-6">
                                         <div class="quform-element form-group">
                                             <label for="name">Tên của bạn <span class="quform-required">*</span></label>
                                             <div class="quform-input">
@@ -77,7 +78,7 @@
                                     <!-- End Name -->
 
                                     <!-- Begin Phone -->
-                                    <div class="col-md-12">
+                                    <div class="col-md-6">
                                         <div class="quform-element form-group">
                                             <label for="phone">Số điện thoại <span class="quform-required">*</span></label>
                                             <div class="quform-input">

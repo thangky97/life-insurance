@@ -4,8 +4,8 @@
             <div class="row">
                 <div class="col-md-9 col-xs-12">
                     <div class="top-bar-info">
-                        <ul class="ps-0">
-                            <li><i class="ti-mobile"></i>0353 693 509</li>
+                        <ul class="ps-0 phone-header">
+                            <li><a href="tel:0353693509" ><i class="ti-mobile"></i>0353 693 509</a></li>
                             <li class="d-none d-sm-inline-block"><i class="ti-email"></i>hungmv.mgmydinh@gmail.com</li>
                         </ul>
                     </div>
@@ -25,7 +25,7 @@
     <div class="navbar-default border-bottom border-color-light-white">
 
         <!-- start top search -->
-        <div class="top-search bg-primary">
+        {{-- <div class="top-search bg-primary">
             <div class="container-fluid px-sm-1-6 px-lg-2-9">
                 <form class="search-form" action="https://lifesthtml.websitelayout.net/search.html" method="GET"
                     accept-charset="utf-8">
@@ -39,7 +39,7 @@
                     </div>
                 </form>
             </div>
-        </div>
+        </div> --}}
         <!-- end top search -->
 
         <div class="container-fluid px-sm-2-9">
@@ -50,7 +50,7 @@
 
                             <div class="navbar-header navbar-header-custom">
                                 <!-- start logo -->
-                                <a href="index.html" class="navbar-brand logodefault"><img id="logo"
+                                <a href="/" class="navbar-brand logodefault"><img id="logo"
                                         src="{{ asset('client/img/logos/Logo-Dai-Ichi-VN.png') }}" alt="logo"></a>
                                 <!-- end logo -->
                             </div>
@@ -77,7 +77,7 @@
                             <!-- start attribute navigation -->
                             <div class="attr-nav align-items-lg-center ms-lg-auto">
                                 <ul>
-                                    <li class="search"><a href="#"><i class="fas fa-search"></i></a></li>
+                                    {{-- <li class="search"><a href="#"><i class="fas fa-search"></i></a></li> --}}
                                     <li class="d-none d-xl-inline-block"><a href="{{ route('route_FrontEnd_Contact') }}"
                                             class="butn-style2 md text-white">Liên hệ</a></li>
                                 </ul>
