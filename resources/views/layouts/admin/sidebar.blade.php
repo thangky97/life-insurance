@@ -15,18 +15,29 @@
                     </a>
                 </li>
 
-                <li class="menu-title">Quản lí hệ thống</li>
+                <li class="menu-title">Quản lý hệ thống</li>
 
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="far fa-image"></i>
-                        <span>Banner</span>
+                        <i class="fas fa-cogs"></i>
+                        <span>Quản lý hệ thống</span>
                     </a>
-                    <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{{ route('route_BackEnd_Banner_List') }}">Danh sách banner</a></li>
-                        <li><a href="{{ route('route_BackEnd_Banner_Create') }}">Tạo mới</a></li>
+
+                    <ul class="sub-menu" aria-expanded="true">
+                        <li><a href="{{ route('route_BackEnd_Setting_Home_List') }}">Nội dung hệ thống</a></li>
+                        <li><a href="javascript: void(0);" class="has-arrow">Banner</a>
+                            <ul class="sub-menu" aria-expanded="true">
+                                <li><a href="{{ route('route_BackEnd_Banner_List') }}">Danh sách banner</a></li>
+                                <li><a href="{{ route('route_BackEnd_Banner_Create') }}">Tạo mới</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#!">Đối tác
+                            </a>
+                        </li>
                     </ul>
                 </li>
+
 
                 <li class="menu-title">Người dùng</li>
 
@@ -71,7 +82,8 @@
                         <span>Dịch vụ bảo hiểm</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{{ route('route_BackEnd_Insurance_Services_List') }}">Danh sách dịch vụ bảo hiểm</a></li>
+                        <li><a href="{{ route('route_BackEnd_Insurance_Services_List') }}">Danh sách dịch vụ bảo
+                                hiểm</a></li>
                         <li><a href="{{ route('route_BackEnd_Insurance_Services_Create') }}">Tạo mới</a></li>
                     </ul>
                 </li>
@@ -117,4 +129,3 @@
         <!-- Sidebar -->
     </div>
 </div>
-

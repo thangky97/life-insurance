@@ -39,6 +39,12 @@ Route::prefix('admin')->group(function () {
     //     Route::post('/updatePassword/{id}', 'Admin\ProfileController@update_password')->name('route_BackEnd_Admin_Update_Password');
     // });
 
+    Route::prefix('/setting_home')->group(function () {
+        Route::get('/', 'Admin\SettingHomeController@index')->name('route_BackEnd_Setting_Home_List');
+        Route::get('/edit/{id}', 'Admin\SettingHomeController@edit')->name('route_BackEnd_Setting_Home_Edit');
+        Route::post('/update/{id}', 'Admin\SettingHomeController@update')->name('route_BackEnd_Setting_Home_Update');
+    });
+
     Route::prefix('/users')->group(function () {
         Route::get('/', 'Admin\UserController@index')->name('route_BackEnd_Users_List');
         Route::match(['get', 'post'], '/create', 'Admin\UserController@create')->name('route_BackEnd_Users_Create');

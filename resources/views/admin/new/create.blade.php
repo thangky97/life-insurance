@@ -131,9 +131,8 @@
                                             <button type="submit" class="btn btn-primary waves-effect waves-light me-1">
                                                 Thêm mới
                                             </button>
-                                            <button type="reset" class="btn btn-secondary waves-effect">
-                                                Hủy
-                                            </button>
+                                            <a href="{{ route('route_BackEnd_News_List') }}"
+                                                class="btn btn-secondary waves-effect">Quay lại</a>
                                         </div>
                                     </div>
                                 </form>

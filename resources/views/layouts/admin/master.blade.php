@@ -152,6 +152,12 @@
     <!-- init js -->
     <script src="{{ asset('admin/assets/js/pages/form-editor.init.js') }}"></script>
 
+    <!-- form wizard -->
+    {{-- <script src="{{ asset('admin/assets/libs/jquery-steps/build/jquery.steps.min.js') }}"></script> --}}
+
+    <!-- form wizard init -->
+    <script src="{{ asset('admin/assets/js/pages/form-wizard.init.js') }}"></script>
+
     <script src="{{ asset('admin/assets/js/app.js') }}"></script>
 
 </body>
