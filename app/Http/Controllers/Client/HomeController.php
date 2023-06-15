@@ -30,7 +30,7 @@ class HomeController extends Controller
         //No delete footer
         $this->v['newsFooter'] = News::where('status', '=', 1)->paginate(4);
 
-        $this->v['news'] = News::where('status', '=', 1)->paginate(4);
+        $this->v['news'] = News::where('status', '=', 1)->paginate(3);
 
         return view('home', $this->v);
     }

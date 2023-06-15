@@ -31,6 +31,12 @@
                                 <li><a href="{{ route('route_BackEnd_Banner_Create') }}">Tạo mới</a></li>
                             </ul>
                         </li>
+                        <li><a href="javascript: void(0);" class="has-arrow">KH sử dụng</a>
+                            <ul class="sub-menu" aria-expanded="true">
+                                <li><a href="{{ route('route_BackEnd_Customers_Use_List') }}">Danh sách KHSD</a></li>
+                                <li><a href="{{ route('route_BackEnd_Customers_Use_Create') }}">Tạo mới</a></li>
+                            </ul>
+                        </li>
                         <li>
                             <a href="#!">Đối tác
                             </a>
@@ -49,6 +55,17 @@
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="{{ route('route_BackEnd_Users_List') }}">Danh sách quản trị viên</a></li>
                         <li><a href="{{ route('route_BackEnd_Users_Create') }}">Tạo mới</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="fas fa-user-md"></i>
+                        <span>Câu hỏi thường gặp</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="{{ route('route_BackEnd_Ask_Question_List') }}">Danh sách câu hỏi</a></li>
+                        <li><a href="{{ route('route_BackEnd_Ask_Question_Create') }}">Tạo mới</a></li>
                     </ul>
                 </li>
 
@@ -78,36 +95,13 @@
 
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="fab fa-shopify"></i>
+                        <i class="fas fa-space-shuttle"></i>
                         <span>Dịch vụ bảo hiểm</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="{{ route('route_BackEnd_Insurance_Services_List') }}">Danh sách dịch vụ bảo
                                 hiểm</a></li>
                         <li><a href="{{ route('route_BackEnd_Insurance_Services_Create') }}">Tạo mới</a></li>
-                    </ul>
-                </li>
-
-                <li>
-                    <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="ti-layout"></i>
-                        <span>Layouts</span>
-                    </a>
-                    <ul class="sub-menu" aria-expanded="true">
-                        <li>
-                            <a href="javascript: void(0);" class="has-arrow">Vertical</a>
-                            <ul class="sub-menu" aria-expanded="true">
-                                <li><a href="layouts-light-sidebar.html">Light Sidebar</a></li>
-                                <li><a href="layouts-compact-sidebar.html">Compact Sidebar</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="javascript: void(0);" class="has-arrow">Horizontal</a>
-                            <ul class="sub-menu" aria-expanded="true">
-                                <li><a href="layouts-horizontal.html">Horizontal</a></li>
-                                <li><a href="layouts-hori-topbar-light.html">Light Topbar</a></li>
-                            </ul>
-                        </li>
                     </ul>
                 </li>
 

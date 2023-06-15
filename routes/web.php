@@ -93,4 +93,20 @@ Route::prefix('admin')->group(function () {
         Route::get('/remove/{id}', 'Admin\NewController@remove')->name('route_BackEnd_News_Remove');
     });
 
+    Route::prefix('/customers_use')->group(function () {
+        Route::get('/', 'Admin\CustomerUseController@index')->name('route_BackEnd_Customers_Use_List');
+        Route::match(['get', 'post'], '/create', 'Admin\CustomerUseController@create')->name('route_BackEnd_Customers_Use_Create');
+        Route::get('/edit/{id}', 'Admin\CustomerUseController@edit')->name('route_BackEnd_Customers_Use_Edit');
+        Route::post('/update/{id}', 'Admin\CustomerUseController@update')->name('route_BackEnd_Customers_Use_Update');
+        Route::get('/remove/{id}', 'Admin\CustomerUseController@remove')->name('route_BackEnd_Customers_Use_Remove');
+    });
+
+    Route::prefix('/ask_question')->group(function () {
+        Route::get('/', 'Admin\AskQuestionController@index')->name('route_BackEnd_Ask_Question_List');
+        Route::match(['get', 'post'], '/create', 'Admin\AskQuestionController@create')->name('route_BackEnd_Ask_Question_Create');
+        Route::get('/edit/{id}', 'Admin\AskQuestionController@edit')->name('route_BackEnd_Ask_Question_Edit');
+        Route::post('/update/{id}', 'Admin\AskQuestionController@update')->name('route_BackEnd_Ask_Question_Update');
+        Route::get('/remove/{id}', 'Admin\AskQuestionController@remove')->name('route_BackEnd_Ask_Question_Remove');
+    });
+
 });

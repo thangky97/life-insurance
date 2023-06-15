@@ -17,7 +17,39 @@
                     </div>
                 </div>
                 <!-- end page title -->
-
+                <div id="msg-box">
+                    <?php //Hiển thị thông báo thành công
+                    ?>
+                    @if (Session::has('success'))
+                        <div class="alert alert-success solid alert-dismissible fade show">
+                            <span><i class="mdi mdi-check"></i></span>
+                            <strong>{{ Session::get('success') }}</strong>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="btn-close">
+                            </button>
+                        </div>
+                    @endif
+                    <?php //Hiển thị thông báo lỗi
+                    ?>
+                    @if (Session::has('error'))
+                        <div class="alert alert-danger solid alert-end-icon alert-dismissible fade show">
+                            <span><i class="mdi mdi-help"></i></span>
+                            <strong>{{ Session::get('errors') }}</strong>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="btn-close">
+                            </button>
+                        </div>
+                    @endif
+                    @if ($errors->any())
+                        <div class="alert alert-danger alert-dismissible" role="alert">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="btn-close">
+                            </button>
+                        </div>
+                    @endif
+                </div>
                 <div class="row">
 
                     <div class="col-xl-3 col-md-6">
@@ -207,7 +239,8 @@
                 </div>
                 <!-- end row -->
                 <div class="text-center">
-                    <a href="{{ route('route_BackEnd_Setting_Home_Edit', 1) }}" class="btn btn-primary waves-effect waves-light me-1">Cập nhật</a>
+                    <a href="{{ route('route_BackEnd_Setting_Home_Edit', 1) }}"
+                        class="btn btn-primary waves-effect waves-light me-1">Cập nhật</a>
                 </div>
             </div> <!-- container-fluid -->
         </div>
