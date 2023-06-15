@@ -193,7 +193,7 @@
                     <div class="col-md-6 col-lg-4 mt-2-6 wow fadeIn" data-wow-delay="200ms">
                         <div class="team-style1">
                             <div class="image-hover">
-                                <img src="{{ asset('client/img/team/team-01.jpg') }}" class="rounded" alt="...">
+                                <img src="{{ asset('client/img/team/team-07.jpg') }}" class="rounded" alt="...">
                             </div>
                             <div class="team-content">
                                 <p class="mb-1">Chủ tịch danh dự</p>
@@ -215,7 +215,7 @@
                     <div class="col-md-6 col-lg-4 mt-2-6 wow fadeIn" data-wow-delay="400ms">
                         <div class="team-style1">
                             <div class="image-hover">
-                                <img src="{{ asset('client/img/team/team-02.jpg') }}" class="rounded" alt="...">
+                                <img src="{{ asset('client/img/team/team-08.jpg') }}" class="rounded" alt="...">
                             </div>
                             <div class="team-content">
                                 <p class="mb-1">Chủ tịch</p>

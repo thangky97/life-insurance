@@ -30,7 +30,7 @@
                             <div class="p-1-9">
                                 <div class="d-flex mb-1-9">
                                     <div class="flex-shrink-0">
-                                        <i class="ti-mobile text-primary display-23"></i>
+                                        <i class="ti-mobile text-primary-service-detail display-23"></i>
                                     </div>
                                     <div class="flex-grow-1 ms-3">
                                         <h4 class="mb-1 h6">Số điện thoại</h4>
@@ -39,7 +39,7 @@
                                 </div>
                                 <div class="d-flex mb-1-9">
                                     <div class="flex-shrink-0">
-                                        <i class="ti-email text-primary display-23"></i>
+                                        <i class="ti-email text-primary-service-detail display-23"></i>
                                     </div>
                                     <div class="flex-grow-1 ms-3">
                                         <h4 class="mb-1 h6">Email</h4>
@@ -48,7 +48,7 @@
                                 </div>
                                 <div class="d-flex">
                                     <div class="flex-shrink-0">
-                                        <i class="ti-location-pin text-primary display-23"></i>
+                                        <i class="ti-location-pin text-primary-service-detail display-23"></i>
                                     </div>
                                     <div class="flex-grow-1 ms-3">
                                         <h4 class="mb-1 h6">Địa chỉ</h4>

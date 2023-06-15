@@ -67,7 +67,7 @@
                <a href="tel:0981481368" class="call-icon" rel="nofollow">
                 <i class="fas fa-phone-alt" aria-hidden="true"></i>
                   <div class="animated alo-circle"></div>
-                  <div class="animated alo-circle-fill  "></div>
+                  <div class="animated alo-circle-fill alo-circle-fill-call"></div>
                    <span>Hotline: 0353 693 509</span>
                 </a>
                 {{-- <a href="sms:0981481368" class="sms">

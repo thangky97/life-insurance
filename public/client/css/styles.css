@@ -3830,11 +3830,15 @@ footer .footer-bar p {
     height: 10rem;
 }
 
+.text-primary-service-detail {
+    color: #ec1f28;
+}
+
 /* icon contact */
 .social-button {
     display: inline-grid;
     position: fixed;
-    bottom: 15px;
+    bottom: 50px;
     left: 45px;
     min-width: 45px;
     text-align: center;
@@ -3859,6 +3863,16 @@ footer .footer-bar p {
     line-height: 1.9;
     position: relative;
     z-index: 999;
+}
+
+.social-button .call-icon i {
+    background: #2DC100;
+}
+.social-button .mes i {
+    background: #d44ad4 ;
+}
+.social-button .zalo i {
+    background: #0068FF;
 }
 .social-button span {
     display: none;
@@ -3904,6 +3918,9 @@ footer .footer-bar p {
     background-color: rgba(0, 175, 242, 0.5);
     opacity: 0.75;
 }
+.alo-circle-fill-call {
+    background-color: #89de6f;
+}
 .call-icon:hover > span,
 .mes:hover > span,
 .sms:hover > span,
@@ -3913,7 +3930,7 @@ footer .footer-bar p {
 .social-button a span {
     border-radius: 2px;
     text-align: center;
-    background: #ec1f28;
+    background: #2DC100;
     padding: 9px;
     display: none;
     width: 205px;
@@ -3951,7 +3968,7 @@ footer .footer-bar p {
     height: 0;
     border-style: solid;
     border-width: 10px 10px 10px 0;
-    border-color: transparent #ec1f28 transparent transparent;
+    border-color: transparent #2DC100 transparent transparent;
     position: absolute;
     left: -10px;
     top: 10px;

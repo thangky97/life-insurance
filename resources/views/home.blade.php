@@ -422,56 +422,83 @@
         <div class="container-fluid px-0">
             <div class="owl-theme owl-carousel portfolio-carousel-02">
                 <div class="portfolio-style03">
-                    <img src="{{ asset('client/img/portfolio/portfolio-01.jpg') }}" class="rounded" alt="...">
+                    <img src="{{ asset('client/img/khsd/khsd-1.jpg') }}" class="rounded" alt="...">
                     <div class="overlay-box">
                         <div class="content">
-                            <h3 class="mb-2 h4"><a href="portfolio-details.html">Health Insurance</a></h3>
-                            <span class="font-weight-600">Health</span>
+                            <h3 class="mb-2 h4"><a href="#!">Thanh Thanh Huyền</a></h3>
+                            <span class="font-weight-600">MC</span>
                         </div>
                     </div>
                 </div>
                 <div class="portfolio-style03">
-                    <img src="{{ asset('client/img/portfolio/portfolio-02.jpg') }}" class="rounded" alt="...">
+                    <img src="{{ asset('client/img/khsd/khsd-2.jpg') }}" class="rounded" alt="...">
                     <div class="overlay-box">
                         <div class="content">
-                            <h3 class="mb-2 h4"><a href="portfolio-details.html">Life Insurance</a></h3>
-                            <span class="font-weight-600">Life</span>
+                            <h3 class="mb-2 h4"><a href="#!">Phương Oanh</a></h3>
+                            <span class="font-weight-600">Diễn viên</span>
                         </div>
                     </div>
                 </div>
                 <div class="portfolio-style03">
-                    <img src="{{ asset('client/img/portfolio/portfolio-03.jpg') }}" class="rounded" alt="...">
+                    <img src="{{ asset('client/img/khsd/khsd-3.jpg') }}" class="rounded" alt="...">
                     <div class="overlay-box">
                         <div class="content">
-                            <h3 class="mb-2 h4"><a href="portfolio-details.html">Insurance Policies</a></h3>
-                            <span class="font-weight-600">Insurance</span>
+                            <h3 class="mb-2 h4"><a href="#!">Trương Quỳnh Anh</a></h3>
+                            <span class="font-weight-600">Ca sĩ</span>
                         </div>
                     </div>
                 </div>
                 <div class="portfolio-style03">
-                    <img src="{{ asset('client/img/portfolio/portfolio-04.jpg') }}" class="rounded" alt="...">
+                    <img src="{{ asset('client/img/khsd/khsd-4.jpg') }}" class="rounded" alt="...">
                     <div class="overlay-box">
                         <div class="content">
-                            <h3 class="mb-2 h4"><a href="portfolio-details.html">Car Insurance</a></h3>
-                            <span class="font-weight-600">Car</span>
+                            <h3 class="mb-2 h4"><a href="#!">Mạnh Trường</a></h3>
+                            <span class="font-weight-600">Diễn viên</span>
                         </div>
                     </div>
                 </div>
                 <div class="portfolio-style03">
-                    <img src="{{ asset('client/img/portfolio/portfolio-05.jpg') }}" class="rounded" alt="...">
+                    <img src="{{ asset('client/img/khsd/khsd-5.jpg') }}" class="rounded" alt="...">
                     <div class="overlay-box">
                         <div class="content">
-                            <h3 class="mb-2 h4"><a href="portfolio-details.html">Complex Healthcare</a></h3>
-                            <span class="font-weight-600">Health</span>
+                            <h3 class="mb-2 h4"><a href="#!">Việt Anh</a></h3>
+                            <span class="font-weight-600">Diễn viên</span>
                         </div>
                     </div>
                 </div>
                 <div class="portfolio-style03">
-                    <img src="{{ asset('client/img/portfolio/portfolio-06.jpg') }}" class="rounded" alt="...">
+                    <img src="{{ asset('client/img/khsd/khsd-6.jpg') }}" class="rounded" alt="...">
                     <div class="overlay-box">
                         <div class="content">
-                            <h3 class="mb-2 h4"><a href="portfolio-details.html">Home Insurance</a></h3>
-                            <span class="font-weight-600">Home</span>
+                            <h3 class="mb-2 h4"><a href="#!">Dương Khắc Linh</a></h3>
+                            <span class="font-weight-600">Nhạc sĩ</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-style03">
+                    <img src="{{ asset('client/img/khsd/khsd-7.jpg') }}" class="rounded" alt="...">
+                    <div class="overlay-box">
+                        <div class="content">
+                            <h3 class="mb-2 h4"><a href="#!">Thu Quỳnh</a></h3>
+                            <span class="font-weight-600">Diễn viên</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-style03">
+                    <img src="{{ asset('client/img/khsd/khsd-8.jpg') }}" class="rounded" alt="...">
+                    <div class="overlay-box">
+                        <div class="content">
+                            <h3 class="mb-2 h4"><a href="#!">Quách Ngọc Tuyên</a></h3>
+                            <span class="font-weight-600">Diễn viên</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-style03">
+                    <img src="{{ asset('client/img/khsd/khsd-9.jpg') }}" class="rounded" alt="...">
+                    <div class="overlay-box">
+                        <div class="content">
+                            <h3 class="mb-2 h4"><a href="#!">Quang Tèo</a></h3>
+                            <span class="font-weight-600">Nghệ sĩ</span>
                         </div>
                     </div>
                 </div>
