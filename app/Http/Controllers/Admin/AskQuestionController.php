@@ -18,7 +18,7 @@ class AskQuestionController extends Controller
 
     public function index(Request $request)
     {
-        $questions = Ask_Question::select('id', 'title', 'image_question', 'content', 'status')->orderBy('id','desc')
+        $questions = Ask_Question::select('id', 'title', 'image_question', 'content')->orderBy('id','desc')
             ->paginate(10); 
 
         return view('admin.frequently_asked_question.list', compact('questions'));
@@ -31,7 +31,6 @@ class AskQuestionController extends Controller
             $request->validate([
                 'title' => 'required',
                 'content' => 'required',
-                'status' => 'required',
                 'images' =>
                 [
                     'image',
@@ -44,16 +43,15 @@ class AskQuestionController extends Controller
                 'content.required' => 'Nội dung bắt buộc nhập!',
                 'images.image' => 'Bắt buộc phải là ảnh!',
                 'images.max' => 'Ảnh không được lớn hơn 2MB!',
-                'status.required' => 'Bạn chưa chọn trạng thái',
             ], []);
 
             $params = [];
             $params['cols'] = $request->post();
             unset( $params['cols']['_token']);
-            if ($request->hasFile('images') && $request->file('images')->isValid())
-            {
-                $params['cols']['image_question'] = $this->uploadFile($request->file('images'));
-            }
+            // if ($request->hasFile('images') && $request->file('images')->isValid())
+            // {
+            //     $params['cols']['image_question'] = $this->uploadFile($request->file('images'));
+            // }
 
             $modelQuestion = new Ask_Question();
             $res = $modelQuestion->saveNew($params);
@@ -85,10 +83,10 @@ class AskQuestionController extends Controller
 
         $params['cols'] = $request->post();
 
-        if ($request->hasFile('images') && $request->file('images')->isValid())
-            {
-                $params['cols']['image_question'] = $this->uploadFile($request->file('images'));
-            }
+        // if ($request->hasFile('images') && $request->file('images')->isValid())
+        //     {
+        //         $params['cols']['image_question'] = $this->uploadFile($request->file('images'));
+        //     }
 
         unset( $params['cols']['_token']);
         $params['cols']['id'] = $id;
@@ -106,8 +104,8 @@ class AskQuestionController extends Controller
         }
     }
 
-    public function uploadFile($file) {
-        $fileName = time().'_'.$file->getClientOriginalName();
-        return $file->storeAs('ask_question',$fileName,'public');
-    }
+    // public function uploadFile($file) {
+    //     $fileName = time().'_'.$file->getClientOriginalName();
+    //     return $file->storeAs('ask_question',$fileName,'public');
+    // }
 }

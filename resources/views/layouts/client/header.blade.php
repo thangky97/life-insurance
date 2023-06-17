@@ -1,3 +1,8 @@
+<?php
+$header = DB::table('setting_home')->get();
+$listMenuService = DB::table('services')->where('status', '=', 1)->get();
+?>
+
 <header class="header-style2">
     <div class="top-bar bg-secondary">
         <div class="container-fluid px-lg-1-6 px-xl-2-5 px-xxl-2-9">
@@ -5,17 +10,30 @@
                 <div class="col-md-9 col-xs-12">
                     <div class="top-bar-info">
                         <ul class="ps-0 phone-header">
-                            <li><a href="tel:0353693509" ><i class="ti-mobile"></i>0353 693 509</a></li>
-                            <li class="d-none d-sm-inline-block"><i class="ti-email"></i>hungmv.mgmydinh@gmail.com</li>
+                            <li><a href="tel:0353693509"><i class="ti-mobile"></i>
+                                    @foreach ($header as $phone)
+                                        {{ $phone->support_phone_number }}
+                                    @endforeach
+                                </a></li>
+                            <li class="d-none d-sm-inline-block"><i class="ti-email"></i>
+                                @foreach ($header as $email)
+                                    {{ $email->support_email }}
+                                @endforeach
+                            </li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-xs-12 col-md-3 d-none d-md-block">
                     <ul class="top-social-icon ps-0">
-                        <li><a href="#!"><i class="fab fa-facebook-f"></i></a></li>
-                        <li><a href="#!"><i class="fab fa-twitter"></i></a></li>
+                        @foreach ($header as $link)
+                            <li><a href="{{ $link->link_facebook }}"><i class="fab fa-facebook-f"></i></a></li>
+                        @endforeach
+                        @foreach ($header as $link)
+                            <li><a href="{{ $link->link_zalo }}"><i class="fab fa-instagram"></i></a></li>
+                        @endforeach
+                        {{-- <li><a href="#!"><i class="fab fa-twitter"></i></a></li>
                         <li><a href="#!"><i class="fab fa-instagram"></i></a></li>
-                        <li><a href="#!"><i class="fab fa-linkedin-in"></i></a></li>
+                        <li><a href="#!"><i class="fab fa-linkedin-in"></i></a></li> --}}
                     </ul>
                 </div>
             </div>
@@ -50,8 +68,10 @@
 
                             <div class="navbar-header navbar-header-custom">
                                 <!-- start logo -->
+                                @foreach ( $header as $lg )
                                 <a href="/" class="navbar-brand logodefault"><img id="logo"
-                                        src="{{ asset('client/img/logos/Logo-Dai-Ichi-VN.png') }}" alt="logo"></a>
+                                    src="{{ asset($lg->logo) ? '' . Storage::url($lg->logo) : '' }}" alt="logo"></a>
+                                @endforeach
                                 <!-- end logo -->
                             </div>
 
@@ -64,7 +84,9 @@
                                     <a href="{{ route('route_FrontEnd_Service') }}">Dịch vụ</a>
                                     <ul>
                                         @foreach ($listMenuService as $menu)
-                                            <li><a href="{{ route('route_FrontEnd_Service_Detail', ['id' => $menu->id]) }}">{{ $menu->service_name }}</a></li>
+                                            <li><a
+                                                    href="{{ route('route_FrontEnd_Service_Detail', ['id' => $menu->id]) }}">{{ $menu->service_name }}</a>
+                                            </li>
                                         @endforeach
                                     </ul>
                                 </li>
@@ -78,7 +100,8 @@
                             <div class="attr-nav align-items-lg-center ms-lg-auto">
                                 <ul>
                                     {{-- <li class="search"><a href="#"><i class="fas fa-search"></i></a></li> --}}
-                                    <li class="d-none d-xl-inline-block"><a href="{{ route('route_FrontEnd_Contact') }}"
+                                    <li class="d-none d-xl-inline-block"><a
+                                            href="{{ route('route_FrontEnd_Contact') }}"
                                             class="butn-style2 md text-white">Liên hệ</a></li>
                                 </ul>
                             </div>

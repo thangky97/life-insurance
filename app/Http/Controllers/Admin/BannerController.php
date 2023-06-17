@@ -95,8 +95,8 @@ class BannerController extends Controller
         unset( $params['cols']['_token']);
         $params['cols']['id'] = $id;
 
-        $modelUser = new Banner();
-        $res = $modelUser->saveUpdate($params);
+        $modelBanner = new Banner();
+        $res = $modelBanner->saveUpdate($params);
         if ($res == null) {
             return redirect()->route($method_route,['id'=>$id]);
         } elseif ($res == 1) {

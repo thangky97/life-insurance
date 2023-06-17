@@ -6,7 +6,7 @@
 
     <!-- ABOUT US
             ================================================== -->
-    <section class="pb-0" style="margin-top: -10rem">
+    <section class="pb-0">
         <div class="container">
             <div class="row about-style2">
                 <div class="col-lg-6 mb-1-9 mb-lg-0 wow fadeIn" data-wow-delay="200ms">

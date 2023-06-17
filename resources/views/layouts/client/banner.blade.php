@@ -1,5 +1,9 @@
-<section class="full-screen p-0">
-    <div class="slider-fade owl-carousel w-100 min-vh-100">
+<?php
+    $banner = DB::table('banner')->get();
+?>
+
+<section class="p-0">
+    <div class="slider-fade owl-carousel w-100">
         @foreach ($banner as $slider)
             <div class="item" data-background="{{ asset($slider->image) ? '' . Storage::url($slider->image) : '' }}">
                 <div class="">

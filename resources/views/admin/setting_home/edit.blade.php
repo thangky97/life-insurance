@@ -111,6 +111,7 @@
                                         <!-- end col -->
                                     </div>
                                     <!-- end row -->
+                                    <input type="text" name="updated_at" value="{{date("Y-m-d H:i:s", strtotime("now"))}}" hidden>
                                     <div class="mb-0" style="text-align: right">
                                         <div>
                                             <button type="submit" class="btn btn-primary waves-effect waves-light me-1">

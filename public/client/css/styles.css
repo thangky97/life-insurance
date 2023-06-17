@@ -3866,13 +3866,13 @@ footer .footer-bar p {
 }
 
 .social-button .call-icon i {
-    background: #2DC100;
+    background: #2dc100;
 }
 .social-button .mes i {
-    background: #d44ad4 ;
+    background: #d44ad4;
 }
 .social-button .zalo i {
-    background: #0068FF;
+    background: #0068ff;
 }
 .social-button span {
     display: none;
@@ -3930,7 +3930,7 @@ footer .footer-bar p {
 .social-button a span {
     border-radius: 2px;
     text-align: center;
-    background: #2DC100;
+    background: #2dc100;
     padding: 9px;
     display: none;
     width: 205px;
@@ -3968,8 +3968,61 @@ footer .footer-bar p {
     height: 0;
     border-style: solid;
     border-width: 10px 10px 10px 0;
-    border-color: transparent #2DC100 transparent transparent;
+    border-color: transparent #2dc100 transparent transparent;
     position: absolute;
     left: -10px;
     top: 10px;
 }
+
+.butn-error {
+    color: #fff;
+    background-color: #ec1f28;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 11px 30px !important;
+    text-align: center;
+    transition: all 0.3s;
+    display: inline-block;
+    position: relative;
+    z-index: 1;
+    border-radius: 3px;
+    overflow: hidden;
+    border: none;
+}
+
+.butn-error:hover {
+    color: #252525;
+    background-color: #ec1f28;
+}
+
+.alert {
+    background-color: #fff;
+    color: #ec1f28;
+    font-weight: 600;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #f5c6cb;
+    border-radius: 4px;
+}
+
+.success {
+    background-color: #d4edda;
+    color: #155724;
+    border-color: #c3e6cb;
+}
+
+.list-style1-service-detail li::before {
+    content: none !important;
+}
+
+/* @media (max-width: 1022px) {
+    #about {
+        margin-top: -10rem !important;
+    }
+}
+
+@media (max-width: 690px) {
+    #about {
+        margin-top: -15rem !important;
+    }
+} */

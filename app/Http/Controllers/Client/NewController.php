@@ -17,17 +17,6 @@ class NewController extends Controller
     }
 
     public function index(Request $request) {
-        //No delete
-        $this->v['banner'] = Banner::select('image', 'status')
-        ->where('status', '=', 1)
-        ->get();
-        
-        //No delete
-        $this->v['listMenuService'] = Service::where('status', '=', 1)->get();
-
-        //No delete footer
-        $this->v['newsFooter'] = News::where('status', '=', 1)->paginate(4);
-
         //get all news
         $this->v['news'] = News::where('status', '=', 1)->get();
         
@@ -36,14 +25,6 @@ class NewController extends Controller
 
     public function detail($id, Request $request)
     {    
-        $this->v['banner'] = Banner::select('image', 'status')
-            ->where('status', '=', 1)
-            ->get();
-
-        $this->v['listMenuService'] = Service::where('status', '=', 1)->get();
-
-        //No delete footer
-        $this->v['newsFooter'] = News::where('status', '=', 1)->paginate(4);
 
         $this->v['relatedNew'] = News::where('status', '=', 1)->get();
 

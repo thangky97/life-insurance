@@ -23,21 +23,21 @@
     t("#preloader").fadeOut("normall", function () {
         t(this).remove();
     }),
-        s.on("scroll", function () {
-            var e = s.scrollTop(),
-                a = t(".navbar-brand img"),
-                o = t(".navbar-brand.logodefault img");
-            e <= 50
-                ? (t("header")
-                      .removeClass("scrollHeader")
-                      .addClass("fixedHeader"),
-                  a.attr("src", "img/logos/logo-inner.png"))
-                : (t("header")
-                      .removeClass("fixedHeader")
-                      .addClass("scrollHeader"),
-                  a.attr("src", "client/img/logos/Logo-Dai-Ichi-VN.png")),
-                o.attr("src", "client/img/logos/Logo-Dai-Ichi-VN.png");
-        }),
+        // s.on("scroll", function () {
+        //     var e = s.scrollTop(),
+        //         a = t(".navbar-brand img"),
+        //         o = t(".navbar-brand.logodefault img");
+        //     e <= 50
+        //         ? (t("header")
+        //               .removeClass("scrollHeader")
+        //               .addClass("fixedHeader"),
+        //           a.attr("src", "img/logos/logo-inner.png"))
+        //         : (t("header")
+        //               .removeClass("fixedHeader")
+        //               .addClass("scrollHeader"),
+        //           a.attr("src", "client/img/logos/Logo-Dai-Ichi-VN.png")),
+        //         o.attr("src", "client/img/logos/Logo-Dai-Ichi-VN.png");
+        // }),
         s.on("scroll", function () {
             500 < t(this).scrollTop()
                 ? t(".scroll-to-top").fadeIn(400)

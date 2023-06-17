@@ -15,12 +15,24 @@
                         <div class="col-md-8">
                             <h6 class="page-title">Dashboard</h6>
                             <ol class="breadcrumb m-0">
-                                <li class="breadcrumb-item active">Welcome to Veltrix Dashboard</li>
+                                <li class="breadcrumb-item active">Welcome to DAI-ICHI Dashboard</li>
                             </ol>
                         </div>
                     </div>
                 </div>
                 <!-- end page title -->
+                <div id="msg-box">
+                    <?php //Hiển thị thông báo thành công
+                    ?>
+                    @if (Session::has('success'))
+                        <div class="alert alert-success solid alert-dismissible fade show">
+                            <span><i class="mdi mdi-check"></i></span>
+                            <strong>{{ Session::get('success') }}</strong>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="btn-close">
+                            </button>
+                        </div>
+                    @endif
+                </div>
 
                 <div class="row">
                     <div class="col-xl-3 col-md-6">

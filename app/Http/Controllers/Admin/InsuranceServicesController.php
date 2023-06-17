@@ -41,7 +41,7 @@ class InsuranceServicesController extends Controller
 
     public function create(Request $request) {
         $method_route = "route_BackEnd_Insurance_Services_Create";
-        $listService = DB::table('services')->get();
+        $listService = DB::table('services')->where('status', '=', 1)->get();
 
         $Insurance_services = new Insurance_services();
 
@@ -60,7 +60,6 @@ class InsuranceServicesController extends Controller
                 'status' => 'required',
                 'death_due_special_accident' => 'required',
                 'temporary_disability_benefits' => 'required',
-                'death_from_cancer' => 'required',
                 'serious_illness_mild' => 'required',
                 'serious_illness' => 'required',
                 'benefits_pay_medical_expenses' => 'required',
@@ -71,7 +70,6 @@ class InsuranceServicesController extends Controller
                 'status.required' => 'Bạn chưa chọn trạng thái!',
                 'temporary_disability_benefits.required' => 'Bạn không được để trống',
                 'death_due_special_accident.required' => 'Bạn không được để trống!',
-                'death_from_cancer.required' => 'Bạn không được để trống!',
                 'serious_illness_mild.required' => 'Bạn không được để trống!',
                 'serious_illness.required' => 'Bạn không được để trống!',
                 'benefits_pay_medical_expenses.required' => 'Bạn không được để trống!',

@@ -4,7 +4,7 @@
 
 @section('content')
 
-    <section style="margin-top: -15rem">
+    <section>
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 mb-5 mb-lg-0">
@@ -30,7 +30,7 @@
                                     <h3 class="mb-4">{{ $news->title }}</h3>
                                     <p>{{ $news->sort_content }}</p>
                                     <p class="text-primary mb-1-9">{{ $news->content }}</p>
-                                    <div class="row mb-4">
+                                    {{-- <div class="row mb-4">
                                         <div class="col-6">
                                             <div class="image-hover">
                                                 <img src="{{ asset('client/img/blog/blog-post-02.jpg') }}" class="rounded"
@@ -43,17 +43,17 @@
                                                     alt="...">
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                     <p>{{ $news->content }}</p>
-                                    <ul class="list-style2 mb-1-9">
+                                    {{-- <ul class="list-style2 mb-1-9">
                                         <li>We can save you money.</li>
                                         <li>Production or trading of good</li>
                                         <li>Our life insurance is flexible.</li>
                                         <li>A fast & easy application</li>
                                         <li>Growing your business</li>
-                                    </ul>
+                                    </ul> --}}
                                 </div>
-                                <div
+                                {{-- <div
                                     class="border-top border-color-light-black p-1-9 g-0 d-md-flex align-items-center entry-footer float-start w-100">
                                     <div class="tags flex-grow-1 mb-4 mb-md-0 pe-md-3 wow fadeIn" data-wow-delay="200ms">
                                         <label class="h6 me-3 mb-0">Tags:</label>
@@ -74,7 +74,7 @@
                                             </li>
                                         </ul>
                                     </div>
-                                </div>
+                                </div> --}}
                             </article>
                         </div>
 
@@ -120,7 +120,7 @@
                                 <a href="#!">startup</a>
                             </div>
                         </div> --}}
-                        <div class="widget wow fadeIn mb-1-9" data-wow-delay="600ms">
+                        {{-- <div class="widget wow fadeIn mb-1-9" data-wow-delay="600ms">
                             <div class="widget-title">
                                 <h3 class="mb-0 h6">Theo dõi chúng tôi</h3>
                             </div>
@@ -136,7 +136,7 @@
                                     </li>
                                 </ul>
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="widget rounded bg-img cover-background primary-overlay primary-overlay-news-detail wow fadeIn"
                             data-overlay-dark="9" data-background="{{ asset('client/img/bg/bg-04.jpg') }}"
                             data-wow-delay="700ms">

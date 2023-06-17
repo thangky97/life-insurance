@@ -75,24 +75,26 @@
                                     </div>
 
                                     <div class="mb-3">
-                                        <label class="form-label">Nội dung ngắn </label>
-                                        <input type="text" name="sort_content" class="form-control"
-                                            value="{{ $news->sort_content }}">
-                                        @error('sort_content')
-                                            <div>
-                                                <p class="text-danger">{{ $message }}</p>
-                                            </div>
-                                        @enderror
+                                        <label class="form-label">Nội dung ngắn</label>
+                                        <div>
+                                            <textarea name="sort_content" data-parsley-type="text" class="form-control" rows="3">{{ $news->sort_content }}</textarea>
+                                            @error('content')
+                                                <div>
+                                                    <p class="text-danger">{{ $message }}</p>
+                                                </div>
+                                            @enderror
+                                        </div>
                                     </div>
                                     <div class="mb-3">
-                                        <label class="form-label">Nội dung <span class="text-danger">*</span></label>
-                                        <input type="text" name="content" class="form-control"
-                                            value="{{ $news->content }}">
-                                        @error('content')
-                                            <div>
-                                                <p class="text-danger">{{ $message }}</p>
-                                            </div>
-                                        @enderror
+                                        <label class="form-label">Nội dung</label>
+                                        <div>
+                                            <textarea name="content" data-parsley-type="text" class="form-control" rows="5">{{ $news->content }}</textarea>
+                                            @error('content')
+                                                <div>
+                                                    <p class="text-danger">{{ $message }}</p>
+                                                </div>
+                                            @enderror
+                                        </div>
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">Ảnh <span class="text-danger">*</span></label>
@@ -131,7 +133,7 @@
                                             </div>
                                         @enderror
                                     </div>
-                                    <input type="text" name="updated_at"
+                                    <input type="text" name="updated_at" id="updated_at"
                                         value="{{ date('Y-m-d H:i:s', strtotime('now')) }}" hidden>
                                     <div class="mb-0">
                                         <div>
@@ -153,3 +155,4 @@
     </div>
 
 @endsection
+

@@ -4,7 +4,7 @@
 
 @section('content')
 
-    <section style="margin-top: -15rem">
+    <section>
         <div class="container">
             <div class="section-heading text-center mb-2-9 mb-lg-6 wow fadeIn" data-wow-delay="100ms">
                 <h2 class="display-22 display-sm-18 display-md-16 display-lg-11 mb-0">Bài viết</h2>

@@ -172,26 +172,16 @@
                                                 @enderror
                                         </div>
                                     </div>
-                                    {{-- <div class="mb-3">
-                                        <label class="form-label">Nội dung</label>
+                                    <div class="mb-3">
+                                        <label class="form-label">Mô tả</label>
                                         <div>
-                                            <textarea name="content" data-parsley-type="text" class="form-control" rows="5" value="{{ $customer->content }}"></textarea>
+                                            <textarea name="content" data-parsley-type="text" class="form-control" rows="5">{{ $customer->content }}</textarea>
                                             @error('content')
                                                 <div>
                                                     <p class="text-danger">{{ $message }}</p>
                                                 </div>
                                             @enderror
                                         </div>
-                                    </div> --}}
-                                    <div class="mb-3" style="height: 7rem"> 
-                                        <label class="form-label">Nội dung </label>
-                                        <input type="text" name="content" class="form-control"
-                                            value="{{ $customer->content }}" >
-                                        @error('content')
-                                            <div>
-                                                <p class="text-danger">{{ $message }}</p>
-                                            </div>
-                                        @enderror
                                     </div>
 
                                     <input type="text" name="updated_at"

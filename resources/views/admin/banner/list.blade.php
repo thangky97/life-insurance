@@ -7,6 +7,35 @@
     <div class="main-content">
         <div class="page-content">
             <div class="container-fluid">
+                <div class="row mt-4">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                                    <div class="carousel-inner" role="listbox">
+                                        @forelse ($banner as $item)
+                                            <div class="carousel-item active">
+                                                <img class="d-block img-fluid"
+                                                    src="{{ asset($item->image) ? '' . Storage::url($item->image) : $item->name }}"
+                                                    alt="First slide">
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                    <a class="carousel-control-prev" href="#carouselExampleControls" role="button"
+                                        data-bs-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                    <a class="carousel-control-next" href="#carouselExampleControls" role="button"
+                                        data-bs-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- end col -->
+                </div>
                 <div class="row">
                     <div class="col-xl-12">
                         <div id="msg-box">
@@ -62,7 +91,7 @@
                                                     <th scope="row" class="text-primary">{{ 'BN00' . $item->id }}</th>
                                                     <td style="width: 300px">
                                                         <img src="{{ asset($item->image) ? '' . Storage::url($item->image) : $item->name }}"
-                                                                alt="banner" width="200">
+                                                            alt="banner" width="200">
                                                     </td>
                                                     <td>
                                                         @if ($item->title)
@@ -99,6 +128,8 @@
                         </div>
                     </div>
                 </div>
+
+
             </div>
         </div>
     </div>

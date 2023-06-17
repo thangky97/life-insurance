@@ -50,12 +50,12 @@
                                                 @endforeach
                                             </select>
                                             @error('user_id')
-                                            <div>
-                                                <p class="text-danger">{{ $message }}</p>
-                                            </div>
-                                        @enderror
+                                                <div>
+                                                    <p class="text-danger">{{ $message }}</p>
+                                                </div>
+                                            @enderror
                                         </div>
-    
+
                                         <div class="col-md-6">
                                             <label class="form-label">Ngày đăng <span class="text-danger">*</span></label>
                                             <div class="input-group" id="datepicker2">
@@ -71,27 +71,22 @@
                                             @enderror
                                         </div>
                                     </div>
-
-
                                     <div class="mb-3">
-                                        <label class="form-label">Nội dung ngắn </label>
-                                        <input type="text" name="sort_content" class="form-control"
-                                            value="{{ old('sort_content', isset($request['sort_content']) ? $request['sort_content'] : '') }}">
-                                        @error('sort_content')
-                                            <div>
-                                                <p class="text-danger">{{ $message }}</p>
-                                            </div>
-                                        @enderror
+                                        <label class="form-label">Nội dung ngắn</label>
+                                        <div>
+                                            <textarea name="sort_content" data-parsley-type="text" class="form-control" rows="3">{{ old('sort_content', isset($request['sort_content']) ? $request['sort_content'] : '') }}</textarea>
+                                        </div>
                                     </div>
                                     <div class="mb-3">
-                                        <label class="form-label">Nội dung <span class="text-danger">*</span></label>
-                                        <input type="text" name="content" class="form-control"
-                                            value="{{ old('content', isset($request['content']) ? $request['content'] : '') }}">
-                                        @error('content')
-                                            <div>
-                                                <p class="text-danger">{{ $message }}</p>
-                                            </div>
-                                        @enderror
+                                        <label class="form-label">Nội dung</label>
+                                        <div>
+                                            <textarea name="content" data-parsley-type="text" class="form-control" rows="5">{{ old('content', isset($request['content']) ? $request['content'] : '') }}</textarea>
+                                            @error('content')
+                                                <div>
+                                                    <p class="text-danger">{{ $message }}</p>
+                                                </div>
+                                            @enderror
+                                        </div>
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">Ảnh <span class="text-danger">*</span></label>

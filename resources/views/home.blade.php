@@ -5,8 +5,8 @@
 @section('content')
 
     <!-- ABOUT US
-                                                                                            ================================================== -->
-    <div id="about" style="margin-top: -5rem">
+                                                                                                        ================================================== -->
+    <div id="about" style="margin-top: 5rem">
         <div class="container">
             <div class="row align-items-center about-style3">
                 <div class="col-lg-7 col-xl-6 mb-1-9 mb-sm-6 mb-lg-0 wow fadeIn" data-wow-delay="200ms">
@@ -60,8 +60,8 @@
     </div>
 
     <!-- SERVICE
-                                                                                            ================================================== -->
-    <section id="service" class="bg-light" style="margin-top: 65px; padding: 70px 0">
+                                                                                                        ================================================== -->
+    <section id="service" class="bg-light" style="padding: 70px 0">
         <div class="container">
             <div class="text-center mb-2-1 wow fadeIn" data-wow-delay="100ms">
                 <h2 class="display-22 display-sm-18 display-md-16 display-lg-14 w-lg-50 mx-auto mb-0">Các gói bảo hiểm
@@ -79,7 +79,12 @@
                                 <h3 class="h4 mb-3 mt-4"><a
                                         href="{{ route('route_FrontEnd_Service_Detail', ['id' => $item->id]) }}">{{ $item->service_name }}</a>
                                 </h3>
-                                <p class="mb-4">{{ $item->description }}</p>
+                                <p class="mb-4">
+                                    @php
+                                        $limitedDescription = Str::limit($item->description, 48, '...');
+                                    @endphp
+                                    <span>{!! nl2br(e($limitedDescription)) !!}</span>
+                                </p>
                                 <a href="{{ route('route_FrontEnd_Service_Detail', ['id' => $item->id]) }}"
                                     class="border-bottom display-30 font-weight-600">Xem thêm <i
                                         class="ti-arrow-right align-middle display-31"></i></a>
@@ -97,8 +102,8 @@
     </section>
 
     <!-- WHY CHOOSE US
-                                                                                            ================================================== -->
-    <section class="bg-white why-us-02 bg-img" data-background="img/content/why-us-02.jpg">
+                                                                                                        ================================================== -->
+    <section class="bg-white why-us-02 bg-img" data-background="img/content/why-us-02.jpg" style="padding: 30px 0; padding-bottom: 80px">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-xl-6 wow fadeIn" data-wow-delay="200ms">
@@ -108,107 +113,30 @@
                         </h2>
 
                         <div id="accordion" class="accordion-style style1">
-                            <div class="card mb-3">
-                                <div class="card-header" id="headingOne">
-                                    <h5 class="mb-0">
-                                        <button class="btn btn-link collapsed" data-bs-toggle="collapse"
-                                            data-bs-target="#collapseOne" aria-expanded="false"
-                                            aria-controls="collapseOne">01. Có mất phí tư vấn không?</button>
-                                    </h5>
-                                </div>
-                                <div id="collapseOne" class="collapse" aria-labelledby="headingOne"
-                                    data-bs-parent="#accordion">
-                                    <div class="card-body">
-                                        Bạn hoàn toàn không mất khoản phí gì khi tìm hiểu bảo hiểm nhân thọ: Không phí tư
-                                        vấn, không phí hồ sơ, Không phí trung gian. Bạn được lựa chọn các quyền lợi mà mình
-                                        tham gia. Người đại lý có trách nhiệm và nghĩa vụ tư vấn, chia sẻ với bạn cách thức
-                                        tham gia bảo hiểm nhân thọ.
+                            @foreach ($questions as $index => $ques)
+                                <div class="card mb-3">
+                                    <div class="card-header" id="heading{{ $index }}">
+                                        <h5 class="mb-0">
+                                            <button class="btn btn-link collapsed" data-bs-toggle="collapse"
+                                                data-bs-target="#collapse{{ $index }}" aria-expanded="false"
+                                                aria-controls="collapse{{ $index }}">{{ '0' . $index + 1 }}.
+                                                {{ $ques->title }} </button>
+                                        </h5>
+                                    </div>
+                                    <div id="collapse{{ $index }}" class="collapse"
+                                        aria-labelledby="heading{{ $index }}" data-bs-parent="#accordion">
+                                        <div class="card-body">
+                                            {{ $ques->content }}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="card mb-3">
-                                <div class="card-header" id="headingTwo">
-                                    <h5 class="mb-0">
-                                        <button class="btn btn-link collapsed" data-bs-toggle="collapse"
-                                            data-bs-target="#collapseTwo" aria-expanded="false"
-                                            aria-controls="collapseTwo">02. Khi nào nên tham gia bảo hiểm nhân
-                                            thọ?</button>
-                                    </h5>
-                                </div>
-                                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-                                    data-bs-parent="#accordion">
-                                    <div class="card-body">
-                                        Nên tham gia càng sớm càng tốt. Tham gia sớm mức phí bảo hiểm sẽ thấp hơn, và cơ hội
-                                        được duyệt hồ sơ cao hơn. Tham gia muộn mức phí sẽ cao hơn, và còn không được duyệt
-                                        hồ sơ nếu sức khỏe suy giảm.
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card mb-3">
-                                <div class="card-header" id="headingThree">
-                                    <h5 class="mb-0">
-                                        <button class="btn btn-link collapsed" data-bs-toggle="collapse"
-                                            data-bs-target="#collapseThree" aria-expanded="false"
-                                            aria-controls="collapseThree">03. Bao nhiêu tuổi thì được tham gia bảo hiểm
-                                            nhân thọ?</button>
-                                    </h5>
-                                </div>
-                                <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
-                                    data-bs-parent="#accordion">
-                                    <div class="card-body">
-                                        Độ tuổi tham gia cho phép từ 01 tháng tuổi tới 65 tuổi.
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card mb-3">
-                                <div class="card-header" id="headingFour">
-                                    <h5 class="mb-0">
-                                        <button class="btn btn-link collapsed" data-bs-toggle="collapse"
-                                            data-bs-target="#collapseFour" aria-expanded="false"
-                                            aria-controls="collapseFour">04. Nếu các năm sau không đóng phí thì
-                                            sao?</button>
-                                    </h5>
-                                </div>
-                                <div id="collapseFour" class="collapse" aria-labelledby="headingFour"
-                                    data-bs-parent="#accordion">
-                                    <div class="card-body">
-                                        Các hợp đồng đều có điều khoản về vấn đề này dựa trên Luật bảo hiểm: Bạn có 60 ngày
-                                        gia hạn để nộp phí và vẫn được bảo vệ trong suốt thời gian này. Sau 60 ngày không
-                                        nộp phí, công ty bảo hiểm sẽ trích tiền trong tài khoản bảo hiểm của bạn (nếu có) để
-                                        đóng phí. Nếu số dư không đủ để đóng bạn có thể làm đơn yêu cầu Bảo hiểm giảm để
-                                        không bị tạm dừng hợp đồng. Nếu hợp đồng bị tạm dừng, bạn có 24 tháng để kích hoạt
-                                        lại hợp đồng. Bạn sẽ đóng bù các khoản phí đã thiếu. Hợp đồng tiếp tục chạy. Sau 24
-                                        tháng mà không kích hoạt lại hợp đồng, thì hợp đồng của bạn chính thức chấm dứt. Ở
-                                        một số sản phẩm, bạn có thể linh hoạt đóng phí hàng năm, thậm chí vài năm không nộp
-                                        phí vẫn được bảo vệ.
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <div class="card-header" id="headingFive">
-                                    <h5 class="mb-0">
-                                        <button class="btn btn-link collapsed" data-bs-toggle="collapse"
-                                            data-bs-target="#collapseFive" aria-expanded="false"
-                                            aria-controls="collapseFive">05. Tham gia thì cần bao nhiêu tiền?</button>
-                                    </h5>
-                                </div>
-                                <div id="collapseFive" class="collapse" aria-labelledby="headingFive"
-                                    data-bs-parent="#accordion">
-                                    <div class="card-body">
-                                        Nên dành ra 10-15% thu nhập mỗi tháng để tham gia bảo hiểm nhân thọ. Phần thu nhập
-                                        còn lại dùng cho các kế hoạch chi tiêu, tiêu dùng ngắn hạn. Phần tiền dành cho bảo
-                                        hiểm nhân thọ là kế hoạch tiết kiệm dài hạn, phòng ngừa những khi ốm đau, bệnh tật,
-                                        giúp bạn có quỹ hưu trí khi về già.
-                                    </div>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
                 <div class="col-xl-6 wow fadeIn d-none d-xl-block" data-wow-delay="400ms">
                     <div class="ps-xxl-1-9 text-center">
-                        <img src="{{ asset('client/img/content/why-us-03.jpg') }}" class="border-radius-5"
-                            alt="...">
+                        <img src="{{ asset('client/img/content/why-us-03.jpg') }}" class="border-radius-5" alt="...">
                     </div>
                 </div>
             </div>
@@ -216,7 +144,7 @@
     </section>
 
     <!-- CALL TO ACTION
-                                                                                            ================================================== -->
+                                                                                                        ================================================== -->
     <section class="bg-img cover-background primary-overlay" data-overlay-dark="8"
         data-background="{{ asset('client/img/bg/bg5.jpg') }}">
         <div class="container">
@@ -304,8 +232,8 @@
     </section>
 
     <!-- Biểu phí
-                                                                                            ================================================== -->
-    <section id="Cacgoi" style="margin-top: -5rem">
+                                                                                                        ================================================== -->
+    <section id="Cacgoi" style="margin-top: -4rem">
         <div class="container">
             <div class="text-center mb-2-1 wow fadeIn" data-wow-delay="100ms">
                 <span class="text-muted text-uppercase small letter-spacing-4 d-block mb-3 font-weight-600">Các gói cơ
@@ -372,7 +300,7 @@
     </section>
 
     <!-- TESTIMONIALS
-                                                                                            ================================================== -->
+                                                                                                        ================================================== -->
     {{-- <section class="bg-img cover-background left-overlay-dark" data-overlay-dark="90"
         data-background="{{ asset('client/img/bg/bg-06.jpg') }}">
         <div class="container">
@@ -413,7 +341,8 @@
         </div>
     </section> --}}
 
-    <section style="margin-top: -5rem">
+    {{-- KHÁCH HÀNG SỬ DỤNG --}}
+    <section style="margin-top: -4rem">
         <div class="container">
             <div class="text-center mb-2-9 wow fadeIn title-style1 white" data-wow-delay="100ms">
                 <h2 class="display-22 display-sm-18 display-md-16 mb-0">Khách hàng tin tưởng sử dụng</h2>
@@ -421,93 +350,24 @@
         </div>
         <div class="container-fluid px-0">
             <div class="owl-theme owl-carousel portfolio-carousel-02">
-                <div class="portfolio-style03">
-                    <img src="{{ asset('client/img/khsd/khsd-1.jpg') }}" class="rounded" alt="...">
-                    <div class="overlay-box">
-                        <div class="content">
-                            <h3 class="mb-2 h4"><a href="#!">Thanh Thanh Huyền</a></h3>
-                            <span class="font-weight-600">MC</span>
+                @foreach ($customerUse as $item)
+                    <div class="portfolio-style03">
+                        <img src="{{ asset($item->customer_photo) ? '' . Storage::url($item->customer_photo) : '' }}"
+                            class="rounded" alt="...">
+                        <div class="overlay-box">
+                            <div class="content">
+                                <h3 class="mb-2 h4"><a href="#!">{{ $item->customer_name }}</a></h3>
+                                <span class="font-weight-600">{{ $item->job }}</span>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="portfolio-style03">
-                    <img src="{{ asset('client/img/khsd/khsd-2.jpg') }}" class="rounded" alt="...">
-                    <div class="overlay-box">
-                        <div class="content">
-                            <h3 class="mb-2 h4"><a href="#!">Phương Oanh</a></h3>
-                            <span class="font-weight-600">Diễn viên</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="portfolio-style03">
-                    <img src="{{ asset('client/img/khsd/khsd-3.jpg') }}" class="rounded" alt="...">
-                    <div class="overlay-box">
-                        <div class="content">
-                            <h3 class="mb-2 h4"><a href="#!">Trương Quỳnh Anh</a></h3>
-                            <span class="font-weight-600">Ca sĩ</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="portfolio-style03">
-                    <img src="{{ asset('client/img/khsd/khsd-4.jpg') }}" class="rounded" alt="...">
-                    <div class="overlay-box">
-                        <div class="content">
-                            <h3 class="mb-2 h4"><a href="#!">Mạnh Trường</a></h3>
-                            <span class="font-weight-600">Diễn viên</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="portfolio-style03">
-                    <img src="{{ asset('client/img/khsd/khsd-5.jpg') }}" class="rounded" alt="...">
-                    <div class="overlay-box">
-                        <div class="content">
-                            <h3 class="mb-2 h4"><a href="#!">Việt Anh</a></h3>
-                            <span class="font-weight-600">Diễn viên</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="portfolio-style03">
-                    <img src="{{ asset('client/img/khsd/khsd-6.jpg') }}" class="rounded" alt="...">
-                    <div class="overlay-box">
-                        <div class="content">
-                            <h3 class="mb-2 h4"><a href="#!">Dương Khắc Linh</a></h3>
-                            <span class="font-weight-600">Nhạc sĩ</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="portfolio-style03">
-                    <img src="{{ asset('client/img/khsd/khsd-7.jpg') }}" class="rounded" alt="...">
-                    <div class="overlay-box">
-                        <div class="content">
-                            <h3 class="mb-2 h4"><a href="#!">Thu Quỳnh</a></h3>
-                            <span class="font-weight-600">Diễn viên</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="portfolio-style03">
-                    <img src="{{ asset('client/img/khsd/khsd-8.jpg') }}" class="rounded" alt="...">
-                    <div class="overlay-box">
-                        <div class="content">
-                            <h3 class="mb-2 h4"><a href="#!">Quách Ngọc Tuyên</a></h3>
-                            <span class="font-weight-600">Diễn viên</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="portfolio-style03">
-                    <img src="{{ asset('client/img/khsd/khsd-9.jpg') }}" class="rounded" alt="...">
-                    <div class="overlay-box">
-                        <div class="content">
-                            <h3 class="mb-2 h4"><a href="#!">Quang Tèo</a></h3>
-                            <span class="font-weight-600">Nghệ sĩ</span>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
 
     <!-- BLOG
-                                                                                            ================================================== -->
+                                                                                                        ================================================== -->
     <section id="new" class="bg-light">
         <div class="container position-relative z-index-2">
             <div class="text-center mb-2-1 wow fadeIn" data-wow-delay="100ms">
@@ -545,7 +405,7 @@
     </section>
 
     <!-- PARTNER
-                                                                                        ================================================== -->
+                                                                                                    ================================================== -->
     <section id="partner" class="bg-light" style="padding-top: 0px">
         <div class="container">
             <div class="text-center mb-2-1 wow fadeIn" data-wow-delay="100ms">
@@ -566,3 +426,29 @@
     </section>
 
 @endsection
+
+@section('script')
+    <script>
+        var accordionItems = document.getElementsByClassName('btn btn-link');
+
+        for (var i = 0; i < accordionItems.length; i++) {
+            accordionItems[i].addEventListener('click', function() {
+                var currentCollapse = this.getAttribute('data-bs-target');
+                var isExpanded = this.getAttribute('aria-expanded');
+
+                // Đóng tất cả các accordion items trước khi mở item mới
+                var allCollapseItems = document.getElementsByClassName('collapse show');
+                for (var j = 0; j < allCollapseItems.length; j++) {
+                    allCollapseItems[j].classList.remove('show');
+                }
+
+                // Mở/collapse accordion item tương ứng
+                if (isExpanded === 'true') {
+                    document.querySelector(currentCollapse).classList.remove('show');
+                } else {
+                    document.querySelector(currentCollapse).classList.add('show');
+                }
+            });
+        }
+    </script>
+@endsection()

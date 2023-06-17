@@ -44,7 +44,7 @@
                                     <div class="mb-3">
                                         <label class="form-label">Câu trả lời <span class="text-danger">*</span></label>
                                         <div>
-                                            <textarea name="content" class="form-control" rows="5" placeholder="Type here">{{ isset($questions) ? $questions->content : '' }}</textarea>
+                                            <textarea name="content" class="form-control" rows="10" >{{ isset($questions) ? $questions->content : '' }}</textarea>
                                             @error('content')
                                                 <div>
                                                     <p class="text-danger">{{ $message }}</p>
@@ -53,23 +53,6 @@
                                         </div>
                                     </div>
 
-                                    <div class="mb-3">
-                                        <label class="form-label">Trạng thái <span class="text-danger">*</span></label>
-                                        <select name="status" class="form-select" id="validationCustom04">
-                                            <option value="">Chọn trạng thái</option>
-                                            <option value="1"
-                                                {{ isset($questions) && $questions->status === 1 ? 'selected' : '' }}>
-                                                Hoạt động</option>
-                                            <option value="0"
-                                                {{ isset($questions) && $questions->status === 0 ? 'selected' : '' }}>
-                                                Khóa</option>
-                                        </select>
-                                        @error('status')
-                                            <div>
-                                                <p class="text-danger">{{ $message }}</p>
-                                            </div>
-                                        @enderror
-                                    </div>
                                     <input type="text" name="updated_at"
                                         value="{{ date('Y-m-d H:i:s', strtotime('now')) }}" hidden>
                                     <div class="mb-0">

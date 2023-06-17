@@ -4,7 +4,7 @@
 
 @section('content')
 
-    <section style="margin-top: -15rem">
+    <section>
         <div class="container">
             <div class="section-heading text-center mb-2-9 mb-lg-6 wow fadeIn" data-wow-delay="100ms">
                 <span>Dịch vụ của chúng tôi</span>
@@ -12,7 +12,7 @@
             </div>
 
             <div class="row g-xl-5 mt-n2-9">
-                @forelse ($listMenuService as $service)
+                @forelse ($listService as $service)
                     <div class="col-md-6 col-lg-4 mt-2-9 wow fadeIn" data-wow-delay="200ms">
                         <article class="card card-style3 border-0 h-100">
                             <div class="card-image position-relative">
@@ -20,12 +20,19 @@
                                     class="card-img-top" alt="service" style="height: 280px">
                             </div>
                             <div class="card-body p-1-9 position-relative">
-                                <h3 class="h4 mb-4"><a href="{{ route('route_FrontEnd_Service_Detail', ['id' => $service->id]) }}">{{ $service->service_name }}</a>
+                                <h3 class="h4 mb-4"><a
+                                        href="{{ route('route_FrontEnd_Service_Detail', ['id' => $service->id]) }}">{{ $service->service_name }}</a>
                                 </h3>
-                                <p class="mb-0">{{ $service->description }}</p>
+                                <p class="mb-0">
+                                    @php
+                                        $limitedDescription = Str::limit($service->description, 72, '...');
+                                    @endphp
+                                    <span>{!! nl2br(e($limitedDescription)) !!}</span>
+                                </p>
                             </div>
                             <div class="card-footer bg-transparent px-1-9 py-3 border-color-light-gray">
-                                <a href="{{ route('route_FrontEnd_Service_Detail', ['id' => $service->id]) }}" class="text-secondary text-primary-hover font-weight-600">Xem thêm
+                                <a href="{{ route('route_FrontEnd_Service_Detail', ['id' => $service->id]) }}"
+                                    class="text-secondary text-primary-hover font-weight-600">Xem thêm
                                     <i class="ti-arrow-right ms-2 align-middle display-30"></i></a>
                             </div>
                         </article>
@@ -47,8 +54,8 @@
                 </div> --}}
             </div>
         </div>
-        <img src="{{ asset('client/img/content/shape7.png') }}" class="position-absolute bottom-35 right-5 ani-move d-none d-sm-block"
-            alt="...">
+        <img src="{{ asset('client/img/content/shape7.png') }}"
+            class="position-absolute bottom-35 right-5 ani-move d-none d-sm-block" alt="...">
     </section>
 
 @endsection

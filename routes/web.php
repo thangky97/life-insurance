@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'Client\HomeController@index')->name('route_FrontEnd_Home');
+Route::get('/header', 'Client\MasterController@header')->name('route_FrontEnd_Header');
 
 Route::get('/services', 'Client\ServiceController@index')->name('route_FrontEnd_Service');
 Route::get('/services/detail/{id}', 'Client\ServiceController@detail')->name('route_FrontEnd_Service_Detail');
@@ -22,6 +23,8 @@ Route::get('/news', 'Client\NewController@index')->name('route_FrontEnd_News');
 Route::get('/news/detail/{id}', 'Client\NewController@detail')->name('route_FrontEnd_News_Detail');
 
 Route::get('/contact', 'Client\ContactController@index')->name('route_FrontEnd_Contact');
+Route::post('/contact', 'Client\ContactController@create')->name('route_FrontEnd_Contact_Create');
+Route::post('/contact_footer', 'Client\ContactController@addFooter')->name('route_FrontEnd_Contact_Footer_Create');
 
 Route::get('/introduce', 'Client\IntroduceController@index')->name('route_FrontEnd_Introduce');
 
@@ -29,15 +32,25 @@ Route::get('/recruitment', function () {
     return view('recruitment');
 });
 
-Route::prefix('admin')->group(function () {
+Route::middleware('guest')->prefix('/admin/auth')->group(function () {
+    Route::get('/login', 'Auth\LoginController@getLogin')->name('getLogin');
+    Route::post('/login', 'Auth\LoginController@postLogin')->name('postLogin');
+
+    // Route::get('/login-google', 'Client\SigninController@getLoginGoogle')->name('getLoginGoogle');
+    // Route::get('/google/callback', 'Client\SigninController@loginGoogleCallback')->name('loginGoogleCallback');
+});
+
+Route::get('/logout', ['as' => 'logout', 'uses' => 'Auth\LoginController@getLogout'])->middleware('auth');
+
+Route::prefix('admin')->middleware(['auth'])->group(function () {
 
     Route::get('/dashboard', 'Admin\DashboardController@index')->name('route_BackEnd_Dashboard');
 
-    // Route::prefix('/profile')->group(function () {
-    //     Route::get('/edit/{id}', 'Admin\ProfileController@edit')->name('route_BackEnd_Profile_Edit');
-    //     Route::post('/update/{id}', 'Admin\ProfileController@update')->name('route_BackEnd_Profile_Update');
-    //     Route::post('/updatePassword/{id}', 'Admin\ProfileController@update_password')->name('route_BackEnd_Admin_Update_Password');
-    // });
+    Route::prefix('/profile')->group(function () {
+        Route::get('/edit/{id}', 'Admin\ProfileController@edit')->name('route_BackEnd_Profile_Edit');
+        Route::post('/update/{id}', 'Admin\ProfileController@update')->name('route_BackEnd_Profile_Update');
+        Route::post('/updatePassword/{id}', 'Admin\ProfileController@update_password')->name('route_BackEnd_Admin_Update_Password');
+    });
 
     Route::prefix('/setting_home')->group(function () {
         Route::get('/', 'Admin\SettingHomeController@index')->name('route_BackEnd_Setting_Home_List');
@@ -83,6 +96,13 @@ Route::prefix('admin')->group(function () {
         Route::get('/edit/{id}', 'Admin\BannerController@edit')->name('route_BackEnd_Banner_Edit');
         Route::post('/update/{id}', 'Admin\BannerController@update')->name('route_BackEnd_Banner_Update');
         Route::get('/remove/{id}', 'Admin\BannerController@remove')->name('route_BackEnd_Banner_Remove');
+    });
+
+    Route::prefix('/contact')->group(function () {
+        Route::get('/', 'Admin\ContactController@index')->name('route_BackEnd_Contact_List');
+        Route::get('/edit/{id}', 'Admin\ContactController@edit')->name('route_BackEnd_Contact_Edit');
+        Route::post('/update/{id}', 'Admin\ContactController@update')->name('route_BackEnd_Contact_Update');
+        Route::get('/remove/{id}', 'Admin\ContactController@remove')->name('route_BackEnd_Contact_Remove');
     });
 
     Route::prefix('/news')->group(function () {

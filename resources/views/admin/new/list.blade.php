@@ -52,9 +52,9 @@
                                                 <th scope="col">ID</th>
                                                 <th scope="col">Ảnh</th>
                                                 <th scope="col">Tiêu đề</th>
+                                                <th scope="col">Ngày đăng</th>
                                                 <th scope="col">Người đăng</th>
                                                 <th scope="col">Nội dung ngắn</th>
-                                                <th scope="col">Ngày đăng</th>
                                                 <th scope="col">Trạng thái</th>
                                                 <th scope="col">Hành động</th>
                                             </tr>
@@ -79,7 +79,7 @@
                                                     </td>
                                                     <td>
                                                         @if ($new->post_date)
-                                                            <span>{{ $format = date("d-m-Y",strtotime( $new->post_date)) }}</span>
+                                                            <span>{{ $format = date('d-m-Y', strtotime($new->post_date)) }}</span>
                                                         @else
                                                             <span>Không có ngày đăng</span>
                                                         @endif
@@ -93,7 +93,10 @@
                                                     </td>
                                                     <td>
                                                         @if ($new->sort_content)
-                                                            <span>{{ $new->sort_content }}</span>
+                                                            @php
+                                                                $limitedMessage = Str::limit($new->sort_content, 20, '...');
+                                                            @endphp
+                                                            <span>{!! nl2br(e($limitedMessage)) !!}</span>
                                                         @else
                                                             <span>Không có nội dung ngắn</span>
                                                         @endif

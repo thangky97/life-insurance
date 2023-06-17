@@ -4,7 +4,7 @@
 
 @section('content')
 
-    <section style="margin-top: -15rem">
+    <section>
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 order-2 order-lg-1 wow fadeIn" data-wow-delay="200ms">
@@ -15,7 +15,7 @@
                             </div>
                             <div class="list-style3 p-1-9">
                                 <ul class="list-unstyled service-detail mb-0">
-                                    @foreach ($listMenuService as $list)
+                                    @foreach ($listService as $list)
                                         <li><a href="{{ route('route_FrontEnd_Service_Detail', ['id' => $list->id]) }}">{{ $list->service_name }}<span
                                                     class="ti-arrow-right"></span></a>
                                         </li>
@@ -34,7 +34,11 @@
                                     </div>
                                     <div class="flex-grow-1 ms-3">
                                         <h4 class="mb-1 h6">Số điện thoại</h4>
-                                        <span> 0353 693 509</span>
+                                        <span>
+                                            @foreach ($support as $phone)
+                                                {{ $phone->support_phone_number }}
+                                            @endforeach
+                                        </span>
                                     </div>
                                 </div>
                                 <div class="d-flex mb-1-9">
@@ -43,7 +47,11 @@
                                     </div>
                                     <div class="flex-grow-1 ms-3">
                                         <h4 class="mb-1 h6">Email</h4>
-                                        <span>hungmv.mgmydinh@gmail.com</span>
+                                        <span>
+                                            @foreach ($support as $email)
+                                                {{ $email->support_email }}
+                                            @endforeach
+                                        </span>
                                     </div>
                                 </div>
                                 <div class="d-flex">
@@ -77,13 +85,10 @@
                                 alt="Dịch vụ" class="rounded" height="650px">
                         </div>
                         <div class="col-12 mb-1-9">
-                            <h2 class="mb-3">{{ $service->service_name }}</h2>
-                            <p class="mb-0">It is a long established fact that a reader will be distracted by the readable
-                                content of a page when looking at its layout. The point of using Lorem Ipsum is that it has
-                                a more-or-less normal distribution of letters, as opposed to using 'Content here, content
-                                here', making it look like readable.</p>
+                            <h3 class="mb-3">{{ $service->service_name }}</h3>
+                            <p class="mb-0">{{ $service->description }}</p>
                         </div>
-                        <div class="col-12 mb-2-9">
+                        {{-- <div class="col-12 mb-2-9">
                             <div class="row mt-n1-6">
                                 <div class="col-md-6 col-lg-4 mt-1-6">
                                     <h3 class="mb-3 text-primary h1"><span>01</span></h3>
@@ -122,8 +127,249 @@
                                     </div>
                                 </div>
                             </div>
+                        </div> --}}
+
+                        {{-- Hiển thị bảng dịch vụ bảo hiểm --}}
+                        @if (isset($service))
+                            <div class="inner-title" style="margin-bottom: 0px; border-bottom: none">
+                                <h3 class="h4 mb-0">Thông tin dịch vụ</h3>
+                            </div>
+                        @else
+                        @endif
+
+                        @if (isset($service->charges))
+                            <div class="row g-0">
+                                <div class="col-md-5 bg-light border py-2 mb-3 text-center">Mức phí</div>
+                                <div class="col-md-7 bg-light border py-2 mb-3 text-center">{{ $service->charges }}</div>
+                            </div>
+                        @else
+                        @endif
+
+                        @if (isset($service->duration))
+                            <div class="row g-0">
+                                <div class="col-md-5 bg-light border py-2 mb-3 text-center">Thời hạn</div>
+                                <div class="col-md-7 bg-light border py-2 mb-3 text-center">{{ $service->duration }}</div>
+                            </div>
+                        @else
+                        @endif
+
+                        @if (isset($service->chface_protect_lifearges))
+                            <div class="row g-0">
+                                <div class="col-md-5 bg-light border py-2 mb-3 text-center">Mệnh giá bảo vệ tính mạng</div>
+                                <div class="col-md-7 bg-light border py-2 mb-3 text-center">
+                                    {{ $service->face_protect_life }}
+                                </div>
+                            </div>
+                        @else
+                        @endif
+
+                        @if (isset($service->comprehensive_accident_insurance))
+                            <div class="row g-0">
+                                <div class="col-md-5 bg-light border py-2 mb-3 text-center">Bảo hiểm tai nạn toàn diện</div>
+                                <div class="col-md-7 bg-light border py-2 mb-3 text-center">
+                                    {{ $service->comprehensive_accident_insurance }}</div>
+                            </div>
+                        @else
+                        @endif
+
+                        @if (isset($service->critical_illness_insurance))
+                            <div class="row g-0">
+                                <div class="col-md-5 bg-light border py-2 mb-3 text-center">Bảo hiểm bệnh hiểm nghèo</div>
+                                <div class="col-md-7 bg-light border py-2 mb-3 text-center">
+                                    {{ $service->critical_illness_insurance }}</div>
+                            </div>
+                        @else
+                        @endif
+
+                        @if (isset($service->health_care_insurance))
+                            <div class="row g-0">
+                                <div class="col-md-5 bg-light border py-2 mb-3 text-center">Bảo hiểm chăm sóc sức khỏe</div>
+                                <div class="col-md-7 bg-light border py-2 mb-3 text-center">
+                                    {{ $service->health_care_insurance }}</div>
+                            </div>
+                        @else
+                        @endif
+
+
+                        {{-- Hiển thị bảng chi tiết dịch vụ bảo hiểm --}}
+                        @if (isset($service->insurance_services))
+                            <div class="inner-title mt-5" style="margin-bottom: 0px; border-bottom: none">
+                                <h3 class="h4 mb-0">Chi tiết bảo vệ quyền lợi</h3>
+                            </div>
+                            <div class="row g-0">
+                                <div class="col-md-12 border py-2 mb-3 text-center"
+                                    style="font-weight: 700; color: #ec1f28">1. Quyền
+                                    lợi tử vong</div>
+                            </div>
+                        @else
+                        @endif
+
+                        @if (isset($service->insurance_services->dead))
+                            <div class="row g-0">
+                                <div class="col-md-5 bg-light border py-2 mb-3 text-center">Tử vong/mất khả năng lao
+                                    động</div>
+                                <div class="col-md-7 bg-light border py-2 mb-3 text-center">
+                                    {{ $service->insurance_services->dead }}</div>
+                            </div>
+                        @else
+                        @endif
+
+                        @if (isset($service->insurance_services->accidental_death))
+                            <div class="row g-0">
+                                <div class="col-md-5 bg-light border py-2 mb-3 text-center">Tử vong do tai nạn (sinh hoạt
+                                    hoặc giao thông...) (5 - 65 tuổi)</div>
+                                <div class="col-md-7 bg-light border py-2 mb-3 text-center">
+                                    {{ $service->insurance_services->accidental_death }}
+                                </div>
+                            </div>
+                        @else
+                        @endif
+
+                        @if (isset($service->insurance_services->death_due_special_accident))
+                            <div class="row g-0">
+                                <div class="col-md-5 bg-light border py-2 mb-3 text-center">Tử vong do tai nạn đặc biệt (5 -
+                                    65 tuổi)
+                                </div>
+                                <div class="col-md-7 bg-light border py-2 mb-3 text-center">
+                                    {{ $service->insurance_services->death_due_special_accident }}
+                                </div>
+                            </div>
+                        @else
+                        @endif
+
+                        @if (isset($service->insurance_services))
+                            <div class="row g-0">
+                                <div class="col-md-12 border py-2 mb-3 text-center"
+                                    style="font-weight: 700; color: #ec1f28">2.
+                                    Bảo
+                                    hiểm tai nạn toàn diện nâng cao</div>
+                            </div>
+                        @else
+                        @endif
+
+                        @if (isset($service->insurance_services->temporary_disability_benefits))
+                            <div class="row g-0">
+                                <div class="col-md-5 bg-light border py-2 mb-3 text-center">Quyền thương tật tạm thời
+                                </div>
+                                <div class="col-md-7 bg-light border py-2 mb-3 text-center">
+                                    {{ $service->insurance_services->temporary_disability_benefits }}</div>
+                            </div>
+                        @else
+                        @endif
+
+                        @if (isset($service->insurance_services))
+                            <div class="row g-0">
+                                <div class="col-md-12 border py-2 mb-3 text-center"
+                                    style="font-weight: 700; color: #ec1f28">3.
+                                    Bảo
+                                    hiểm bệnh hiểm nghèo cao cấp toàn diện</div>
+                            </div>
+                        @else
+                        @endif
+
+                        @if (isset($service->insurance_services->serious_illness_mild))
+                            <div class="row g-0">
+                                <div class="col-md-5 bg-light border py-2 mb-3 text-center">Bệnh hiểm nghèo thể nhẹ
+                                </div>
+                                <div class="col-md-7 bg-light border py-2 mb-3 text-center">
+                                    {{ $service->insurance_services->serious_illness_mild }}</div>
+                            </div>
+                        @else
+                        @endif
+
+                        @if (isset($service->insurance_services->serious_illness))
+                            <div class="row g-0">
+                                <div class="col-md-5 bg-light border py-2 mb-3 text-center">Bệnh hiểm nghèo thể nặng
+                                </div>
+                                <div class="col-md-7 bg-light border py-2 mb-3 text-center">
+                                    {{ $service->insurance_services->serious_illness }}</div>
+                            </div>
+                        @else
+                        @endif
+
+                        @if (isset($service->insurance_services))
+                            <div class="row g-0">
+                                <div class="col-md-12 border py-2 mb-3 text-center"
+                                    style="font-weight: 700; color: #ec1f28">
+                                    4. Quyền
+                                    lợi chăm sóc sức khỏe</div>
+                            </div>
+                        @else
+                        @endif
+
+                        @if (isset($service->insurance_services->benefits_pay_medical_expenses))
+                            <div class="row g-0">
+                                <div class="col-md-5 bg-light border py-2 mb-3 text-center">Quyền lợi thanh toán chi phí y
+                                    tế
+                                </div>
+                                <div class="col-md-7 bg-light border py-2 mb-3 text-center">
+                                    {{ $service->insurance_services->benefits_pay_medical_expenses }}</div>
+                            </div>
+                        @else
+                        @endif
+
+                    </div>
+
+                    <div class="col-12 mb-1-9 mt-5">
+                        <div class="inner-title" style="margin-bottom: 5px">
+                            <h3 class="h4 mb-0">Bảo lãnh viện phí</h3>
+                        </div>
+                        <p class="mb-4">
+                            Bên cạnh hình thức tự thanh toán và nộp yêu cầu giải quyết bảo hiểm cho Dai-ichi Life Việt Nam,
+                            khách hàng có thể sử dụng tiện ích của dịch vụ bảo lãnh thanh toán viện phí tại các bệnh viện
+                            thuộc mạng lưới thanh toán trực tiếp của Pacific Cross Việt Nam – nhà cung cấp dịch vụ chuyên
+                            nghiệp tại châu Á, do Dai-ichi Life Việt Nam chỉ định. Một số bệnh viện áp dụng bảo lãnh viện
+                            phí: Vinmec, Phương Đông, Thu Cúc, Hồng Ngọc, Nhi Trung Ương, 108, ….
+                        </p>
+
+                        <p class="mb-0">
+                            Bên cạnh hình thức tự thanh toán và nộp yêu cầu giải quyết bảo hiểm cho Dai-ichi Life Việt Nam,
+                            khách hàng có thể sử dụng tiện ích của dịch vụ bảo lãnh thanh toán viện phí tại các bệnh viện
+                            thuộc mạng lưới thanh toán trực tiếp của Pacific Cross Việt Nam – nhà cung cấp dịch vụ chuyên
+                            nghiệp tại châu Á, do Dai-ichi Life Việt Nam chỉ định. Một số bệnh viện áp dụng bảo lãnh viện
+                            phí: Vinmec, Phương Đông, Thu Cúc, Hồng Ngọc, Nhi Trung Ương, 108, ….
+                        </p>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12 position-relative elements-block mb-6 mb-md-0">
+
+                            <div class="inner-title" style="margin-bottom: 5px">
+                                <h3 class="h4 mb-0">Thủ tục thanh toán chi phí y tế</h3>
+                            </div>
+
+                            <ul class="list-style1 mb-0">
+                                <li>Tại bệnh viện quốc tế /liên kết bảo lãnh : Thanh toán sau 1h kể từ lúc khách hàng yêu
+                                    cầu ra viện</li>
+                                <li>Tại bệnh viện cấp Quận/Huyện trở lên : Thủ tục thanh toán nhanh nhất là 5 ngày và chậm
+                                    nhất là 14 ngày kể từ ngày nhận giấy thanh toán điều trị</li>
+                            </ul>
                         </div>
                     </div>
+
+                    <div class="row">
+                        <div class="col-md-12 position-relative elements-block mb-6 mb-md-0 mt-5">
+
+                            <div class="inner-title" style="margin-bottom: 5px">
+                                <h3 class="h4 mb-0">Giấy tờ liên quan</h3>
+                            </div>
+
+                            <ul class="list-style1 mb-0">
+                                <li>Tại bệnh viện quốc tế /liên kết bảo lãnh : Thẻ Dai-ichi Life Care và chứng minh thư
+                                    khách hàng</li>
+                                <li>Tại bệnh viện cấp Quận/Huyện trở lên : yêu cầu 4 giấy tờ như sau:
+                                    <ul class="list-style1 list-style1-service-detail mb-0">
+                                        <li>1. Sổ khám bệnh</li>
+                                        <li>2. Kết quả điều trị ( kết quả xét nghiệm máu, điện tâm đồ, phim chụp X-Quang..)
+                                        </li>
+                                        <li>3. Hóa đơn thanh toán ( Hóa đơn đỏ, Giấy thu tiền, Biên lai thanh toán..)</li>
+                                        <li>4. Giấy ra viện</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>

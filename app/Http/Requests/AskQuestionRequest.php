@@ -24,7 +24,6 @@ class AskQuestionRequest extends FormRequest
         return [
                 'title' => 'required',
                 'content' => 'required',
-                'status' => 'required',
                 'images' =>
                 [
                     'image',
@@ -42,7 +41,6 @@ class AskQuestionRequest extends FormRequest
                 'content.required' => 'Nội dung bắt buộc nhập!',
                 'images.image' => 'Bắt buộc phải là ảnh!',
                 'images.max' => 'Ảnh không được lớn hơn 2MB!',
-                'status.required' => 'Bạn chưa chọn trạng thái',
         ];
     }
 }

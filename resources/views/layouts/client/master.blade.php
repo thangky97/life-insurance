@@ -1,3 +1,7 @@
+<?php
+  $setting = DB::table('setting_home')->get();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,10 +18,21 @@
     <title>@yield('title')</title>
 
     <!-- favicon -->
-    <link rel="shortcut icon" href="{{ asset('client/img/logos/favicon.png') }}">
-    <link rel="apple-touch-icon" href="{{ asset('client/img/logos/apple-touch-icon-57x57.png') }}">
-    <link rel="apple-touch-icon" sizes="72x72" href="{{ asset('client/img/logos/apple-touch-icon-72x72.png') }}">
-    <link rel="apple-touch-icon" sizes="114x114" href="{{ asset('client/img/logos/apple-touch-icon-114x114.png') }}">
+    {{-- {{ asset($lg->logo) ? '' . Storage::url($lg->logo) : '' }} --}}
+    @foreach ($setting as $favicon)
+        <link rel="shortcut icon" href="{{ asset($favicon->favicon) ? '' . Storage::url($favicon->favicon) : '' }}">
+    @endforeach
+    @foreach ($setting as $favicon)
+        <link rel="apple-touch-icon" href="{{ asset($favicon->favicon) ? '' . Storage::url($favicon->favicon) : '' }}">
+    @endforeach
+    @foreach ($setting as $favicon)
+        <link rel="apple-touch-icon" sizes="72x72"
+            href="{{ asset($favicon->favicon) ? '' . Storage::url($favicon->favicon) : '' }}">
+    @endforeach
+    @foreach ($setting as $favicon)
+        <link rel="apple-touch-icon" sizes="114x114"
+            href="{{ asset($favicon->favicon) ? '' . Storage::url($favicon->favicon) : '' }}">
+    @endforeach
 
     <!-- plugins -->
     <link rel="stylesheet" href="{{ asset('client/css/plugins.css') }}">
@@ -64,32 +79,40 @@
 
         <div class="social-button">
             <div class="social-button-content">
-               <a href="tel:0981481368" class="call-icon" rel="nofollow">
-                <i class="fas fa-phone-alt" aria-hidden="true"></i>
-                  <div class="animated alo-circle"></div>
-                  <div class="animated alo-circle-fill alo-circle-fill-call"></div>
-                   <span>Hotline: 0353 693 509</span>
-                </a>
+                @foreach ($setting as $phone)
+                    <a href="tel:{{ str_replace(' ', '', $phone->support_phone_number) }}" class="call-icon" rel="nofollow">
+                        <i class="fas fa-phone-alt" aria-hidden="true"></i>
+                        <div class="animated alo-circle"></div>
+                        <div class="animated alo-circle-fill alo-circle-fill-call"></div>
+                        <span>Hotline:
+                            {{ $phone->support_phone_number }}
+                        </span>
+                    </a>
+                @endforeach
                 {{-- <a href="sms:0981481368" class="sms">
                   <i class="fa fa-weixin" aria-hidden="true"></i>
                   <span>SMS: 0353 693 509</span>
                 </a> --}}
-                <a href="https://www.facebook.com/Ngocthang.net/" class="mes">
-                  <i class="fab fa-facebook-messenger" aria-hidden="true"></i>
-                  <span>Nhắn tin Facebook</span>
-                </a>
-                <a href="http://zalo.me/0353693509" class="zalo">
-                  <i class="fas fa-phone-square-alt" aria-hidden="true"></i>
-                  <span>Zalo: 0353 693 509</span>
-                </a>
+                @foreach ($setting as $link)
+                    <a href="{{ $link->link_facebook }}" class="mes">
+                        <i class="fab fa-facebook-messenger" aria-hidden="true"></i>
+                        <span>Nhắn tin Facebook</span>
+                    </a>
+                @endforeach
+                @foreach ($setting as $link)
+                    <a href="{{ $link->link_zalo }}" class="zalo">
+                        <i class="fas fa-phone-square-alt" aria-hidden="true"></i>
+                        <span>Zalo: {{ $link->support_phone_number }}</span>
+                    </a>
+                @endforeach
             </div>
-               
+
             <a class="user-support">
-              <i class="fas fa-user-ninja" aria-hidden="true"></i>
-              <div class="animated alo-circle"></div>
-              <div class="animated alo-circle-fill"></div>
+                <i class="fas fa-user-ninja" aria-hidden="true"></i>
+                <div class="animated alo-circle"></div>
+                <div class="animated alo-circle-fill"></div>
             </a>
-          </div>
+        </div>
 
     </div>
 
@@ -124,14 +147,14 @@
     <script src="{{ asset('client/quform/js/scripts.js') }}"></script>
 
     <!-- all js include end -->
-    
+
     <script>
-        $(document).ready(function(){
-          $('.user-support').click(function(event) {
-            $('.social-button-content').slideToggle();
-          });
-          });
-      </script>
+        $(document).ready(function() {
+            $('.user-support').click(function(event) {
+                $('.social-button-content').slideToggle();
+            });
+        });
+    </script>
 
     <script>
         function navigateToURL(element) {
@@ -140,9 +163,31 @@
         }
     </script>
 
+<script>
+    function validateForm() {
+        var contactName = document.getElementsByName('contact_name')[0].value;
+        var phoneNumber = document.getElementsByName('phone_number')[0].value;
+        var message = document.getElementsByName('message')[0].value;
+
+        if (contactName === '' || phoneNumber === '' || message === '') {
+            showAlert('Vui lòng nhập đầy đủ thông tin', 'alert');
+            return false;
+        } else {
+            showAlert('Gửi thông tin thành công', 'success');
+            return true;
+        }
+    }
+
+    function showAlert(message, type) {
+        var alertElement = document.createElement('div');
+        alertElement.className = 'alert ' + type;
+        alertElement.innerText = message;
+
+        var form = document.querySelector('form');
+        form.insertBefore(alertElement, form.firstChild);
+    }
+</script>
+
 </body>
-
-
-<!-- Mirrored from lifesthtml.websitelayout.net/index-02.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 07 Jun 2023 09:13:21 GMT -->
 
 </html>

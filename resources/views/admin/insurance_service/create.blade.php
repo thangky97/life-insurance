@@ -37,7 +37,7 @@
                                                 </option>
                                             @endforeach --}}
 
-                                            <option selected="selected" disabled>Chọn phòng</option>
+                                            <option selected="selected" disabled>Chọn dịch vụ</option>
                                             @foreach ($listService as $service)
                                                 @if (!in_array($service->id, $list))
                                                     <option value="{{ $service->id }}">{{ $service->service_name }}</option>
@@ -91,8 +91,7 @@
                                             </div>
                                         </div>
                                         <div class="col-md-6">
-                                            <label class="form-label">Tử vong do ung thư <span
-                                                    class="text-danger">*</span></label>
+                                            <label class="form-label">Tử vong do ung thư </label>
                                             <div>
                                                 <input name="death_from_cancer" type="text" class="form-control"
                                                     value="{{ old('death_from_cancer', isset($request['death_from_cancer']) ? $request['death_from_cancer'] : '') }}">

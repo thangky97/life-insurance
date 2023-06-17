@@ -13,7 +13,7 @@ class Contact extends Model
 
     protected $table = 'contact';
 
-    protected $fillable = ['id', 'contact_name','phone_number', 'message', 'status'];
+    protected $fillable = ['contact_name', 'phone_number', 'message'];
 
     public function saveNew($params)
     {

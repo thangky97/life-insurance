@@ -128,8 +128,7 @@
                                     <div class="mb-3">
                                         <label class="form-label">Mô tả <span class="text-danger">*</span></label>
                                         <div>
-                                            <input name="description" type="text" class="form-control"
-                                                value="{{ $services->description }}">
+                                            <textarea name="description" id="" class="form-control" rows="3">{{ $services->description }}</textarea>
                                             @error('description')
                                                 <div>
                                                     <p class="text-danger">{{ $message }}</p>

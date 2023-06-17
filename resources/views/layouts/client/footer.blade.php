@@ -1,3 +1,9 @@
+<?php
+$footer = DB::table('setting_home')->get();
+$listMenuService = DB::table('services')->get();
+$newsFooter = DB::table('news')->paginate(3);
+?>
+
 <footer class="footer-style2 pt-0 overflow-hidden position-relative">
     <div class="container pb-0">
         <div class="row mt-n1-9 mb-6 mb-md-8">
@@ -8,9 +14,16 @@
                         <li><a href="#!"><i class="fas fa-map-marker-alt me-2"></i>Địa Chỉ: Trụ sở Dai-ichi miền Bắc:
                                 Số 195 Khâm
                                 Thiên, Phường Thổ Quan, Quận Đống Đa, TP Hà Nội</a></li>
-                        <li><a href="tel:0353693509"><i class="fas fa-phone-alt me-2"></i>Điện Thoại: 0353 693 509</a></li>
+                        <li><a href="tel:0353693509"><i class="fas fa-phone-alt me-2"></i>Điện Thoại:
+                                @foreach ($footer as $phone)
+                                    {{ $phone->support_phone_number }}
+                                @endforeach
+                            </a></li>
                         <li><a href="#!"><i class="fas fa-envelope me-2"></i>Email:
-                                hungmv.mgmydinh@gmail.com</a>
+                                @foreach ($footer as $email)
+                                    {{ $email->support_email }}
+                                @endforeach
+                            </a>
                         </li>
                     </ul>
                 </div>
@@ -48,10 +61,9 @@
             </div>
             <div class="col-sm-6 col-lg-3 mt-1-9 wow fadeIn" data-wow-delay="650ms">
                 <h3 class="h4 mb-1-9">Tư vấn</h3>
-                <form class="quform newsletter-form"
-                    action="https://lifesthtml.websitelayout.net/quform/newsletter-two.php" method="post"
-                    enctype="multipart/form-data" onclick="">
-
+                <form action="{{ route('route_FrontEnd_Contact_Footer_Create') }}" method="post"
+                    enctype="multipart/form-data" onsubmit="return validateForm()">
+                    @csrf
                     <div class="quform-elements">
 
                         <div class="row">
@@ -60,8 +72,13 @@
                             <div class="col-md-12">
                                 <div class="quform-element">
                                     <div class="quform-input">
-                                        <input class="form-control form-control-footer" id="email_address"
-                                            type="text" name="email_address" placeholder="Họ tên" />
+                                        <input class="form-control form-control-footer" type="text"
+                                            name="contact_name" placeholder="Họ tên" />
+                                        @error('contact_name')
+                                            <div>
+                                                <p class="text-white">{{ $message }}</p>
+                                            </div>
+                                        @enderror
                                     </div>
                                 </div>
                             </div>
@@ -71,8 +88,13 @@
                             <div class="col-md-12">
                                 <div class="quform-element">
                                     <div class="quform-input">
-                                        <input class="form-control form-control-footer" id="email_address"
-                                            type="text" name="email_address" placeholder="Số điện thoại" />
+                                        <input class="form-control form-control-footer" type="text"
+                                            name="phone_number" placeholder="Số điện thoại" />
+                                        @error('phone_number')
+                                            <div>
+                                                <p class="text-white">{{ $message }}</p>
+                                            </div>
+                                        @enderror
                                     </div>
                                 </div>
                             </div>
@@ -82,8 +104,13 @@
                             <div class="col-md-12">
                                 <div class="quform-element">
                                     <div class="quform-input">
-                                        <input class="form-control form-control-footer" id="email_address"
-                                            type="text" name="email_address" placeholder="Nội dung tư vấn" />
+                                        <input class="form-control form-control-footer" type="text" name="message"
+                                            placeholder="Nội dung tư vấn" />
+                                        @error('message')
+                                            <div>
+                                                <p class="text-white">{{ $message }}</p>
+                                            </div>
+                                        @enderror
                                     </div>
                                 </div>
                             </div>
@@ -110,7 +137,10 @@
             data-wow-delay="250ms">
             <div class="col-md-4 mb-4 mb-md-0 text-center text-md-start">
                 <div class="footer-logo text-center text-md-start mx-auto mx-lg-0">
-                    <img src="{{ asset('client/img/logos/Logo-Dai-Ichi-VN.png') }}" alt="...">
+                    @foreach ($footer as $lg)
+                        <img src="{{ asset($lg->logo) ? '' . Storage::url($lg->logo) : '' }}" alt="logo"
+                            style="height: 70px">
+                    @endforeach
                 </div>
             </div>
             <div class="col-md-8">
@@ -119,7 +149,6 @@
                         <li><a href="/">Trang chủ</a></li>
                         <li><a href="/#service">Dịch vụ</a></li>
                         <li><a href="/#about">Giới thiệu</a></li>
-                        {{-- <li><a href="#Cacgoi">Các gói</a></li> --}}
                         <li><a href="/#partner">Đối tác</a></li>
                         <li><a href="/#new">Bài viết</a></li>
                         <li><a href="{{ route('route_FrontEnd_Contact') }}">Liên hệ</a></li>
@@ -132,8 +161,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <p class="text-white mb-0">&copy; <span class="current-year"></span> DAI-ICHi LIFE <a
-                            href="#!" class="text-primary text-white-hover"> - Gắn bó lâu dài</a></p>
+                    <p class="text-white mb-0">&copy; <span class="current-year"></span> DAI-ICHi LIFE <a href="#!"
+                            class="text-primary text-white-hover"> - Gắn bó lâu dài</a></p>
                 </div>
             </div>
         </div>

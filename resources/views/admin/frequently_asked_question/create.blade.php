@@ -41,8 +41,7 @@
 
                                     <div class="mb-3">
                                         <label class="form-label">Câu trả lời <span class="text-danger">*</span></label>
-                                        <input type="text" name="content" class="form-control" style="height: 80px"
-                                            value="{{ old('content', isset($request['content']) ? $request['content'] : '') }}">
+                                        <textarea name="content" id="" class="form-control" rows="10">{{ old('content', isset($request['content']) ? $request['content'] : '') }}</textarea>
                                         @error('content')
                                             <div>
                                                 <p class="text-danger">{{ $message }}</p>
@@ -50,19 +49,6 @@
                                         @enderror
                                     </div>
 
-                                    <div class="mb-3">
-                                        <label class="form-label">Trạng thái <span class="text-danger">*</span></label>
-                                        <select name="status" class="form-select" id="validationCustom04">
-                                            <option selected value="">Chọn trạng thái</option>
-                                            <option value="1">Hoạt động</option>
-                                            <option value="0">Khóa</option>
-                                        </select>
-                                        @error('status')
-                                            <div>
-                                                <p class="text-danger">{{ $message }}</p>
-                                            </div>
-                                        @enderror
-                                    </div>
                                     <input type="text" name="created_at"
                                         value="{{ date('Y-m-d H:i:s', strtotime('now')) }}" hidden>
                                     <div class="mb-0">

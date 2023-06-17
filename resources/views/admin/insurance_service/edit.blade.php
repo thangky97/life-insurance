@@ -87,8 +87,7 @@
                                             </div>
                                         </div>
                                         <div class="col-md-6">
-                                            <label class="form-label">Tử vong do ung thư <span
-                                                    class="text-danger">*</span></label>
+                                            <label class="form-label">Tử vong do ung thư </label>
                                             <div>
                                                 <input name="death_from_cancer" type="text" class="form-control"
                                                     value="{{ $insurance_services->death_from_cancer }}">
