@@ -22,6 +22,8 @@ class User extends Authenticatable
      */
     protected $table = 'users';
 
+    protected $fillable = ['id', 'name', 'email', 'avatar', 'date_of_birthday', 'address', 'gender', 'phone_number', 'status', 'password'];
+
     public function saveNew($params)
     {
         $data = array_merge(

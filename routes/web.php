@@ -46,6 +46,9 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
 
     Route::get('/dashboard', 'Admin\DashboardController@index')->name('route_BackEnd_Dashboard');
 
+    Route::post('/mark-notifications-as-read', 'Admin\DashboardController@markAsRead')->name('notifications.markAsRead');
+
+
     Route::prefix('/profile')->group(function () {
         Route::get('/edit/{id}', 'Admin\ProfileController@edit')->name('route_BackEnd_Profile_Edit');
         Route::post('/update/{id}', 'Admin\ProfileController@update')->name('route_BackEnd_Profile_Update');

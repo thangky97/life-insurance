@@ -1,3 +1,12 @@
+<?php
+$notifications = DB::table('contact')
+    ->orderby('id', 'desc')
+    ->paginate(6);
+$notificationCount = DB::table('contact')
+    ->whereDate('created_at', today())
+    ->count();
+?>
+
 <header id="page-topbar">
     <div class="navbar-header">
         <div class="d-flex">
@@ -71,117 +80,69 @@
                     id="page-header-notifications-dropdown" data-bs-toggle="dropdown" aria-haspopup="true"
                     aria-expanded="false">
                     <i class="mdi mdi-bell-outline"></i>
-                    <span class="badge bg-danger rounded-pill">3</span>
+                    <span class="badge bg-danger rounded-pill" id="notification-count">{{ $notificationCount }}</span>
                 </button>
                 <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0"
                     aria-labelledby="page-header-notifications-dropdown">
                     <div class="p-3">
                         <div class="row align-items-center">
                             <div class="col">
-                                <h5 class="m-0 font-size-16"> Notifications (258) </h5>
+                                <h5 class="m-0 font-size-16">Thông báo ({{ $notificationCount }})</h5>
                             </div>
                         </div>
                     </div>
                     <div data-simplebar style="max-height: 230px;">
-                        <a href="#" class="text-reset notification-item">
-                            <div class="d-flex">
-                                <div class="flex-shrink-0 me-3">
-                                    <div class="avatar-xs">
-                                        <span class="avatar-title bg-success rounded-circle font-size-16">
-                                            <i class="mdi mdi-cart-outline"></i>
-                                        </span>
+                        <div id="notification-list">
+                            @foreach ($notifications as $notification)
+                                <a href="#" class="text-reset notification-item">
+                                    <div class="d-flex">
+                                        <div class="flex-shrink-0 me-3">
+                                            <div class="avatar-xs">
+                                                <span class="avatar-title bg-success rounded-circle font-size-16">
+                                                    <i class="mdi mdi-bell"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="flex-grow-1">
+                                            <h6 class="mb-1">{{ $notification->contact_name }}
+                                            </h6>
+                                            <div class="font-size-12 text-muted">
+                                                <p class="mb-1">
+                                                    {{ \Illuminate\Support\Str::limit($notification->message, 20) }}</p>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="flex-grow-1">
-                                    <h6 class="mb-1">Your order is placed</h6>
-                                    <div class="font-size-12 text-muted">
-                                        <p class="mb-1">Dummy text of the printing and typesetting industry.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
+                                </a>
+                                @if (!$notification->is_read)
+                                    <script>
+                                        // Đánh dấu thông báo là đã đọc khi người dùng nhấp vào
+                                        document.addEventListener('DOMContentLoaded', function() {
+                                            const notificationItem = document.querySelector('.notification-item');
+                                            notificationItem.addEventListener('click', function() {
+                                                axios.post('/notifications/mark-as-read/' + '{{ $notification->id }}')
+                                                    .then(function() {
+                                                        const notificationCount = document.getElementById('notification-count');
+                                                        notificationCount.textContent = parseInt(notificationCount.textContent) - 1;
+                                                    })
+                                                    .catch(function(error) {
+                                                        console.log(error);
+                                                    });
+                                            });
+                                        });
+                                    </script>
+                                @endif
+                            @endforeach
 
-                        <a href="#" class="text-reset notification-item">
-                            <div class="d-flex">
-                                <div class="flex-shrink-0 me-3">
-                                    <div class="avatar-xs">
-                                        <span class="avatar-title bg-warning rounded-circle font-size-16">
-                                            <i class="mdi mdi-message-text-outline"></i>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="flex-grow-1">
-                                    <h6 class="mb-1">New Message received</h6>
-                                    <div class="font-size-12 text-muted">
-                                        <p class="mb-1">You have 87 unread messages</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-
-                        <a href="#" class="text-reset notification-item">
-                            <div class="d-flex">
-                                <div class="flex-shrink-0 me-3">
-                                    <div class="avatar-xs">
-                                        <span class="avatar-title bg-info rounded-circle font-size-16">
-                                            <i class="mdi mdi-glass-cocktail"></i>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="flex-grow-1">
-                                    <h6 class="mb-1">Your item is shipped</h6>
-                                    <div class="font-size-12 text-muted">
-                                        <p class="mb-1">It is a long established fact that a reader will</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-
-                        <a href="#" class="text-reset notification-item">
-                            <div class="d-flex">
-                                <div class="flex-shrink-0 me-3">
-                                    <div class="avatar-xs">
-                                        <span class="avatar-title bg-primary rounded-circle font-size-16">
-                                            <i class="mdi mdi-cart-outline"></i>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="flex-grow-1">
-                                    <h6 class="mb-1">Your order is placed</h6>
-                                    <div class="font-size-12 text-muted">
-                                        <p class="mb-1">Dummy text of the printing and typesetting industry.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-
-                        <a href="#" class="text-reset notification-item">
-                            <div class="d-flex">
-                                <div class="flex-shrink-0 me-3">
-                                    <div class="avatar-xs">
-                                        <span class="avatar-title bg-danger rounded-circle font-size-16">
-                                            <i class="mdi mdi-message-text-outline"></i>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="flex-grow-1">
-                                    <h6 class="mb-1">New Message received</h6>
-                                    <div class="font-size-12 text-muted">
-                                        <p class="mb-1">You have 87 unread messages</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
+                        </div>
                     </div>
-                    <div class="p-2 border-top">
+                    {{-- <div class="p-2 border-top">
                         <div class="d-grid">
-                            <a class="btn btn-sm btn-link font-size-14 text-center" href="javascript:void(0)">
+                            <a class="btn btn-sm btn-link font-size-14 text-center" href="javascript:void(0)"
+                                id="view-all-link">
                                 View all
                             </a>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
 
@@ -197,11 +158,9 @@
                 </button>
                 <div class="dropdown-menu dropdown-menu-end">
                     <!-- item-->
-                    <a class="dropdown-item" href="{{ route('route_BackEnd_Profile_Edit', ['id' => Auth::user()->id]) }}"><i
-                            class="mdi mdi-account-circle font-size-17 align-middle me-1"></i> Profile</a>
-                    <a class="dropdown-item d-flex align-items-center" href="#"><i
-                            class="mdi mdi-cog font-size-17 align-middle me-1"></i> Settings<span
-                            class="badge bg-success ms-auto">11</span></a>
+                    <a class="dropdown-item"
+                        href="{{ route('route_BackEnd_Profile_Edit', ['id' => Auth::user()->id]) }}"><i
+                            class="mdi mdi-account-circle font-size-17 align-middle me-1"></i> Hồ sơ</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item text-danger" href="{{ route('logout') }}"><i
                             class="bx bx-power-off font-size-17 align-middle me-1 text-danger"></i> Đăng xuất</a>
@@ -217,3 +176,28 @@
         </div>
     </div>
 </header>
+
+
+{{-- <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var notificationIcon = document.getElementById("page-header-notifications-dropdown");
+        var notificationCount = document.getElementById("notification-count");
+        var notificationList = document.getElementById("notification-list");
+
+        notificationIcon.addEventListener("click", function() {
+            // Gọi Ajax request để đánh dấu thông báo đã xem
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "{{ route('notifications.markAsRead') }}");
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.send();
+
+            // Cập nhật số lượng thông báo
+            notificationCount.innerText = "0";
+
+            // Xóa tất cả các thông báo trong danh sách
+            while (notificationList.firstChild) {
+                notificationList.removeChild(notificationList.firstChild);
+            }
+        });
+    });
+</script> --}}

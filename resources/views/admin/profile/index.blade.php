@@ -162,12 +162,18 @@
                                         <span class="d-none d-sm-block">Cập nhật tài khoản</span>
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-bs-toggle="tab" href="#restPassword" role="tab">
+                                        <i class="bx bx-mail-send font-size-20"></i>
+                                        <span class="d-none d-sm-block">Cập nhật mật khẩu</span>
+                                    </a>
+                                </li>
                             </ul>
                             <!-- Tab content -->
                             <div class="tab-content p-4">
                                 <div class="tab-pane active" id="messages" role="tabpanel">
                                     <div>
-                                        <h5 class="font-size-16 mb-4">Cập nhật</h5>
+                                        <h5 class="font-size-16 mb-4">Cập nhật tài khoản</h5>
 
                                         <div class="rounded mt-4">
                                             <form
@@ -232,8 +238,7 @@
                                                 <div class="mb-3">
                                                     <label class="form-label">Địa chỉ </label>
                                                     <div>
-                                                        <input name="address"
-                                                            type="text" class="form-control"
+                                                        <input name="address" type="text" class="form-control"
                                                             value="{{ $user->address }}">
                                                     </div>
                                                 </div>
@@ -284,6 +289,63 @@
                                 </div>
 
                             </div>
+                            <div class="tab-content p-4">
+                                <div class="tab-pane" id="restPassword" role="tabpanel">
+                                    <div>
+                                        <h5 class="font-size-16 mb-4">Cập nhật mật khẩu</h5>
+
+                                        <div class="rounded mt-4">
+                                            <form
+                                                action="{{ route('route_BackEnd_Admin_Update_Password', ['id' => request()->route('id')]) }}"
+                                                method="post" enctype="multipart/form-data">
+                                                @csrf
+                                                <div class="mb-3">
+                                                    <label class="form-label">Mật khẩu cũ <span
+                                                            class="text-danger">*</span></label>
+                                                    <input type="password" name="password" class="form-control"
+                                                    value="@isset($request['password']){{ $request['password'] }}@endisset">
+                                                    @error('password')
+                                                        <div>
+                                                            <p class="text-danger">{{ $message }}</p>
+                                                        </div>
+                                                    @enderror
+                                                </div>
+
+                                                <div class="mb-3">
+                                                    <label class="form-label">Mật khẩu mới <span
+                                                            class="text-danger">*</span></label>
+                                                    <div>
+                                                        <input type="password" name="new_password" class="form-control"
+                                                        value="@isset($request['new_password']){{ $request['new_password'] }}@endisset" id="password">
+                                                        @error('new_password')
+                                                            <div>
+                                                                <p class="text-danger">{{ $message }}</p>
+                                                            </div>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Xác nhận mật khẩu mới <span
+                                                            class="text-danger">*</span></label>
+                                                    <div>
+                                                        <input type="password" class="form-control"
+                                                            value="@isset($request['new_password']){{ $request['new_password'] }}@endisset"
+                                                            id="confirm_password">
+                                                    </div>
+                                                </div>
+
+                                                <div class="text-end mt-3">
+                                                    <button type="submit"
+                                                        class="btn btn-success w-sm text-truncate ms-2">
+                                                        Cập nhật <i class="bx bx-send ms-2 align-middle"></i></button>
+                                                </div>
+                                            </form>
+                                        </div> <!-- end .border-->
+
+                                    </div>
+                                </div>
+
+                            </div>
                         </div>
 
                     </div>
@@ -300,4 +362,22 @@
     </div>
     <!-- END layout-wrapper -->
 
+@endsection
+
+@section('srcipt')
+    <script>
+        var password = document.getElementById("password"),
+            confirm_password = document.getElementById("confirm_password");
+
+        function validatePassword() {
+            if (password.value != confirm_password.value) {
+                confirm_password.setCustomValidity("Mật khẩu mới không khớp!");
+            } else {
+                confirm_password.setCustomValidity("");
+            }
+        }
+
+        password.onchange = validatePassword;
+        confirm_password.onkeyup = validatePassword;
+    </script>
 @endsection

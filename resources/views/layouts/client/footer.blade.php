@@ -119,8 +119,8 @@ $newsFooter = DB::table('news')->paginate(3);
                             <!-- Begin Submit button -->
                             <div class="col-md-12">
                                 <div class="quform-submit-inner">
-                                    <button class="butn-style2 butn-style2-footer white border-0 w-100"
-                                        type="submit">Nhận tư vấn</button>
+                                    <button class="butn-style2 butn-style2-footer white border-0 w-100 "
+                                        type="submit" id="sa-success">Nhận tư vấn</button>
                                 </div>
                                 <div class="quform-loading-wrap text-center"><span class="quform-loading"></span></div>
                             </div>

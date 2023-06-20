@@ -42,12 +42,22 @@
                                     <div class="float-start mini-stat-img me-4">
                                         <img src="{{ asset('admin/assets/images/services-icon/01.png') }}" alt="">
                                     </div>
-                                    <h5 class="font-size-16 text-uppercase text-white-50">Orders</h5>
-                                    <h4 class="fw-medium font-size-24">1,685 <i
-                                            class="mdi mdi-arrow-up text-success ms-2"></i>
-                                    </h4>
+                                    <h5 class="font-size-16 text-uppercase text-white-50">Liên hệ</h5>
+                                    <h4 class="fw-medium font-size-24">{{ $countContactToday }}</h4>
                                     <div class="mini-stat-label bg-success">
-                                        <p class="mb-0">+ 12%</p>
+                                        @php
+                                            $previousDayCount = DB::table('contact')
+                                                ->whereDate('created_at', Carbon\Carbon::parse(today())->subDay())
+                                                ->count();
+                                            $percentChange = $previousDayCount !== 0 ? (($countContactToday - $previousDayCount) / $previousDayCount) * 100 : 0;
+                                        @endphp
+                                        @if ($percentChange > 0)
+                                            <p class="mb-0">+{{ number_format($percentChange, 2) }}%</p>
+                                        @elseif ($percentChange < 0)
+                                            <p class="mb-0">{{ number_format(abs($percentChange), 2) }}%</p>
+                                        @else
+                                            <p class="mb-0">No change</p>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="pt-2">
@@ -55,12 +65,12 @@
                                         <a href="#" class="text-white-50"><i
                                                 class="mdi mdi-arrow-right h5 text-white-50"></i></a>
                                     </div>
-
-                                    <p class="text-white-50 mb-0 mt-1">Since last month</p>
+                                    <p class="text-white-50 mb-0 mt-1">Thống kê theo ngày</p>
                                 </div>
                             </div>
                         </div>
                     </div>
+
                     <div class="col-xl-3 col-md-6">
                         <div class="card mini-stat bg-primary text-white">
                             <div class="card-body">
@@ -68,12 +78,11 @@
                                     <div class="float-start mini-stat-img me-4">
                                         <img src="{{ asset('admin/assets/images/services-icon/02.png') }}" alt="">
                                     </div>
-                                    <h5 class="font-size-16 text-uppercase text-white-50">Revenue</h5>
-                                    <h4 class="fw-medium font-size-24">52,368 <i
-                                            class="mdi mdi-arrow-down text-danger ms-2"></i></h4>
-                                    <div class="mini-stat-label bg-danger">
+                                    <h5 class="font-size-16 text-uppercase text-white-50">Chưa liên hệ</h5>
+                                    <h4 class="fw-medium font-size-24">{{ $totalNoContact }}</h4>
+                                    {{-- <div class="mini-stat-label bg-danger">
                                         <p class="mb-0">- 28%</p>
-                                    </div>
+                                    </div> --}}
                                 </div>
                                 <div class="pt-2">
                                     <div class="float-end">
@@ -81,7 +90,7 @@
                                                 class="mdi mdi-arrow-right h5 text-white-50"></i></a>
                                     </div>
 
-                                    <p class="text-white-50 mb-0 mt-1">Since last month</p>
+                                    <p class="text-white-50 mb-0 mt-1">Theo ngày</p>
                                 </div>
                             </div>
                         </div>
@@ -93,13 +102,9 @@
                                     <div class="float-start mini-stat-img me-4">
                                         <img src="{{ asset('admin/assets/images/services-icon/03.png') }}" alt="">
                                     </div>
-                                    <h5 class="font-size-16 text-uppercase text-white-50">Average Price</h5>
-                                    <h4 class="fw-medium font-size-24">15.8 <i
-                                            class="mdi mdi-arrow-up text-success ms-2"></i>
+                                    <h5 class="font-size-16 text-uppercase text-white-50">Tổng liên hệ</h5>
+                                    <h4 class="fw-medium font-size-24">{{ $totalContactsMonth }}
                                     </h4>
-                                    <div class="mini-stat-label bg-info">
-                                        <p class="mb-0"> 00%</p>
-                                    </div>
                                 </div>
                                 <div class="pt-2">
                                     <div class="float-end">
@@ -107,11 +112,44 @@
                                                 class="mdi mdi-arrow-right h5 text-white-50"></i></a>
                                     </div>
 
-                                    <p class="text-white-50 mb-0 mt-1">Since last month</p>
+                                    @php
+                                        $currentMonth = date('m');
+                                        $currentYear = date('Y');
+                                        $nextMonth = date('m', strtotime('+1 month'));
+                                        $nextYear = date('Y', strtotime('+1 month'));
+                                    @endphp
+
+                                    <p class="text-white-50 mb-0 mt-1">
+                                        @if ($currentMonth == $currentMonth && $currentYear == $currentYear)
+                                            Tháng {{ $currentMonth }}/{{ $currentYear }}
+                                        @elseif ($currentMonth != $nextMonth && $currentYear != $currentYear)
+                                            {{ $nextMonth }}/{{ $currentYear }}
+                                        @endif
+                                    </p>
+
+
                                 </div>
                             </div>
                         </div>
                     </div>
+                    @php
+                        $currentMonthCustomers = DB::table('customers')
+                            ->whereMonth('created_at', '=', date('m'))
+                            ->whereYear('created_at', '=', date('Y'))
+                            ->count();
+                        
+                        $previousMonthCustomers = DB::table('customers')
+                            ->whereMonth('created_at', '=', date('m', strtotime('-1 month')))
+                            ->whereYear('created_at', '=', date('Y', strtotime('-1 month')))
+                            ->count();
+                        
+                        $percentageChange = 0;
+                        
+                        if ($previousMonthCustomers != 0) {
+                            $percentageChange = (($currentMonthCustomers - $previousMonthCustomers) / $previousMonthCustomers) * 100;
+                        }
+                    @endphp
+
                     <div class="col-xl-3 col-md-6">
                         <div class="card mini-stat bg-primary text-white">
                             <div class="card-body">
@@ -119,12 +157,25 @@
                                     <div class="float-start mini-stat-img me-4">
                                         <img src="{{ asset('admin/assets/images/services-icon/04.png') }}" alt="">
                                     </div>
-                                    <h5 class="font-size-16 text-uppercase text-white-50">Product Sold</h5>
-                                    <h4 class="fw-medium font-size-24">2436 <i
+                                    <h5 class="font-size-16 text-uppercase text-white-50">Khách hàng</h5>
+                                    <h4 class="fw-medium font-size-24">{{ $currentMonthCustomers }} <i
                                             class="mdi mdi-arrow-up text-success ms-2"></i>
                                     </h4>
-                                    <div class="mini-stat-label bg-warning">
-                                        <p class="mb-0">+ 84%</p>
+                                    <div class="mini-stat-label bg-success">
+                                        <p class="mb-0">
+                                            @if ($previousMonthCustomers != 0)
+                                                @if ($percentageChange > 0)
+                                                    +{{ round($percentageChange, 2) }}%
+                                                @elseif ($percentageChange < 0)
+                                                    -{{ round($percentageChange, 2) }}%
+                                                @else
+                                                    0%
+                                                @endif
+                                            @else
+                                                N/A
+                                            @endif
+
+                                        </p>
                                     </div>
                                 </div>
                                 <div class="pt-2">
@@ -133,15 +184,30 @@
                                                 class="mdi mdi-arrow-right h5 text-white-50"></i></a>
                                     </div>
 
-                                    <p class="text-white-50 mb-0 mt-1">Since last month</p>
+                                    @php
+                                        $currentMonth = date('m');
+                                        $currentYear = date('Y');
+                                        $nextMonth = date('m', strtotime('+1 month'));
+                                        $nextYear = date('Y', strtotime('+1 month'));
+                                    @endphp
+
+                                    <p class="text-white-50 mb-0 mt-1">
+                                        @if ($currentMonth == $currentMonth && $currentYear == $currentYear)
+                                            Tháng {{ $currentMonth }}/{{ $currentYear }}
+                                        @elseif ($currentMonth != $nextMonth && $currentYear != $currentYear)
+                                            {{ $nextMonth }}/{{ $currentYear }}
+                                        @endif
+                                    </p>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+
                 </div>
                 <!-- end row -->
 
-                <div class="row">
+                {{-- <div class="row">
                     <div class="col-xl-8">
                         <div class="card">
                             <div class="card-body">
@@ -371,7 +437,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
                 <!-- end row -->
 
             </div> <!-- container-fluid -->

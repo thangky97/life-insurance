@@ -67,7 +67,8 @@
                                                 <tr>
                                                     <td>
                                                         @if ($is->service)
-                                                            <span><a href="{{ route('route_BackEnd_Services_List') }}">{{ $is->service->service_name }}</a></span>
+                                                            <span><a
+                                                                    href="{{ route('route_BackEnd_Services_List') }}">{{ $is->service->service_name }}</a></span>
                                                         @else
                                                             <span>Không có người đăng</span>
                                                         @endif
@@ -75,56 +76,80 @@
                                                     </th>
                                                     <td>
                                                         @if ($is->dead)
-                                                            <span>{{ $is->dead }}</span>
+                                                            @php
+                                                                $limitedMessage = Str::limit($is->dead, 20, '...');
+                                                            @endphp
+                                                            <span>{!! nl2br(e($limitedMessage)) !!}</span>
                                                         @else
                                                             <span>No tử vong/mất khả năng lao động</span>
                                                         @endif
                                                     </td>
                                                     <td>
                                                         @if ($is->accidental_death)
-                                                            <span>{{ $is->accidental_death }}</span>
+                                                            @php
+                                                                $limitedMessage = Str::limit($is->accidental_death, 20, '...');
+                                                            @endphp
+                                                            <span>{!! nl2br(e($limitedMessage)) !!}</span>
                                                         @else
                                                             <span>No tử vong do tai nạn</span>
                                                         @endif
                                                     </td>
                                                     <td>
                                                         @if ($is->death_due_special_accident)
-                                                            <span>{{ $is->death_due_special_accident }}</span>
+                                                            @php
+                                                                $limitedMessage = Str::limit($is->death_due_special_accident, 20, '...');
+                                                            @endphp
+                                                            <span>{!! nl2br(e($limitedMessage)) !!}</span>
                                                         @else
                                                             <span>No tử vong do tai nạn special</span>
                                                         @endif
                                                     </td>
                                                     <td>
                                                         @if ($is->death_from_cancer)
-                                                            <span>{{ $is->death_from_cancer }}</span>
+                                                            @php
+                                                                $limitedMessage = Str::limit($is->death_from_cancer, 20, '...');
+                                                            @endphp
+                                                            <span>{!! nl2br(e($limitedMessage)) !!}</span>
                                                         @else
                                                             <span>No tử vong do ung thư</span>
                                                         @endif
                                                     </td>
                                                     <td>
                                                         @if ($is->temporary_disability_benefits)
-                                                            <span>{{ $is->temporary_disability_benefits }}</span>
+                                                            @php
+                                                                $limitedMessage = Str::limit($is->temporary_disability_benefits, 20, '...');
+                                                            @endphp
+                                                            <span>{!! nl2br(e($limitedMessage)) !!}</span>
                                                         @else
                                                             <span>No quyền lợi thương tật tạm thời</span>
                                                         @endif
                                                     </td>
                                                     <td>
                                                         @if ($is->serious_illness_mild)
-                                                            <span>{{ $is->serious_illness_mild }}</span>
+                                                            @php
+                                                                $limitedMessage = Str::limit($is->serious_illness_mild, 20, '...');
+                                                            @endphp
+                                                            <span>{!! nl2br(e($limitedMessage)) !!}</span>
                                                         @else
                                                             <span>No bệnh hiểm nghèo thể nhẹ</span>
                                                         @endif
                                                     </td>
                                                     <td>
                                                         @if ($is->serious_illness)
-                                                            <span>{{ $is->serious_illness }}</span>
+                                                            @php
+                                                                $limitedMessage = Str::limit($is->serious_illness, 20, '...');
+                                                            @endphp
+                                                            <span>{!! nl2br(e($limitedMessage)) !!}</span>
                                                         @else
                                                             <span>No bệnh hiểm nghèo thể nặng</span>
                                                         @endif
                                                     </td>
                                                     <td>
                                                         @if ($is->benefits_pay_medical_expenses)
-                                                            <span>{{ $is->benefits_pay_medical_expenses }}</span>
+                                                            @php
+                                                                $limitedMessage = Str::limit($is->benefits_pay_medical_expenses, 20, '...');
+                                                            @endphp
+                                                            <span>{!! nl2br(e($limitedMessage)) !!}</span>
                                                         @else
                                                             <span>No quyền lợi TT chi phí y tế</span>
                                                         @endif
@@ -152,6 +177,9 @@
                                             @endforelse
                                         </tbody>
                                     </table>
+                                </div>
+                                <div class="mt-4">
+                                    {{ $contact->links() }}
                                 </div>
                             </div>
                         </div>

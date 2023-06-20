@@ -157,6 +157,9 @@
                                         </tbody>
                                     </table>
                                 </div>
+                                <div class="mt-4">
+                                    {{ $contact->links() }}
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -1,6 +1,6 @@
 @extends('layouts.admin.master')
 
-@section('title', 'Sửa banner')
+@section('title', 'Sửa liên hệ')
 
 @section('content')
 
@@ -24,7 +24,7 @@
                         <div class="card">
                             <div class="card-body">
 
-                                <h4 class="card-title mb-4">Sửa banner</h4>
+                                <h4 class="card-title mb-4">Sửa liên hệ</h4>
 
                                 <form class="custom-validation"
                                     action="{{ route('route_BackEnd_Contact_Update', ['id' => request()->route('id')]) }}"
@@ -33,7 +33,7 @@
                                     <div class="mb-3">
                                         <label class="form-label">Tên khách hàng </label>
                                         <input type="text" name="contact_name" class="form-control"
-                                            value="{{ $contact->contact_name }}">
+                                            value="{{ $contact->contact_name }}" disabled style="background: #d8d5d5">
                                         @error('contact_name')
                                             <div>
                                                 <p class="text-danger">{{ $message }}</p>
@@ -45,7 +45,7 @@
                                         <label class="form-label">Số điện thoại <span class="text-danger">*</span></label>
                                         <div>
                                             <input data-parsley-type="number" name="phone_number" type="text"
-                                                class="form-control" value="{{ $contact->phone_number }}">
+                                                class="form-control" value="{{ $contact->phone_number }}" disabled style="background: #d8d5d5">
                                             @error('phone_number')
                                                 <div>
                                                     <p class="text-danger">{{ $message }}</p>
@@ -57,7 +57,7 @@
                                     <div class="mb-3">
                                         <label class="form-label">Lời nhắn <span class="text-danger">*</span></label>
                                         <div>
-                                            <textarea name="message" id="" class="form-control" rows="3">{{ $contact->message }}</textarea>
+                                            <textarea name="message" id="" class="form-control" rows="3" disabled style="background: #d8d5d5">{{ $contact->message }}</textarea>
                                             @error('message')
                                                 <div>
                                                     <p class="text-danger">{{ $message }}</p>

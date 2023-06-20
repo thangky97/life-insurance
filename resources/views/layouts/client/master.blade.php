@@ -49,6 +49,9 @@
     <!-- theme core css -->
     <link href="{{ asset('client/css/styles.css') }}" rel="stylesheet">
 
+    <!-- Sweet Alert-->
+    <link href="{{ asset('client/assets/libs/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet" type="text/css" />
+
 </head>
 
 <body>
@@ -148,6 +151,12 @@
 
     <!-- all js include end -->
 
+    <!-- Sweet Alerts js -->
+    <script src="{{ asset('client/assets/libs/sweetalert2/sweetalert2.min.js') }}"></script>
+
+    <!-- Sweet alert init js-->
+    <script src="{{ asset('client/assets/js/pages/sweet-alerts.init.js') }}"></script>
+
     <script>
         $(document).ready(function() {
             $('.user-support').click(function(event) {
@@ -173,7 +182,7 @@
             showAlert('Vui lòng nhập đầy đủ thông tin', 'alert');
             return false;
         } else {
-            showAlert('Gửi thông tin thành công', 'success');
+            // showAlert('Gửi thông tin thành công', 'success');
             return true;
         }
     }
@@ -186,6 +195,7 @@
         var form = document.querySelector('form');
         form.insertBefore(alertElement, form.firstChild);
     }
+    
 </script>
 
 </body>

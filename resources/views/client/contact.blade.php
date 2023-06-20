@@ -5,7 +5,7 @@
 @section('content')
 
     <!-- CONTACT FORM
-                            ================================================== -->
+                                ================================================== -->
     <section>
         <div class="container">
             <div class="row">
@@ -76,49 +76,48 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="btn-close">
                                 </button>
                             </div>
-                        @else
-                            <form action="{{ route('route_FrontEnd_Contact_Create') }}" method="post"
-                                enctype="multipart/form-data">
-                                @csrf
-                                <div class="quform-elements">
-                                    <div class="row">
-                                        <!-- Begin Name -->
-                                        <div class="col-md-12">
-                                            <div class="quform-element form-group">
-                                                <label for="name">Tên của bạn <span class="text-danger">*</span></label>
-                                                <div class="quform-input">
-                                                    <input class="form-control" type="text" name="contact_name"
-                                                        placeholder="Nhập tên..." />
-                                                    @error('contact_name')
-                                                        <div>
-                                                            <p class="text-danger">{{ $message }}</p>
-                                                        </div>
-                                                    @enderror
-                                                </div>
+                        @endif
+                        <form action="{{ route('route_FrontEnd_Contact_Create') }}" method="post"
+                            enctype="multipart/form-data">
+                            @csrf
+                            <div class="quform-elements">
+                                <div class="row">
+                                    <!-- Begin Name -->
+                                    <div class="col-md-12">
+                                        <div class="quform-element form-group">
+                                            <label for="name">Tên của bạn <span class="text-danger">*</span></label>
+                                            <div class="quform-input">
+                                                <input class="form-control" type="text" name="contact_name"
+                                                    placeholder="Nhập tên..." />
+                                                @error('contact_name')
+                                                    <div>
+                                                        <p class="text-danger">{{ $message }}</p>
+                                                    </div>
+                                                @enderror
                                             </div>
                                         </div>
-                                        <!-- End Name -->
+                                    </div>
+                                    <!-- End Name -->
 
-                                        <!-- Begin Phone -->
-                                        <div class="col-md-12">
-                                            <div class="quform-element form-group">
-                                                <label for="phone">Số điện thoại <span
-                                                        class="text-danger">*</span></label>
-                                                <div class="quform-input">
-                                                    <input class="form-control" type="text" name="phone_number"
-                                                        placeholder="Nhập số điện thoại..." />
-                                                    @error('phone_number')
-                                                        <div>
-                                                            <p class="text-danger">{{ $message }}</p>
-                                                        </div>
-                                                    @enderror
-                                                </div>
+                                    <!-- Begin Phone -->
+                                    <div class="col-md-12">
+                                        <div class="quform-element form-group">
+                                            <label for="phone">Số điện thoại <span class="text-danger">*</span></label>
+                                            <div class="quform-input">
+                                                <input class="form-control" type="text" name="phone_number"
+                                                    placeholder="Nhập số điện thoại..." />
+                                                @error('phone_number')
+                                                    <div>
+                                                        <p class="text-danger">{{ $message }}</p>
+                                                    </div>
+                                                @enderror
                                             </div>
                                         </div>
-                                        <!-- End Phone -->
+                                    </div>
+                                    <!-- End Phone -->
 
-                                        <!-- Begin Title -->
-                                        {{-- <div class="col-md-12">
+                                    <!-- Begin Title -->
+                                    {{-- <div class="col-md-12">
                                         <div class="quform-element form-group">
                                             <label for="subject">Tiêu đề <span >*</span></label>
                                             <div class="quform-input">
@@ -127,39 +126,38 @@
                                             </div>
                                         </div>
                                     </div> --}}
-                                        <!-- End Title -->
+                                    <!-- End Title -->
 
 
-                                        <!-- Begin Content -->
-                                        <div class="col-md-12">
-                                            <div class="quform-element form-group">
-                                                <label for="message">Nội dung <span class="text-danger">*</span></label>
-                                                <div class="quform-input">
-                                                    <textarea class="form-control h-auto" id="message" name="message" rows="3" placeholder="..."></textarea>
-                                                    @error('message')
-                                                        <div>
-                                                            <p class="text-danger">{{ $message }}</p>
-                                                        </div>
-                                                    @enderror
-                                                </div>
+                                    <!-- Begin Content -->
+                                    <div class="col-md-12">
+                                        <div class="quform-element form-group">
+                                            <label for="message">Nội dung <span class="text-danger">*</span></label>
+                                            <div class="quform-input">
+                                                <textarea class="form-control h-auto" id="message" name="message" rows="3" placeholder="..."></textarea>
+                                                @error('message')
+                                                    <div>
+                                                        <p class="text-danger">{{ $message }}</p>
+                                                    </div>
+                                                @enderror
                                             </div>
                                         </div>
-                                        <!-- End Content -->
-
-                                        <!-- Begin Submit button -->
-                                        <div class="col-md-12">
-                                            <div class="quform-submit-inner">
-                                                <button class="butn border-0" type="submit">Gửi</button>
-                                            </div>
-                                            <div class="quform-loading-wrap text-start"><span class="quform-loading"></span>
-                                            </div>
-                                        </div>
-                                        <!-- End Submit button -->
-
                                     </div>
+                                    <!-- End Content -->
+
+                                    <!-- Begin Submit button -->
+                                    <div class="col-md-12">
+                                        <div class="quform-submit-inner">
+                                            <button class="butn border-0" type="submit">Gửi</button>
+                                        </div>
+                                        <div class="quform-loading-wrap text-start"><span class="quform-loading"></span>
+                                        </div>
+                                    </div>
+                                    <!-- End Submit button -->
+
                                 </div>
-                            </form>
-                        @endif
+                            </div>
+                        </form>
 
                     </div>
                 </div>
@@ -168,7 +166,7 @@
     </section>
 
     <!-- MAP
-                            ================================================== -->
+                                ================================================== -->
     <iframe class="map" id="gmap_canvas"
         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d251638.01203291898!2d105.61890356375363!3d9.779269644652011!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31a052094d3f5cff%3A0x841b44a689ca0e8a!2zQuG6o28gaGnhu4NtIG5ow6JuIHRo4buNIERhaSBJY2hpIExpZmU!5e0!3m2!1svi!2s!4v1686630621474!5m2!1svi!2s"
         width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
