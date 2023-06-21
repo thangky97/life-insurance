@@ -99,7 +99,7 @@
                                     </table>
                                 </div>
                                 <div class="mt-4">
-                                    {{ $contact->links() }}
+                                    {{ $customers_use->links() }}
                                 </div>
                             </div>
                         </div>

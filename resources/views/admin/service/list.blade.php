@@ -80,7 +80,10 @@
                                                     </td>
                                                     <td>
                                                         @if ($service->duration)
-                                                            <span>{{ $service->duration }}</span>
+                                                            @php
+                                                                $limitedMessage = Str::limit($service->duration, 20, '...');
+                                                            @endphp
+                                                            <span>{!! nl2br(e($limitedMessage)) !!}</span>
                                                         @else
                                                             <span>Không có thời hạn</span>
                                                         @endif
@@ -108,7 +111,10 @@
                                                     </td>
                                                     <td>
                                                         @if ($service->health_care_insurance)
-                                                            <span>{{ $service->health_care_insurance }}</span>
+                                                            @php
+                                                                $limitedMessage = Str::limit($service->health_care_insurance, 20, '...');
+                                                            @endphp
+                                                            <span>{!! nl2br(e($limitedMessage)) !!}</span>
                                                         @else
                                                             <span>No sức khỏe</span>
                                                         @endif
@@ -138,7 +144,7 @@
                                     </table>
                                 </div>
                                 <div class="mt-4">
-                                    {{ $contact->links() }}
+                                    {{ $services->links() }}
                                 </div>
                             </div>
                         </div>

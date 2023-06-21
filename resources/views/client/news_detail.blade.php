@@ -29,7 +29,7 @@
                                     </ul> --}}
                                     <h3 class="mb-4">{{ $news->title }}</h3>
                                     <p>{{ $news->sort_content }}</p>
-                                    <p class="text-primary mb-1-9">{{ $news->content }}</p>
+                                    <p class="mb-1-9" style="color: #252525">{{ $news->content }}</p>
                                     {{-- <div class="row mb-4">
                                         <div class="col-6">
                                             <div class="image-hover">

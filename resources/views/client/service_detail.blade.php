@@ -82,7 +82,7 @@
                     <div class="row">
                         <div class="col-12 mb-2-9 image-hover">
                             <img src="{{ asset($service->thumbnail) ? '' . Storage::url($service->thumbnail) : $service->service_name }}"
-                                alt="Dịch vụ" class="rounded" height="650px">
+                                alt="Dịch vụ" class="rounded" style="height: 600px !important">
                         </div>
                         <div class="col-12 mb-1-9">
                             <h3 class="mb-3">{{ $service->service_name }}</h3>
