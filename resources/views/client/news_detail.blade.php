@@ -10,7 +10,7 @@
                 <div class="col-lg-8 mb-5 mb-lg-0">
                     <div class="row">
                         <div class="col-lg-12">
-                            <article class="card card-style3 border-0 h-100">
+                            <article class="card card-style3 border-0 h-100 image-news-detail">
                                 <img src="{{ asset($news->images_news) ? '' . Storage::url($news->images_news) : $news->title }}"
                                     class="card-img-top" alt="Bài viết" style="height: 540px">
                                 <div class="card-body p-1-9 position-relative">

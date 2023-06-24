@@ -80,9 +80,9 @@
                 </div>
                 <div class="col-lg-8 order-1 order-lg-2 mb-2-9 mb-lg-0 wow fadeIn" data-wow-delay="400ms">
                     <div class="row">
-                        <div class="col-12 mb-2-9 image-hover">
+                        <div class="col-12 mb-2-9 image-hover image-service-detail">
                             <img src="{{ asset($service->thumbnail) ? '' . Storage::url($service->thumbnail) : $service->service_name }}"
-                                alt="Dịch vụ" class="rounded" style="height: 600px !important">
+                                alt="Dịch vụ" class="rounded" style="height: 600px">
                         </div>
                         <div class="col-12 mb-1-9">
                             <h3 class="mb-3">{{ $service->service_name }}</h3>

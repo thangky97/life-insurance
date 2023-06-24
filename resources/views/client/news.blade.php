@@ -15,7 +15,8 @@
                     <div class="col-md-6 col-lg-4 mt-2-9 wow fadeIn" data-wow-delay="200ms">
                         <article class="card card-style3 border-0 h-100">
                             <div class="card-image position-relative">
-                                <img src="{{ asset($new->images_news) ? '' . Storage::url($new->images_news) : $new->title }}" class="card-img-top" alt="Bài viết">
+                                <img src="{{ asset($new->images_news) ? '' . Storage::url($new->images_news) : $new->title }}"
+                                    class="card-img-top" alt="Bài viết">
                             </div>
                             <div class="card-body p-1-9 position-relative">
                                 {{-- <div class="blog-date position-absolute">
@@ -26,16 +27,29 @@
                                     <span class="blog-shape"></span>
                                 </div> --}}
                                 <ul class="mb-2 p-0">
-                                    {{-- <li class="display-30 d-inline-block text-capitalize me-3"><a href="#!"><i
-                                                class="ti-user text-primary pe-2"></i>admin</a></li> --}}
-                                    {{-- <li class="display-30 d-inline-block"><i class="ti-comments text-primary pe-2"></i>{{ $new->updated_at }}</li> --}}
+                                    <li class="display-30 d-inline-block text-capitalize me-3"><a href="#!"><i
+                                                class="ti-user pe-2"></i>{{ $new->user->name }}</a></li>
+                                    <li class="display-30 d-inline-block"><i
+                                            class="ti-comments pe-2"></i>{{ $format = date('d-m-Y', strtotime($new->post_date)) }}
+                                    </li>
                                 </ul>
-                                <h3 class="h4 mb-4"><a href="{{ route('route_FrontEnd_News_Detail', ['id' => $new->id]) }}">{{ $new->title }}</a>
+                                <h3 class="h4 mb-4"><a href="{{ route('route_FrontEnd_News_Detail', ['id' => $new->id]) }}">
+                                        @php
+                                            $limitedMessage = Str::limit($new->title, 21, '...');
+                                        @endphp
+                                        <span>{!! nl2br(e($limitedMessage)) !!}</span>
+                                    </a>
                                 </h3>
-                                <p class="mb-0">{{ $new->sort_content }}</p>
+                                <p class="mb-0">
+                                    @php
+                                        $limitedMessage = Str::limit($new->sort_content, 35, '...');
+                                    @endphp
+                                    <span>{!! nl2br(e($limitedMessage)) !!}</span>
+                                </p>
                             </div>
                             <div class="card-footer bg-transparent px-1-9 py-3 border-color-light-gray">
-                                <a href="{{ route('route_FrontEnd_News_Detail', ['id' => $new->id]) }}" class="text-secondary text-primary-hover font-weight-600">Đọc thêm
+                                <a href="{{ route('route_FrontEnd_News_Detail', ['id' => $new->id]) }}"
+                                    class="text-secondary text-primary-hover font-weight-600">Đọc thêm
                                     <i class="ti-arrow-right ms-2 align-middle display-30"></i></a>
                             </div>
                         </article>
@@ -57,8 +71,8 @@
                 </div>
             </div>
         </div>
-        <img src="{{ asset('client/img/content/shape7.png') }}" class="position-absolute bottom-35 right-5 ani-move d-none d-sm-block"
-            alt="...">
+        <img src="{{ asset('client/img/content/shape7.png') }}"
+            class="position-absolute bottom-35 right-5 ani-move d-none d-sm-block" alt="...">
     </section>
 
 @endsection

@@ -22,7 +22,7 @@ class NewRequest extends FormRequest
     public function rules(): array
     {
         return [
-                'title' => 'required|min:3|max:40',
+                'title' => 'required|min:3',
                 'content' => 'required',
                 'user_id' => 'required',
                 'post_date' => 'required',
@@ -42,7 +42,6 @@ class NewRequest extends FormRequest
         return [
                 'title.required' => 'Tiêu đề bắt buộc nhập!',
                 'title.min' => 'Tiêu đề tối thiểu 3 ký tự!',
-                'title.max' => 'Tiêu đề tối đa là 40 ký tự!',
                 'content.required' => 'Nội dung bắt buộc nhập!',
                 'user_id.required' => 'Bạn chưa chọn người đăng!',
                 'post_date.required' => 'Bạn chưa chọn ngày đăng!',

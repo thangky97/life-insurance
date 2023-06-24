@@ -5,7 +5,7 @@
 @section('content')
 
     <!-- ABOUT US
-                                                                                                        ================================================== -->
+                                                                                                            ================================================== -->
     <div id="about" style="margin-top: 5rem">
         <div class="container">
             <div class="row align-items-center about-style3">
@@ -60,7 +60,7 @@
     </div>
 
     <!-- SERVICE
-                                                                                                        ================================================== -->
+                                                                                                            ================================================== -->
     <section id="service" class="bg-light" style="padding: 70px 0">
         <div class="container">
             <div class="text-center mb-2-1 wow fadeIn" data-wow-delay="100ms">
@@ -72,12 +72,21 @@
                     <div class="col-md-6 col-xl-3 mt-1-9 wow fadeIn" data-wow-delay="200ms">
                         <div class="card card-style5">
                             <div class="card-body">
-                                <div class="position-relative">
+                                {{-- <div class="position-relative">
                                     <img src="{{ asset($item->thumbnail) ? '' . Storage::url($item->thumbnail) : $item->service_name }}"
                                         alt="service" style="height: 150px">
+                                </div> --}}
+                                <div class="card-image position-relative">
+                                    <img src="{{ asset($item->thumbnail) ? '' . Storage::url($item->thumbnail) : $item->service_name }}"
+                                        class="card-img-top" alt="...">
                                 </div>
-                                <h3 class="h4 mb-3 mt-4"><a
-                                        href="{{ route('route_FrontEnd_Service_Detail', ['id' => $item->id]) }}">{{ $item->service_name }}</a>
+                                <h3 class="h4 mt-4" style="height: 4rem"><a
+                                        href="{{ route('route_FrontEnd_Service_Detail', ['id' => $item->id]) }}">
+                                        @php
+                                            $limitedMessage = Str::limit($item->service_name, 34, '...');
+                                        @endphp
+                                        <span>{!! nl2br(e($limitedMessage)) !!}</span>
+                                    </a>
                                 </h3>
                                 <p class="mb-4">
                                     @php
@@ -102,8 +111,9 @@
     </section>
 
     <!-- WHY CHOOSE US
-                                                                                                        ================================================== -->
-    <section class="bg-white why-us-02 bg-img" data-background="img/content/why-us-02.jpg" style="padding: 30px 0; padding-bottom: 80px">
+                                                                                                            ================================================== -->
+    <section class="bg-white why-us-02 bg-img" data-background="img/content/why-us-02.jpg"
+        style="padding: 30px 0; padding-bottom: 80px">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-xl-6 wow fadeIn" data-wow-delay="200ms">
@@ -144,7 +154,7 @@
     </section>
 
     <!-- CALL TO ACTION
-                                                                                                        ================================================== -->
+                                                                                                            ================================================== -->
     <section class="bg-img cover-background primary-overlay" data-overlay-dark="8"
         data-background="{{ asset('client/img/bg/bg5.jpg') }}">
         <div class="container">
@@ -232,7 +242,7 @@
     </section>
 
     <!-- Biểu phí
-                                                                                                        ================================================== -->
+                                                                                                            ================================================== -->
     <section id="Cacgoi" style="margin-top: -4rem">
         <div class="container">
             <div class="text-center mb-2-1 wow fadeIn" data-wow-delay="100ms">
@@ -300,7 +310,7 @@
     </section>
 
     <!-- TESTIMONIALS
-                                                                                                        ================================================== -->
+                                                                                                            ================================================== -->
     {{-- <section class="bg-img cover-background left-overlay-dark" data-overlay-dark="90"
         data-background="{{ asset('client/img/bg/bg-06.jpg') }}">
         <div class="container">
@@ -367,7 +377,7 @@
     </section>
 
     <!-- BLOG
-                                                                                                        ================================================== -->
+                                                                                                            ================================================== -->
     <section id="new" class="bg-light">
         <div class="container position-relative z-index-2">
             <div class="text-center mb-2-1 wow fadeIn" data-wow-delay="100ms">
@@ -383,10 +393,20 @@
                                     class="card-img-top" alt="...">
                             </div>
                             <div class="card-body p-1-9 position-relative">
-                                <h3 class="h4 mb-4"><a
-                                        href="{{ route('route_FrontEnd_News_Detail', ['id' => $new->id]) }}">{{ $new->title }}</a>
+                                <h3 class="h4" style="height: 4rem"><a
+                                        href="{{ route('route_FrontEnd_News_Detail', ['id' => $new->id]) }}">
+                                        @php
+                                            $limitedMessage = Str::limit($new->title, 44, '...');
+                                        @endphp
+                                        <span>{!! nl2br(e($limitedMessage)) !!}</span>
+                                    </a>
                                 </h3>
-                                <p>{{ $new->sort_content }}</p>
+                                <p>
+                                    @php
+                                        $limitedMessage = Str::limit($new->sort_content, 35, '...');
+                                    @endphp
+                                    <span>{!! nl2br(e($limitedMessage)) !!}</span>
+                                </p>
                                 <a href="{{ route('route_FrontEnd_News_Detail', ['id' => $new->id]) }}"
                                     class="text-secondary text-primary-hover font-weight-600">Đọc
                                     thêm <i class="ti-arrow-right ms-2 align-middle display-30"></i></a>
@@ -405,7 +425,7 @@
     </section>
 
     <!-- PARTNER
-                                                                                                    ================================================== -->
+                                                                                                        ================================================== -->
     <section id="partner" class="bg-light" style="padding-top: 0px">
         <div class="container">
             <div class="text-center mb-2-1 wow fadeIn" data-wow-delay="100ms">

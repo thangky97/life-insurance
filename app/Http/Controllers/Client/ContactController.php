@@ -64,7 +64,7 @@ class ContactController extends Controller
 
         $messages =[
             'contact_name.required' => 'Không được bỏ trống tên!',
-            'phone_number.required' => 'Không được bỏ trống phone!',
+            'phone_number.required' => 'Không được bỏ trống số điện thoại!',
             'message.required' => 'Không được bỏ trống nội dung!',
         ];
     $validatedData = $request->validate($rules,$messages);
@@ -90,7 +90,7 @@ class ContactController extends Controller
 
         $messages =[
             'contact_name.required' => 'Không được bỏ trống tên!',
-            'phone_number.required' => 'Không được bỏ trống phone!',
+            'phone_number.required' => 'Không được bỏ trống số điện thoại!',
             'message.required' => 'Không được bỏ trống nội dung!',
         ];
     $validatedData = $request->validate($rules,$messages);

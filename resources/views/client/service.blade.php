@@ -20,8 +20,13 @@
                                     class="card-img-top" alt="service" style="height: 280px">
                             </div>
                             <div class="card-body p-1-9 position-relative">
-                                <h3 class="h4 mb-4"><a
-                                        href="{{ route('route_FrontEnd_Service_Detail', ['id' => $service->id]) }}">{{ $service->service_name }}</a>
+                                <h3 class="h4" style="height: 4rem"><a
+                                        href="{{ route('route_FrontEnd_Service_Detail', ['id' => $service->id]) }}">
+                                        @php
+                                            $limitedMessage = Str::limit($service->service_name, 44, '...');
+                                        @endphp
+                                        <span>{!! nl2br(e($limitedMessage)) !!}</span>
+                                    </a>
                                 </h3>
                                 <p class="mb-0">
                                     @php
