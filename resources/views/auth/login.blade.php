@@ -56,10 +56,21 @@
                                             </button>
                                         </div>
                                     @endif
+                                    @if (Session::has('error'))
+                                        <div
+                                            class="alert alert-danger solid alert-end-icon alert-dismissible fade show">
+                                            <span><i class="mdi mdi-help"></i></span>
+                                            <strong>{{ Session::get('error') }}</strong>
+                                            <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                                aria-label="btn-close">
+                                            </button>
+                                        </div>
+                                    @endif
                                     <div class="mb-3">
                                         <label class="form-label" for="username">Email</label>
                                         <input type="text" class="form-control" name="email" id="username"
-                                            placeholder="hello@example.com" value="{{ old('email', isset($request['email']) ? $request['email'] : '') }}">
+                                            placeholder="hello@example.com"
+                                            value="{{ old('email', isset($request['email']) ? $request['email'] : '') }}">
                                         @error('email')
                                             <div>
                                                 <p class="text-danger">{{ $message }}</p>

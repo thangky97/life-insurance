@@ -27,7 +27,7 @@ class LoginController extends Controller
             Session::flash('success', 'Đăng nhập thành công!');
             return redirect()->route('route_BackEnd_Dashboard');
         }else {
-            Session::flash('error', 'Sai tài khoản hoặc mật khẩu');
+            Session::flash('error', 'Sai email hoặc mật khẩu');
             return redirect()->route($method_route);
         }
 
