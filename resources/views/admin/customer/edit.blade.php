@@ -24,21 +24,72 @@
                         <div class="card">
                             <div class="card-body">
 
-                                <h4 class="card-title mb-4">Sửa quản trị viên</h4>
+                                <h4 class="card-title mb-4">Sửa khách hàng</h4>
 
                                 <form class="custom-validation"
                                     action="{{ route('route_BackEnd_Customers_Update', ['id' => request()->route('id')]) }}"
                                     method="post" enctype="multipart/form-data">
                                     @csrf
-                                    <div class="mb-3">
-                                        <label class="form-label">Tên khách hàng <span class="text-danger">*</span></label>
-                                        <input type="text" name="full_name" class="form-control"
-                                            value="{{ $customer->full_name }}">
-                                        @error('full_name')
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <label class="form-label">Tên khách hàng <span
+                                                    class="text-danger">*</span></label>
+                                            <input type="text" name="full_name" class="form-control"
+                                                value="{{ $customer->full_name }}">
+                                            @error('full_name')
+                                                <div>
+                                                    <p class="text-danger">{{ $message }}</p>
+                                                </div>
+                                            @enderror
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label">Số điện thoại <span
+                                                    class="text-danger">*</span></label>
                                             <div>
-                                                <p class="text-danger">{{ $message }}</p>
+                                                <input data-parsley-type="number" name="phone_number" type="text"
+                                                    class="form-control" value="{{ $customer->phone_number }}">
+                                                @error('phone_number')
+                                                    <div>
+                                                        <p class="text-danger">{{ $message }}</p>
+                                                    </div>
+                                                @enderror
                                             </div>
-                                        @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <label class="form-label">Chọn dịch vụ <span
+                                                    class="text-danger">*</span></label>
+                                            <select class="select2 form-control select2-multiple" name="service_id[]"
+                                                multiple="multiple" data-placeholder="Chọn dịch vụ ...">
+                                                
+                                                @foreach ($services as $index => $service)
+                                                    <option id="{{ $service->id }}" name="services_id[]"
+                                                        value="{{ $service->id }}"
+                                                        @if (in_array($service->id, $idNotSelected)) selected @endif>
+                                                        {{-- {{ !empty(in_array($service->id, $idNotSelected)) ? 'selected' : '' }}> --}}
+                                                        {{ $service->service_name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+
+                                            @error('service_id')
+                                                <div>
+                                                    <p class="text-danger">{{ $message }}</p>
+                                                </div>
+                                            @enderror
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label">Địa chỉ <span class="text-danger">*</span></label>
+                                            <input type="text" name="address" class="form-control"
+                                                value="{{ $customer->address }}">
+                                            @error('address')
+                                                <div>
+                                                    <p class="text-danger">{{ $message }}</p>
+                                                </div>
+                                            @enderror
+                                        </div>
                                     </div>
 
                                     <div class="row mb-3">
@@ -91,33 +142,6 @@
                                                 </div>
                                             @enderror
                                         </div>
-
-                                        <div class="col-md-6">
-                                            <label class="form-label">Địa chỉ <span class="text-danger">*</span></label>
-                                            <input type="text" name="address" class="form-control"
-                                                value="{{ $customer->address }}">
-                                            @error('address')
-                                                <div>
-                                                    <p class="text-danger">{{ $message }}</p>
-                                                </div>
-                                            @enderror
-                                        </div>
-                                    </div>
-
-                                    <div class="row mb-3">
-                                        <div class="col-md-6">
-                                            <label class="form-label">Số điện thoại <span
-                                                    class="text-danger">*</span></label>
-                                            <div>
-                                                <input data-parsley-type="number" name="phone_number" type="text"
-                                                    class="form-control" value="{{ $customer->phone_number }}">
-                                                @error('phone_number')
-                                                    <div>
-                                                        <p class="text-danger">{{ $message }}</p>
-                                                    </div>
-                                                @enderror
-                                            </div>
-                                        </div>
                                         <div class="col-md-6">
                                             <label class="form-label">Nguồn <span class="text-danger">*</span></label>
                                             <input type="text" name="source" class="form-control"
@@ -164,12 +188,12 @@
                                                 <option value="0"
                                                     {{ isset($customer) && $customer->status === 0 ? 'selected' : '' }}>
                                                     Không chăm sóc</option>
-                                                </select>
-                                                @error('status')
-                                                    <div>
-                                                        <p class="text-danger">{{ $message }}</p>
-                                                    </div>
-                                                @enderror
+                                            </select>
+                                            @error('status')
+                                                <div>
+                                                    <p class="text-danger">{{ $message }}</p>
+                                                </div>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="mb-3">

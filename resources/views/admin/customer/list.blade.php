@@ -106,11 +106,14 @@
                                                         @endif
                                                     </td>
                                                     <td>
-                                                        @if ($cus->service)
-                                                            <span>{{ $cus->service->service_name }}</span>
-                                                        @else
-                                                            <span>Không có dịch vụ</span>
-                                                        @endif
+                                                        <?php $service_id = explode(',', $cus->service_id); ?>
+                                                        @foreach ($listServices as $service)
+                                                            @foreach ($service_id as $index => $ser_id)
+                                                                @if ($ser_id == $service->id)
+                                                                    {{ $index > 0 ? ', ' . $service->service_name : $service->service_name }}
+                                                                @endif
+                                                            @endforeach
+                                                        @endforeach
                                                     </td>
                                                     {{-- <td>
                                                         @if ($cus->address)

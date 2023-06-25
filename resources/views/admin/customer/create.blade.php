@@ -95,15 +95,10 @@
                                         <div class="col-md-6">
                                             <label class="form-label">Chọn dịch vụ <span
                                                     class="text-danger">*</span></label>
-                                            <select class="select2 form-control select2-multiple" name="service_id"
+                                            <select class="select2 form-control select2-multiple" name="service_id[]"
                                                 multiple="multiple" multiple data-placeholder="Chọn dịch vụ ...">
-                                                {{-- @foreach ($services as $service)
-                                                    <option value="{{ $service->id }}">{{ $service->service_name }}
-                                                    </option>
-                                                @endforeach --}}
-
                                                 @foreach ($services as $index => $service)
-                                                    <option name="service_id[]" id="{{ $service->id }}"
+                                                    <option id="{{ $service->id }}"
                                                         value="{{ $service->id }}">{{ $service->service_name }}
                                                     </option>
                                                 @endforeach

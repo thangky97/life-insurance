@@ -21,6 +21,7 @@ class CustomerController extends Controller
 
     public function index(Request $request)
     {
+        $listServices = DB::table('services')->get();
         $name = $request->get('name');
         $phone = $request->get('phone');
         $email = $request->get('email');
@@ -39,12 +40,12 @@ class CustomerController extends Controller
             $customer = Customer::with('service')->orderBy('id', 'desc')->paginate(10);
         }   
 
-        return view('admin.customer.list', compact('customer'));
+        return view('admin.customer.list', compact('customer', 'listServices'));
     }
 
     public function create(Request $request) {
         $method_route = "route_BackEnd_Customers_Create";
-        $services = DB::table('services')->get();
+        $services = DB::table('services')->where('status', '=', 1)->get();
 
         if ($request->isMethod('post')) {
             $request->validate([
@@ -76,6 +77,9 @@ class CustomerController extends Controller
 
             $params = [];
             $params['cols'] = $request->post();
+            // implode(',', $params['cols']['service_id']);
+            $params['cols']['service_id'] = implode(',', $params['cols']['service_id']);
+            // dd(implode(',', $params['cols']['service_id']));
             unset( $params['cols']['_token']);
 
             $modelTes = new Customer();
@@ -95,6 +99,11 @@ class CustomerController extends Controller
     }
 
     public function edit($id, Request $request) {
+        //lấy dữ liệu của bảng service
+        $this->v['services'] = DB::table('services')->where('status', '=', 1)->get();
+        // dd($this->v['services']);
+        //lấy lại giá trị đã chọn của thẻ select
+        $this->v['idNotSelected'] = explode(',', Customer::find($id)->service_id);
         $modelCustomer = new Customer();
         $customer = $modelCustomer->loadOne($id);
         $this->v['customer'] = $customer;
@@ -107,7 +116,7 @@ class CustomerController extends Controller
         $params = [];
 
         $params['cols'] = $request->post();
-
+        $params['cols']['service_id'] = implode(',', $params['cols']['service_id']);
         unset( $params['cols']['_token']);
         $params['cols']['id'] = $id;
 
