@@ -4030,7 +4030,7 @@ footer .footer-bar p {
         display: inline-grid;
         position: fixed;
         bottom: 15px;
-        left: 0px !important;
+        left: 10px !important;
         min-width: 45px;
         text-align: center;
         z-index: 99999;
