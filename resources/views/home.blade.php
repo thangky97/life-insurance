@@ -5,7 +5,7 @@
 @section('content')
 
     <!-- ABOUT US
-                                                                                                            ================================================== -->
+                                                                                                                ================================================== -->
     <div id="about" style="margin-top: 5rem">
         <div class="container">
             <div class="row align-items-center about-style3">
@@ -60,7 +60,7 @@
     </div>
 
     <!-- SERVICE
-                                                                                                            ================================================== -->
+                                                                                                                ================================================== -->
     <section id="service" class="bg-light" style="padding: 70px 0">
         <div class="container">
             <div class="text-center mb-2-1 wow fadeIn" data-wow-delay="100ms">
@@ -92,7 +92,7 @@
                                     @php
                                         $limitedDescription = Str::limit($item->description, 48, '...');
                                     @endphp
-                                    <span>{!! nl2br(e($limitedDescription)) !!}</span>
+                                    <span>{!! $limitedDescription !!}</span>
                                 </p>
                                 <a href="{{ route('route_FrontEnd_Service_Detail', ['id' => $item->id]) }}"
                                     class="border-bottom display-30 font-weight-600">Xem thêm <i
@@ -111,7 +111,7 @@
     </section>
 
     <!-- WHY CHOOSE US
-                                                                                                            ================================================== -->
+                                                                                                                ================================================== -->
     <section class="bg-white why-us-02 bg-img" data-background="img/content/why-us-02.jpg"
         style="padding: 30px 0; padding-bottom: 80px">
         <div class="container">
@@ -154,7 +154,7 @@
     </section>
 
     <!-- CALL TO ACTION
-                                                                                                            ================================================== -->
+                                                                                                                ================================================== -->
     <section class="bg-img cover-background primary-overlay" data-overlay-dark="8"
         data-background="{{ asset('client/img/bg/bg5.jpg') }}">
         <div class="container">
@@ -242,7 +242,7 @@
     </section>
 
     <!-- Biểu phí
-                                                                                                            ================================================== -->
+                                                                                                                ================================================== -->
     <section id="Cacgoi" style="margin-top: -4rem">
         <div class="container">
             <div class="text-center mb-2-1 wow fadeIn" data-wow-delay="100ms">
@@ -310,7 +310,7 @@
     </section>
 
     <!-- TESTIMONIALS
-                                                                                                            ================================================== -->
+                                                                                                                ================================================== -->
     {{-- <section class="bg-img cover-background left-overlay-dark" data-overlay-dark="90"
         data-background="{{ asset('client/img/bg/bg-06.jpg') }}">
         <div class="container">
@@ -377,7 +377,7 @@
     </section>
 
     <!-- BLOG
-                                                                                                            ================================================== -->
+                                                                                                                ================================================== -->
     <section id="new" class="bg-light">
         <div class="container position-relative z-index-2">
             <div class="text-center mb-2-1 wow fadeIn" data-wow-delay="100ms">
@@ -405,7 +405,7 @@
                                     @php
                                         $limitedMessage = Str::limit($new->sort_content, 35, '...');
                                     @endphp
-                                    <span>{!! nl2br(e($limitedMessage)) !!}</span>
+                                    <span>{!! $limitedMessage !!}</span>
                                 </p>
                                 <a href="{{ route('route_FrontEnd_News_Detail', ['id' => $new->id]) }}"
                                     class="text-secondary text-primary-hover font-weight-600">Đọc
@@ -425,7 +425,7 @@
     </section>
 
     <!-- PARTNER
-                                                                                                        ================================================== -->
+                                                                                                            ================================================== -->
     <section id="partner" class="bg-light" style="padding-top: 0px">
         <div class="container">
             <div class="text-center mb-2-1 wow fadeIn" data-wow-delay="100ms">

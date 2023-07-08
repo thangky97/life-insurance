@@ -1,6 +1,6 @@
 <?php
 $footer = DB::table('setting_home')->get();
-$listMenuService = DB::table('services')->get();
+$listMenuService = DB::table('services')->paginate(4);
 $newsFooter = DB::table('news')->paginate(3);
 ?>
 

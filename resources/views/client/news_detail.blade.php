@@ -28,8 +28,8 @@
                                                 class="ti-comments text-primary pe-2"></i>13 Comments</li>
                                     </ul> --}}
                                     <h3 class="mb-4">{{ $news->title }}</h3>
-                                    <p>{{ $news->sort_content }}</p>
-                                    <p class="mb-1-9" style="color: #252525">{{ $news->content }}</p>
+                                    <p>{!! $news->sort_content !!}</p>
+                                    <p class="mb-1-9" style="color: #252525">{!! $news->content !!}</p>
                                     {{-- <div class="row mb-4">
                                         <div class="col-6">
                                             <div class="image-hover">
@@ -44,7 +44,7 @@
                                             </div>
                                         </div>
                                     </div> --}}
-                                    <p>{{ $news->content }}</p>
+                                    {{-- <p>{{ $news->content }}</p> --}}
                                     {{-- <ul class="list-style2 mb-1-9">
                                         <li>We can save you money.</li>
                                         <li>Production or trading of good</li>
@@ -94,7 +94,9 @@
                                                 class="rounded" alt="Bài viết" style="height: 70px">
                                         </div>
                                         <div class="flex-grow-1 ms-3">
-                                            <h4 class="h6"><a href="{{ route('route_FrontEnd_News_Detail', ['id' => $new->id]) }}">{{ $new->title }}</a></h4>
+                                            <h4 class="h6"><a
+                                                    href="{{ route('route_FrontEnd_News_Detail', ['id' => $new->id]) }}">{{ $new->title }}</a>
+                                            </h4>
                                             {{-- <p class="mb-0 small">Nov 22, 2021</p> --}}
                                         </div>
                                     </div>

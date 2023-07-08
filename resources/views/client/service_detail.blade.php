@@ -86,7 +86,7 @@
                         </div>
                         <div class="col-12 mb-1-9">
                             <h3 class="mb-3">{{ $service->service_name }}</h3>
-                            <p class="mb-0">{{ $service->description }}</p>
+                            <p class="mb-0">{!! $service->description !!}</p>
                         </div>
                         {{-- <div class="col-12 mb-2-9">
                             <div class="row mt-n1-6">

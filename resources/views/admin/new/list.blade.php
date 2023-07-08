@@ -96,7 +96,7 @@
                                                             @php
                                                                 $limitedMessage = Str::limit($new->sort_content, 20, '...');
                                                             @endphp
-                                                            <span>{!! nl2br(e($limitedMessage)) !!}</span>
+                                                            <span>{!! $limitedMessage !!}</span>
                                                         @else
                                                             <span>Không có nội dung ngắn</span>
                                                         @endif

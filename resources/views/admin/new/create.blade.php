@@ -2,6 +2,10 @@
 
 @section('title', 'Thêm quản bài viết')
 
+@section('css')
+
+@endsection
+
 @section('content')
 
     <div class="main-content">
@@ -74,13 +78,14 @@
                                     <div class="mb-3">
                                         <label class="form-label">Nội dung ngắn</label>
                                         <div>
-                                            <textarea name="sort_content" data-parsley-type="text" class="form-control" rows="3">{{ old('sort_content', isset($request['sort_content']) ? $request['sort_content'] : '') }}</textarea>
+                                            <textarea name="sort_content" id="summernote_sort_content" data-parsley-type="text" class="form-control" rows="3">{{ old('sort_content', isset($request['sort_content']) ? $request['sort_content'] : '') }}</textarea>
                                         </div>
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">Nội dung</label>
                                         <div>
-                                            <textarea name="content" data-parsley-type="text" class="form-control" rows="5">{{ old('content', isset($request['content']) ? $request['content'] : '') }}</textarea>
+                                            {{-- <textarea name="content" data-parsley-type="text" class="form-control" rows="5">{{ old('content', isset($request['content']) ? $request['content'] : '') }}</textarea> --}}
+                                            <textarea id="summernote" name="content"></textarea>
                                             @error('content')
                                                 <div>
                                                     <p class="text-danger">{{ $message }}</p>
@@ -140,4 +145,39 @@
         </div>
     </div>
 
+@endsection
+
+@section('script')
+
+
+    <script>
+        $('#summernote').summernote({
+            placeholder: 'Nội dung',
+            tabsize: 2,
+            height: 200,
+            toolbar: [
+                ['style', ['style']],
+                ['font', ['bold', 'clear']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['table', ['table']],
+                ['insert', ['link', 'picture', 'video']],
+                ['view', ['fullscreen', 'codeview', 'help']]
+            ]
+        });
+
+        $('#summernote_sort_content').summernote({
+            placeholder: 'Nội dung ngắn',
+            tabsize: 2,
+            height: 120,
+            toolbar: [
+                ['style', ['style']],
+                ['font', ['bold', 'clear']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['table', ['table']],
+                ['insert', ['link']],
+            ]
+        });
+    </script>
 @endsection

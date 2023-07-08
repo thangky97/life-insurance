@@ -14,9 +14,12 @@
     <link href="{{ asset('admin/assets/libs/chartist/chartist.min.css') }}" rel="stylesheet">
 
     <link href="{{ asset('admin/assets/libs/select2/css/select2.min.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ asset('admin/assets/libs/bootstrap-datepicker/css/bootstrap-datepicker.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('admin/assets/libs/spectrum-colorpicker2/spectrum.min.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ asset('admin/assets/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('admin/assets/libs/bootstrap-datepicker/css/bootstrap-datepicker.min.css') }}"
+        rel="stylesheet">
+    <link href="{{ asset('admin/assets/libs/spectrum-colorpicker2/spectrum.min.css') }}" rel="stylesheet"
+        type="text/css">
+    <link href="{{ asset('admin/assets/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css') }}"
+        rel="stylesheet">
 
     <!-- Bootstrap Css -->
     <link href="{{ asset('admin/assets/css/bootstrap.min.css') }}" id="bootstrap-style" rel="stylesheet"
@@ -25,6 +28,9 @@
     <link href="{{ asset('admin/assets/css/icons.min.css') }}" rel="stylesheet" type="text/css">
     <!-- App Css-->
     <link href="{{ asset('admin/assets/css/app.min.css') }}" id="app-style" rel="stylesheet" type="text/css">
+
+    <!-- Summernote -->
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
 
 </head>
 
@@ -145,6 +151,16 @@
     <script src="{{ asset('admin/assets/js/pages/form-wizard.init.js') }}"></script>
 
     <script src="{{ asset('admin/assets/js/app.js') }}"></script>
+
+    <!--tinymce js-->
+    <script src="{{ asset('admin/assets/libs/tinymce/tinymce.min.js') }}"></script>
+
+    <!-- init js -->
+    <script src="{{ asset('admin/assets/js/pages/form-editor.init.js') }}"></script>
+
+    <!-- Summernote -->
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+    @yield('script')
 
 </body>
 

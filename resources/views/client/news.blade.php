@@ -35,16 +35,16 @@
                                 </ul>
                                 <h3 class="h4 mb-4"><a href="{{ route('route_FrontEnd_News_Detail', ['id' => $new->id]) }}">
                                         @php
-                                            $limitedMessage = Str::limit($new->title, 21, '...');
+                                            $limitedMessage = Str::limit($new->title, 18, '...');
                                         @endphp
                                         <span>{!! nl2br(e($limitedMessage)) !!}</span>
                                     </a>
                                 </h3>
                                 <p class="mb-0">
                                     @php
-                                        $limitedMessage = Str::limit($new->sort_content, 35, '...');
+                                        $limitedMessage = Str::limit($new->sort_content, 32, '...');
                                     @endphp
-                                    <span>{!! nl2br(e($limitedMessage)) !!}</span>
+                                    <span>{!! $limitedMessage !!}</span>
                                 </p>
                             </div>
                             <div class="card-footer bg-transparent px-1-9 py-3 border-color-light-gray">

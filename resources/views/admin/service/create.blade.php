@@ -124,7 +124,7 @@
                                     <div class="mb-3">
                                         <label class="form-label">Mô tả <span class="text-danger">*</span></label>
                                         <div>
-                                            <textarea name="description" id="" class="form-control" rows="3">{{ old('description', isset($request['description']) ? $request['description'] : '') }}</textarea>
+                                            <textarea name="description" id="description" class="form-control" rows="3">{{ old('description', isset($request['description']) ? $request['description'] : '') }}</textarea>
                                             @error('description')
                                                 <div>
                                                     <p class="text-danger">{{ $message }}</p>
@@ -184,4 +184,23 @@
         </div>
     </div>
 
+@endsection
+
+@section('script')
+    <script>
+        $('#description').summernote({
+            placeholder: 'Nội dung',
+            tabsize: 2,
+            height: 200,
+            toolbar: [
+                ['style', ['style']],
+                ['font', ['bold', 'clear']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['table', ['table']],
+                ['insert', ['link', 'video']],
+                ['view', ['fullscreen', 'codeview', 'help']]
+            ]
+        });
+    </script>
 @endsection

@@ -57,13 +57,13 @@
                                                 @enderror
                                             </select>
                                         </div>
-    
+
                                         <div class="col-md-6">
                                             <label class="form-label">Ngày đăng <span class="text-danger">*</span></label>
                                             <div class="input-group" id="datepicker2">
                                                 <input name="post_date" type="date" id="input-date1"
-                                                    value="{{ $news->post_date }}"
-                                                    class="form-control input-mask" data-inputmask="'alias': 'datetime'"
+                                                    value="{{ $news->post_date }}" class="form-control input-mask"
+                                                    data-inputmask="'alias': 'datetime'"
                                                     data-inputmask-inputformat="dd/mm/yyyy">
                                             </div>
                                             @error('post_date')
@@ -77,7 +77,7 @@
                                     <div class="mb-3">
                                         <label class="form-label">Nội dung ngắn</label>
                                         <div>
-                                            <textarea name="sort_content" data-parsley-type="text" class="form-control" rows="3">{{ $news->sort_content }}</textarea>
+                                            <textarea name="sort_content" data-parsley-type="text" id="summernote_sort_content" class="form-control" rows="3">{{ $news->sort_content }}</textarea>
                                             @error('content')
                                                 <div>
                                                     <p class="text-danger">{{ $message }}</p>
@@ -88,7 +88,7 @@
                                     <div class="mb-3">
                                         <label class="form-label">Nội dung</label>
                                         <div>
-                                            <textarea name="content" data-parsley-type="text" class="form-control" rows="5">{{ $news->content }}</textarea>
+                                            <textarea name="content" data-parsley-type="text" id="summernote" class="form-control" rows="5">{!! $news->content !!}</textarea>
                                             @error('content')
                                                 <div>
                                                     <p class="text-danger">{{ $message }}</p>
@@ -140,7 +140,7 @@
                                             <button type="submit" class="btn btn-primary waves-effect waves-light me-1">
                                                 Cập nhật
                                             </button>
-                                            <a href="{{ route('route_BackEnd_Users_List') }}"
+                                            <a href="{{ route('route_BackEnd_News_List') }}"
                                                 class="btn btn-secondary waves-effect">Quay lại</a>
                                         </div>
                                     </div>
@@ -156,3 +156,35 @@
 
 @endsection
 
+@section('script')
+    <script>
+        $('#summernote').summernote({
+            placeholder: 'Nội dung',
+            tabsize: 2,
+            height: 200,
+            toolbar: [
+                ['style', ['style']],
+                ['font', ['bold', 'clear']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['table', ['table']],
+                ['insert', ['link', 'picture', 'video']],
+                ['view', ['fullscreen', 'codeview', 'help']]
+            ]
+        });
+
+        $('#summernote_sort_content').summernote({
+            placeholder: 'Nội dung ngắn',
+            tabsize: 2,
+            height: 120,
+            toolbar: [
+                ['style', ['style']],
+                ['font', ['bold', 'clear']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['table', ['table']],
+                ['insert', ['link']],
+            ]
+        });
+    </script>
+@endsection

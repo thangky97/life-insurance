@@ -30,9 +30,9 @@
                                 </h3>
                                 <p class="mb-0">
                                     @php
-                                        $limitedDescription = Str::limit($service->description, 72, '...');
+                                        $limitedDescription = Str::limit($service->description, 70, '...');
                                     @endphp
-                                    <span>{!! nl2br(e($limitedDescription)) !!}</span>
+                                    <span>{!! $limitedDescription !!}</span>
                                 </p>
                             </div>
                             <div class="card-footer bg-transparent px-1-9 py-3 border-color-light-gray">
