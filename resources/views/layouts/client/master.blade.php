@@ -1,5 +1,5 @@
 <?php
-  $setting = DB::table('setting_home')->get();
+$setting = DB::table('setting_home')->get();
 ?>
 
 <!DOCTYPE html>
@@ -8,15 +8,18 @@
 <head>
     <!-- metas -->
     <meta charset="utf-8" />
-    <meta name="author" content="Website Design Templates" />
+    <meta name="author" content="Website Design By Thang" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <meta name="keywords" content="Insurance Agency HTML Template" />
-    <meta name="description" content="Lifest - Insurance Agency HTML Template" />
+    <meta name="keywords" content="Bảo hiểm nhân thọ" />
+    <meta name="description" content="Bảo hiểm nhân thọ - Hưng Dai-Ichi" />
 
     <!-- title  -->
     <title>@yield('title')</title>
 
+    @foreach ($setting as $lg)
+        <meta property="og:image" content="{{ asset($lg->logo) ? '' . Storage::url($lg->logo) : '' }}">
+    @endforeach
     <!-- favicon -->
     {{-- {{ asset($lg->logo) ? '' . Storage::url($lg->logo) : '' }} --}}
     @foreach ($setting as $favicon)
@@ -83,7 +86,8 @@
         <div class="social-button">
             <div class="social-button-content">
                 @foreach ($setting as $phone)
-                    <a href="tel:{{ str_replace(' ', '', $phone->support_phone_number) }}" class="call-icon" rel="nofollow">
+                    <a href="tel:{{ str_replace(' ', '', $phone->support_phone_number) }}" class="call-icon"
+                        rel="nofollow">
                         <i class="fas fa-phone-alt" aria-hidden="true"></i>
                         <div class="animated alo-circle"></div>
                         <div class="animated alo-circle-fill alo-circle-fill-call"></div>
@@ -172,31 +176,30 @@
         }
     </script>
 
-<script>
-    function validateForm() {
-        var contactName = document.getElementsByName('contact_name')[0].value;
-        var phoneNumber = document.getElementsByName('phone_number')[0].value;
-        var message = document.getElementsByName('message')[0].value;
+    <script>
+        function validateForm() {
+            var contactName = document.getElementsByName('contact_name')[0].value;
+            var phoneNumber = document.getElementsByName('phone_number')[0].value;
+            var message = document.getElementsByName('message')[0].value;
 
-        if (contactName === '' || phoneNumber === '' || message === '') {
-            showAlert('Vui lòng nhập đầy đủ thông tin', 'alert');
-            return false;
-        } else {
-            // showAlert('Gửi thông tin thành công', 'success');
-            return true;
+            if (contactName === '' || phoneNumber === '' || message === '') {
+                showAlert('Vui lòng nhập đầy đủ thông tin', 'alert');
+                return false;
+            } else {
+                // showAlert('Gửi thông tin thành công', 'success');
+                return true;
+            }
         }
-    }
 
-    function showAlert(message, type) {
-        var alertElement = document.createElement('div');
-        alertElement.className = 'alert ' + type;
-        alertElement.innerText = message;
+        function showAlert(message, type) {
+            var alertElement = document.createElement('div');
+            alertElement.className = 'alert ' + type;
+            alertElement.innerText = message;
 
-        var form = document.querySelector('form');
-        form.insertBefore(alertElement, form.firstChild);
-    }
-    
-</script>
+            var form = document.querySelector('form');
+            form.insertBefore(alertElement, form.firstChild);
+        }
+    </script>
 
 </body>
 
